@@ -1,0 +1,46 @@
+url: ""
+baseurl: ""
+title: "Lab Notes"
+
+plugins:
+  - jekyll-postcss-v2
+  - jekyll-inline-svg
+
+markdown: kramdown
+
+kramdown:
+  footnote_nr: 1
+
+svg:
+  optimize: true
+
+postcss:
+  cache: false
+
+exclude:
+  - package.json
+  - postcss.config.js
+  - tailwind.config.js
+  - yarn.lock
+  - package-lock.json
+  - node_modules
+  - documents/
+  - README.md
+  - .jekyll-cache/
+  - _site/
+
+include: ["_pages"]
+
+collections_dir: collections
+
+collections:
+  notes:
+    output: true
+    permalink: /notes/:path/
+
+defaults:
+  - scope:
+      path: "collections/_notes"
+      type: "notes"
+    values:
+      layout: note

@@ -1,0 +1,159 @@
+- first_name: Dennis
+  last_name: Yi Tenen
+  affiliation: English & Comparative Literature
+  university: Columbia University
+  active: true
+  title: Director
+  link: https://dennistenen.com/
+  image: denten.jpg
+  year: [2024, 2025]
+
+- first_name: Jessica
+  last_name: Merrill
+  affiliation: Slavic Languages
+  university: Columbia University
+  active: true
+  title: Faculty Associate
+  link: https://slavic.columbia.edu/content/jessica-e-merrill
+  image: merrill.jpg
+  year: [2024, 2025]
+
+- first_name: Moira
+  last_name: Weigel
+  affiliation: Comparative Literature
+  university: Harvard University
+  active: true
+  title: Faculty Associate
+  link: https://complit.fas.harvard.edu/people/moira-weigel/
+  image: weigel.jpg
+  year: [2025]
+
+- first_name: Elena
+  last_name: Fratto
+  affiliation: Medical Humanities
+  university: Princeton University
+  active: true
+  title: Faculty Associate
+  link: https://slavic.princeton.edu/people/elena-fratto
+  image: fratto.jpg
+  year: [2025]
+
+- first_name: Moacir
+  last_name: P. de Sá Pereira
+  affiliation: Columbia University Libraries
+  university: Columbia University
+  active: true
+  title: Senior Research Associate
+  link: https://moacir.com
+  image: moacir.png
+  year: [2024, 2025]
+
+- first_name: Julia Meghan
+  last_name: Walton
+  affiliation: English & Comparative Literature
+  university: Columbia University
+  active: true
+  title: Graduate Research Fellow
+  link: https://english.columbia.edu/content/julia-meghan-walton
+  image: favatar.png
+  year: [2024, 2025]
+
+- first_name: Ramathi
+  last_name: Bandaranayake
+  affiliation: English & Comparative Literature
+  university: Columbia University
+  active: false
+  title: Graduate Research Fellow
+  link: https://english.columbia.edu/content/ramathi-bandaranayake
+  image: ramathi.jpg
+  year: [2024, 2025]
+
+- first_name: Barbara
+  last_name: Roskosa
+  affiliation: Anthropology
+  university: Columbia University
+  active: true
+  title: Graduate Research Fellow
+  link: https://www.linkedin.com/in/barbara-rosko%C5%A1a-735257209
+  image: favatar6.png
+  year: [2024, 2025]
+
+- first_name: Aya
+  last_name: Labanieh
+  affiliation: English & Comparative Literature
+  university: Columbia University
+  active: true
+  title: Post-graduate Research Fellow
+  link: https://ayalabanieh.com/
+  image: aya.jpeg
+  year: [2024, 2025]
+
+- first_name: Isha
+  last_name: Karim
+  affiliation:
+  university: Columbia University
+  active: true
+  title: Undergraduate Research Fellow
+  link: null
+  image: favatar3.png
+  year: [2024, 2025]
+
+- first_name: Linda Dongfang
+  last_name: Qu
+  affiliation:
+  university: Columbia University
+  active: true
+  title: Undergraduate Research Fellow
+  link: null
+  image: linda.jpg
+  year: [2024, 2025]
+
+- first_name: Olivia
+  last_name: McAlpine
+  affiliation: Cognitive Science & Creative Writing
+  university: Columbia University
+  active: true
+  title: Undergradate Research Fellow
+  link: null
+  image: olivia.jpg
+  year: [2024, 2025]
+
+- first_name: Valentina
+  last_name: Rodriguez
+  affiliation:
+  university: Columbia University
+  active: false
+  title: Undergraduate Research Fellow
+  link: null
+  image: favatar2.png
+  year: [2024, 2025]
+
+- first_name: Aaron
+  last_name: McKeever
+  affiliation:
+  university: Columbia University
+  active: false
+  title: Undergraduate Research Fellow
+  link: null
+  image: mavatar.png
+  year: [2024, 2025]
+
+- first_name: Quynh Hai
+  last_name: Luong
+  affiliation: East Asian Languages & Cultures
+  university: Columbia University
+  active: true
+  title: Graduate Research Fellow
+  link: null
+  image: qhl.png
+  year: [2024, 2025]
+
+- first_name: Brooke Audra
+  last_name: Blackburn
+  affiliation: Anthropology
+  university: Columbia University
+  active: true
+  title: Graduate Research Fellow
+  link: www.linkedin.com/in/brooke-blackburn-a36739194
+  image: brooke.jpg
+  year: [2024, 2025]

@@ -1,0 +1,26 @@
+<div class="justify-center items-center">
+
+{% assign projects = include.projects | default: site.projects %}
+{% assign project_count = projects | size %}
+  <ul>
+    {% for project in projects %}
+        <li>
+          {% if include.show-category-name %}
+            {% assign category = site.category | where: "tag", project.tag | first %}
+            {% assign category-name = category.display-name %}
+          {% endif %}
+          {% include card.html
+              category-name = category-name
+              title = project.title
+              image = project.image
+              image-alt = project.image-alt
+              teaser = project.teaser
+              path = project.path
+          %}
+        </li>
+    {% endfor %}
+  </ul>
+
+</div>
+
+

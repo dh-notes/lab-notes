@@ -1,0 +1,11 @@
+---
+layout: default
+---
+
+<div>
+    <h1>{{ page.display-name }}</h1>
+    {% assign projects = site.projects | where:"tag", page.tag %}
+    {% include collection.html
+      projects=projects
+    %}
+</div>

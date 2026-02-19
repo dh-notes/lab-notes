@@ -1,0 +1,4 @@
+- name: Notes
+  path: /notes/
+- name: About
+  path: /about/

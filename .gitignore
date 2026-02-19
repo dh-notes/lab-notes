@@ -1,0 +1,18 @@
+# Jekyll
+_site/
+.jekyll-cache/
+.sass-cache/
+.jekyll-metadata
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
+
+# Ruby
+.bundle/
+vendor/
+
+# Logs
+*.log

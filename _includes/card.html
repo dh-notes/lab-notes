@@ -1,0 +1,32 @@
+{% assign item = project | default: page %}
+
+<div class="projects-card mx-4 lg:mx-8 grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 lg:mb-16 items-center">
+    <!-- Tag & Title (Always First) -->
+
+    {% include card-title.html tag=item.tag title=item.title %}
+
+    <!-- Image Section (Appears between title and text in mobile, right side in desktop) -->
+    <div class="w-full order-2 md:col-span-1 md:order-3 self-start">
+
+        <img class="w-full h-10 sm:h-15 md:h-auto object-cover rounded-lg" src="/assets/images/{{
+        item.image_folder | default: 'projects' }}/{{ item.image }}" alt="{{ item.image_alt }}">
+
+    </div>
+
+    <!-- Text Section (Takes 2/3 space on desktop, below image in mobile) -->
+
+    <div class="md:col-span-2 md:pr-6 order-3 md:order-2">
+
+        {% capture first_paragraph %}
+            {{ item.content | markdownify | split: '</p>' | first | remove: '<p>' | rstrip }}
+        {% endcapture %}
+
+        <div class="p-5 pt-3 mb-3 font-ibmserif prose">
+            {{ first_paragraph }}
+            <a href="{{ item.url }}" class="text-sky-600 hover:underline text-xs
+                font-ibmsans">
+                [read more]
+            </a>
+        </div>
+    </div>
+</div>

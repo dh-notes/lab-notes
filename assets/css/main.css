@@ -1,0 +1,32 @@
+---
+---
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif');
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-ibmserif: "IBM Plex Serif", serif;
+  --font-ibmsans: "IBM Plex Sans", sans-serif;
+}
+
+@layer base {
+  a:hover {
+    @apply text-sky-700;
+  }
+}
+
+.jagged-right {
+  clip-path: polygon(
+    0 0,
+    93% 0,
+    100% 20%,
+    93% 40%,
+    100% 60%,
+    93% 80%,
+    100% 100%,
+    0 100%
+  );
+}
