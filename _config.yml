@@ -1,5 +1,5 @@
-url: ""
-baseurl: ""
+url: "https://dh-notes.github.io"
+baseurl: "/lab-notes"
 title: "Lab Notes"
 
 plugins:
