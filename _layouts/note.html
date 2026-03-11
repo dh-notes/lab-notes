@@ -2,53 +2,62 @@
 layout: default
 ---
 
-<article class="mx-auto max-w-3xl px-4 py-10">
-  <!-- Header -->
-  <header class="mb-10 space-y-4">
-    <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
-      {{ page.title }}
-    </h1>
+<article class="article">
+  <header class="article-header">
+    <div class="article-header-main">
+      <div class="article-kicker-row">
+        <span class="article-type">Lab Note</span>
+        {% if page.date %}
+          <span class="article-date-mobile">{{ page.date | date: "%Y-%m-%d" }}</span>
+        {% endif %}
+      </div>
 
-    <div class="text-sm text-gray-600 flex flex-wrap gap-x-4 gap-y-1">
-      {% if page.authors %}
-        <span>
-          {% for author in page.authors %}
-            {{ author }}{% unless forloop.last %}, {% endunless %}
-          {% endfor %}
-        </span>
+      <h1 class="article-title">{{ page.title }}</h1>
+
+      {% if page.summary %}
+        <p class="article-subtitle">{{ page.summary }}</p>
       {% endif %}
 
-      {% if page.date %}
-        <span>
-          {{ page.date | date: "%B %d, %Y" }}
-        </span>
+      {% if page.authors %}
+        <div class="article-authors">
+          {% for author in page.authors %}
+            <span>{{ author }}</span>{% unless forloop.last %}, {% endunless %}
+          {% endfor %}
+        </div>
       {% endif %}
     </div>
 
-    {% if page.summary %}
-      <p class="text-lg text-gray-700 max-w-prose">
-        {{ page.summary }}
-      </p>
-    {% endif %}
+    <aside class="article-meta">
+      {% if page.date %}
+        <div class="meta-block">
+          <div class="meta-label">Published</div>
+          <div class="meta-value">{{ page.date | date: "%Y-%m-%d" }}</div>
+        </div>
+      {% endif %}
+
+      {% if page.tags %}
+        <div class="meta-block">
+          <div class="meta-label">Tags</div>
+          <div class="meta-value">
+            {% for tag in page.tags %}
+              <span>{{ tag }}</span>{% unless forloop.last %} · {% endunless %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </aside>
   </header>
 
-  <!-- Body -->
-  <div class="prose prose-slate prose-lg max-w-none
-            prose-headings:tracking-tight
-            prose-p:text-gray-800
-            prose-li:text-gray-800
-            prose-strong:text-gray-900">
+  <div class="article-body prose">
     {{ content }}
   </div>
 
-  <!-- Footer / meta -->
   {% if page.tags %}
-    <footer class="mt-12 pt-6 border-t border-gray-200">
-      <div class="flex flex-wrap gap-2 text-sm">
+    <footer class="article-taxonomy">
+      <div class="meta-label">Filed under</div>
+      <div class="taxonomy-list">
         {% for tag in page.tags %}
-          <span class="rounded-full bg-gray-100 px-3 py-1 text-gray-700">
-            {{ tag }}
-          </span>
+          <span class="taxonomy-tag">{{ tag }}</span>
         {% endfor %}
       </div>
     </footer>
