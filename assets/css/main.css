@@ -129,7 +129,7 @@ a:focus-visible {
 
 .home-hero {
   border-bottom: var(--rule);
-  padding: 1.35rem var(--page-pad) 0;
+  padding: 1rem var(--page-pad) 1.1rem;
 }
 
 .hero-kicker {
@@ -146,13 +146,13 @@ a:focus-visible {
 
 .hero-headline {
   margin: 0;
-  padding-bottom: 1.15rem;
   font-family: var(--sans);
   font-weight: 900;
-  font-size: clamp(3rem, 7vw, 7rem);
-  line-height: 0.9;
-  letter-spacing: -0.04em;
+  font-size: clamp(4.5rem, 16vw, 14rem);
+  line-height: 0.88;
+  letter-spacing: -0.06em;
   text-transform: uppercase;
+  color: var(--red);
 }
 
 .hero-line {
