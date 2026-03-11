@@ -1,23 +1,18 @@
 <header class="masthead">
-  <a href="{{ '/' | relative_url }}" class="m-logo">LAB<span class="dot">/</span>NOTES</a>
-  <div class="m-title">Journal of Experimental Humanities Research</div>
-  <div class="m-vol">Issue 01 · {{ site.time | date: "%Y" }}</div>
+  <div class="m-logo">
+    <a href="{{ '/' | relative_url }}">Lab<span class="slash">/</span>Notes</a>
+  </div>
+  <div class="m-title">Journal of Methodological Reflection</div>
+  <div class="m-vol">Lab-based research in the humanities and social sciences</div>
 </header>
 
 <nav class="section-nav" aria-label="Primary">
   <div class="section-nav-inner">
+    <a href="{{ '/' | relative_url }}" class="section-link{% if page.url == '/' %} is-current{% endif %}" {% if page.url == '/' %}aria-current="page"{% endif %}>Home</a>
+
     {% for menuItem in site.data.navbar %}
       {% assign href = menuItem.path | relative_url %}
-      {% assign is_current = false %}
-      {% if page.url == menuItem.path %}
-        {% assign is_current = true %}
-      {% endif %}
-
-      <a
-        href="{{ href }}"
-        class="section-link{% if is_current %} is-current{% endif %}"
-        {% if is_current %}aria-current="page"{% endif %}
-      >
+      <a href="{{ href }}" class="section-link{% if page.url == menuItem.path %} is-current{% endif %}" {% if page.url == menuItem.path %}aria-current="page"{% endif %}>
         {{ menuItem.name }}
       </a>
     {% endfor %}
