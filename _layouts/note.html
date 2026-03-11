@@ -2,13 +2,13 @@
 layout: default
 ---
 
-<article class="article">
+<article class="article-shell">
   <header class="article-header">
     <div class="article-header-main">
       <div class="article-kicker-row">
         <span class="article-type">Lab Note</span>
         {% if page.date %}
-          <span class="article-date-mobile">{{ page.date | date: "%Y-%m-%d" }}</span>
+          <span class="article-date-inline">{{ page.date | date: "%Y-%m-%d" }}</span>
         {% endif %}
       </div>
 
@@ -21,7 +21,7 @@ layout: default
       {% if page.authors %}
         <div class="article-authors">
           {% for author in page.authors %}
-            <span>{{ author }}</span>{% unless forloop.last %}, {% endunless %}
+            <span class="article-author">{{ author }}</span>{% unless forloop.last %}<span class="article-author-sep"> · </span>{% endunless %}
           {% endfor %}
         </div>
       {% endif %}
@@ -30,17 +30,17 @@ layout: default
     <aside class="article-meta">
       {% if page.date %}
         <div class="meta-block">
-          <div class="meta-label">Published</div>
-          <div class="meta-value">{{ page.date | date: "%Y-%m-%d" }}</div>
+          <span class="meta-label">Published</span>
+          <div class="meta-value">{{ page.date | date: "%B %-d, %Y" }}</div>
         </div>
       {% endif %}
 
       {% if page.tags %}
         <div class="meta-block">
-          <div class="meta-label">Tags</div>
+          <span class="meta-label">Tags</span>
           <div class="meta-value">
             {% for tag in page.tags %}
-              <span>{{ tag }}</span>{% unless forloop.last %} · {% endunless %}
+              <span>{{ tag }}</span>{% unless forloop.last %}<br>{% endunless %}
             {% endfor %}
           </div>
         </div>
@@ -53,8 +53,8 @@ layout: default
   </div>
 
   {% if page.tags %}
-    <footer class="article-taxonomy">
-      <div class="meta-label">Filed under</div>
+    <footer class="article-footer">
+      <span class="meta-label">Filed under</span>
       <div class="taxonomy-list">
         {% for tag in page.tags %}
           <span class="taxonomy-tag">{{ tag }}</span>
