@@ -1,25 +1,25 @@
-<header class="mx-4 lg:mx-8 py-6">
-  <div class="flex items-center justify-between gap-6">
-    <!-- Brand -->
-    <a href="{{ "/" | relative_url }}" class="flex items-center gap-3">
-      <span class="text-xl font-bold text-gray-900">Lab Notes Journal</span>
-    </a>
-
-    <!-- Nav -->
-    <nav class="flex items-center gap-4 text-base font-medium">
-      {% for menuItem in site.data.navbar %}
-        {% assign href = menuItem.path | relative_url %}
-
-        {% if page.url == menuItem.path %}
-          {% assign classes = "text-sky-700" %}
-        {% else %}
-          {% assign classes = "text-gray-800 hover:text-sky-700" %}
-        {% endif %}
-
-        <a href="{{ href }}" class="{{ classes }}">
-          {{ menuItem.name }}
-        </a>
-      {% endfor %}
-    </nav>
-  </div>
+<header class="masthead">
+  <a href="{{ '/' | relative_url }}" class="m-logo">LAB<span class="dot">/</span>NOTES</a>
+  <div class="m-title">Journal of Experimental Humanities Research</div>
+  <div class="m-vol">Issue 01 · {{ site.time | date: "%Y" }}</div>
 </header>
+
+<nav class="section-nav" aria-label="Primary">
+  <div class="section-nav-inner">
+    {% for menuItem in site.data.navbar %}
+      {% assign href = menuItem.path | relative_url %}
+      {% assign is_current = false %}
+      {% if page.url == menuItem.path %}
+        {% assign is_current = true %}
+      {% endif %}
+
+      <a
+        href="{{ href }}"
+        class="section-link{% if is_current %} is-current{% endif %}"
+        {% if is_current %}aria-current="page"{% endif %}
+      >
+        {{ menuItem.name }}
+      </a>
+    {% endfor %}
+  </div>
+</nav>
