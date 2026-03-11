@@ -148,11 +148,14 @@ a:focus-visible {
   margin: 0;
   font-family: var(--sans);
   font-weight: 900;
-  font-size: clamp(4.5rem, 16vw, 14rem);
-  line-height: 0.88;
-  letter-spacing: -0.06em;
+
+  font-size: clamp(3rem, 9vw, 8rem);
+
+  line-height: 0.92;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
-  color: var(--red);
+
+  color: var(--black);
 }
 
 .hero-line {
