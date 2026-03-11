@@ -4,56 +4,60 @@ title: Home
 permalink: /
 ---
 
-<section class="hero">
+<section class="home-hero">
   <div class="hero-kicker">
-    <div>Peer-reviewed reflections</div>
-    <span>Experimental humanities research</span>
+    <span>Lab Notes</span>
+    <span>Peer-reviewed</span>
+    <span>Methodological reflection</span>
   </div>
 
-  <h1 class="hero-headline">
-    LAB NOTES FOR <span class="ghost">COLLABORATIVE</span><br>
-    RESEARCH <span class="red">PRACTICE</span>
+  <h1 class="hero-headline" aria-label="Concise peer-reviewed reflections on lab-based research">
+    <span class="hero-line">Concise</span>
+    <span class="hero-line">peer-reviewed</span>
+    <span class="hero-line">reflections</span>
+    <span class="hero-line">on lab-based</span>
+    <span class="hero-line ghost">research</span>
   </h1>
+
+  <div class="hero-deck">
+    Lab Notes publishes concise, peer-reviewed reflections on the experimental and collaborative processes of lab-based research in the humanities and social sciences.
+  </div>
 
   <div class="hero-strip">
     <div class="hero-strip-item">
-      <span class="label">About</span>
-      A journal of methodological reflection on lab-based research in the humanities and social sciences.
+      <span class="label">Purpose</span>
+      Experimental and collaborative processes of lab-based research.
     </div>
-
-    <div class="hero-strip-item">
-      <span class="label">Browse</span>
-      <a href="{{ '/notes/' | relative_url }}">View all notes</a>
-    </div>
-
     <div class="hero-strip-item">
       <span class="label">Format</span>
-      Concise, public, peer-reviewed writing on experimental and collaborative process.
+      Concise notes, public archive, editorial workflow.
+    </div>
+    <div class="hero-strip-item">
+      <span class="label">Browse</span>
+      <a href="{{ '/notes/' | relative_url }}">Browse notes →</a>
     </div>
   </div>
 </section>
 
 <section class="statement">
-  <div class="statement-text">
-    Lab Notes treats <em>research process</em> as something worth publishing: methods, dead ends, infrastructure, collaboration, revision, and reflection.
-  </div>
+  <p class="statement-text">
+    Lab Notes is a journal of methodological reflection on lab-based research in the humanities and social sciences.
+  </p>
   <div class="statement-attr">
-    Transparent, lightweight, public editorial infrastructure.
+    <a href="{{ '/about/' | relative_url }}">About Lab Notes →</a>
   </div>
-  <div class="statement-link">
-    <a href="{{ '/notes/' | relative_url }}">Browse archive</a>
-  </div>
+  <div class="statement-link"></div>
 </section>
 
-<section class="home-section">
+<section class="listing-section">
   <div class="section-head">
     <span class="section-label">Recent notes</span>
-    <a href="{{ '/notes/' | relative_url }}" class="section-action">View all</a>
+    <a href="{{ '/notes/' | relative_url }}" class="section-action">View all →</a>
   </div>
 
   {% assign items = site.notes | sort: "date" | reverse %}
   {% if items and items.size > 0 %}
-    <div class="home-list">
+    <div class="notes-grid">
       {% for post in items limit:6 %}
         <article class="note-card">
           <div class="note-card-meta">
@@ -67,21 +71,19 @@ permalink: /
             <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
           </h2>
 
+          {% if post.summary %}
+            <p class="note-card-summary">{{ post.summary }}</p>
+          {% else %}
+            <p class="note-card-summary">{{ post.excerpt | strip_html | truncate: 220 }}</p>
+          {% endif %}
+
           {% if post.tags %}
             <div class="note-card-tags">
               {% for tag in post.tags %}
-                <span>{{ tag }}</span>{% unless forloop.last %} · {% endunless %}
+                <span>{{ tag }}</span>{% unless forloop.last %}<span class="tag-sep"> · </span>{% endunless %}
               {% endfor %}
             </div>
           {% endif %}
-
-          <p class="note-card-summary">
-            {% if post.summary %}
-              {{ post.summary }}
-            {% else %}
-              {{ post.excerpt | strip_html | truncate: 220 }}
-            {% endif %}
-          </p>
         </article>
       {% endfor %}
     </div>
