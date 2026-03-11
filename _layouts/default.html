@@ -1,18 +1,20 @@
-<!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
+<!doctype html>
+<html lang="en">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <title>{{ page.title }} - {{ site.title }}</title>
-    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}
+    </title>
+    <meta name="description" content="Lab Notes publishes concise, peer-reviewed reflections on experimental and collaborative research practice in the humanities and social sciences.">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   </head>
-
-  <body class="min-h-screen bg-gray-50 text-gray-900 font-ibmsans">
+  <body>
     {% include header.html %}
 
-    <div class="mx-4 lg:mx-8">
+    <main class="site-main">
       {{ content }}
-    </div>
+    </main>
 
     {% include footer.html %}
   </body>
