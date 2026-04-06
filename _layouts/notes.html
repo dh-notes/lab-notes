@@ -1,0 +1,64 @@
+---
+layout: default
+---
+
+{{ content }}
+
+<section class="border-b">
+
+    {% include page-lead.html %}
+
+    {% assign items = site.notes | sort: "date" | reverse %}
+    {% if items and items.size > 0 %}
+
+        <div class="w-full">
+            {% for post in items %}
+            <article class="grid grid-cols-1 border-b border-black/10 md:grid-cols-[170px_1fr]">
+              <div class="border-b border-black/10 px-4 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-gray-500 md:border-b-0 md:border-r md:px-6">
+                {{ post.date | date: "%Y-%m-%d" }}
+              </div>
+
+              <div class="px-4 py-4 md:px-6 md:pb-[1.15rem]">
+                <h2 class="mb-1.5 font-sans text-[1.4rem] font-black uppercase leading-[1] tracking-[-0.025em]">
+                  <a href="{{ post.url | relative_url }}" class="hover:text-red-600">
+                    {{ post.title }}
+                  </a>
+                </h2>
+
+                <div class="mb-2 font-mono text-[0.68rem] uppercase tracking-[0.06em] leading-[1.7] text-gray-500">
+                  {% if post.authors %}
+                    <span>{{ post.authors | join: ", " }}</span>
+                  {% endif %}
+                  {% if post.tags %}
+                    {% if post.authors %}<span> · </span>{% endif %}
+                    <span>{{ post.tags | join: " · " }}</span>
+                  {% endif %}
+                </div>
+
+                {% if post.summary %}
+                  <p class="m-0 max-w-[54ch] text-[0.9rem] leading-[1.65] text-neutral-700">
+                    {{ post.summary }}
+                  </p>
+                {% else %}
+                  <p class="m-0 max-w-[54ch] text-[0.9rem] leading-[1.65] text-neutral-700">
+                    {{ post.excerpt | strip_html | truncate: 180 }}
+                  </p>
+                {% endif %}
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+
+        <footer class="px-4 py-4 md:px-6 md:pb-5">
+          <span class="font-mono text-[0.68rem] uppercase tracking-[0.12em] text-gray-500">
+              Count <span class="text-red-600">{{ items | size }}</span> notes
+          </span>
+          </div>
+        </footer>
+      {% else %}
+        <div class="px-4 py-5 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-gray-500 md:px-6">
+          No notes yet. Add a Markdown file to <code>collections/_notes/</code>.
+        </div>
+      {% endif %}
+    </section>
+
