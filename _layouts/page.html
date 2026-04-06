@@ -3,18 +3,11 @@ layout: default
 ---
 
 <section class="">
-  <header class="">
-    <div class="px-4 py-6 md:px-6 md:py-7">
-      <span class="mb-3 block font-mono text-[0.68rem] uppercase tracking-[0.12em] text-red-600">
-          {{ page.kicker }}
-      </span>
-      <h1 class="m-0 font-sans text-[clamp(2.6rem,6vw,5.8rem)] font-black uppercase leading-[0.92] tracking-[-0.035em]">
-        {{ page.title }}
-      </h1>
-    </div>
-  </header>
 
-  <div class="prose max-w-[760px] px-4 py-9 md:px-6">
-      {{ content }}
-  </div>
+    {% include page-lead.html %}
+
+    <div class="prose max-w-3xl px-4 py-9 md:px-6">
+        {{ content }}
+    </div>
+
 </section>
