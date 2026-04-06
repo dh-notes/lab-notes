@@ -1,9 +1,20 @@
-<footer class="site-footer">
-  <div class="site-footer-grid">
-    <div class="site-footer-mark">LabNotes</div>
-    <div class="site-footer-text">
+<footer class="border-t">
+  <div class="grid grid-cols-1 gap-4 px-4 py-4 md:grid-cols-3 md:items-start md:px-6">
+
+    <!-- mark -->
+    <div class="font-sans text-[0.82rem] font-black uppercase tracking-[0.06em]">
+      LabNotes
+    </div>
+
+    <!-- text -->
+    <div class="font-mono text-[0.68rem] leading-[1.7] text-gray-500">
       Add text here
     </div>
-    <div class="site-footer-meta">© {{ site.time | date: "%Y" }}</div>
+
+    <!-- meta -->
+    <div class="font-mono text-[0.68rem] leading-[1.7] text-gray-500 md:text-right">
+      © {{ site.time | date: "%Y" }}
+    </div>
+
   </div>
 </footer>
