@@ -2,15 +2,19 @@
 layout: default
 ---
 
-<section class="page-shell">
-  <header class="page-header">
-    <div class="page-header-main">
-      <span class="page-kicker">Information</span>
-      <h1 class="page-title">{{ page.title }}</h1>
+<section class="">
+  <header class="">
+    <div class="px-4 py-6 md:px-6 md:py-7">
+      <span class="mb-3 block font-mono text-[0.68rem] uppercase tracking-[0.12em] text-red-600">
+        Information
+      </span>
+      <h1 class="m-0 font-sans text-[clamp(2.6rem,6vw,5.8rem)] font-black uppercase leading-[0.92] tracking-[-0.035em]">
+        {{ page.title }}
+      </h1>
     </div>
   </header>
 
-  <div class="page-body prose">
-    {{ content }}
+  <div class="prose max-w-[760px] px-4 py-9 md:px-6">
+      {{ content }}
   </div>
 </section>
