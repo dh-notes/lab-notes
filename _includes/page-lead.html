@@ -1,19 +1,27 @@
-<header class="grid md:grid-cols-2">
+<header>
 
-  <!-- main -->
-  <div class="pt-4 px-6">
-    <span class="block font-mono text-xs uppercase tracking-wider text-red-600">
-        {{ page.kicker }}
-    </span>
+  <div class="mx-auto px-4 md:px-6 pt-4">
 
-    <h1 class="font-sans text-5xl font-black uppercase leading-tight">
-        {{ page.title }}
-    </h1>
+    {% if page.overtitle %}
+        <span class="block font-mono text-xs uppercase tracking-wider text-red-600">
+          {{ page.overtitle }}
+        </span>
+    {% endif %}
+
+    {% if page.title %}
+        <h1 class="font-sans text-5xl font-black uppercase leading-tight">
+          {{ page.title }}
+        </h1>
+    {% endif %}
+
   </div>
 
   <!-- meta -->
-  <div class="bg-stone-100 px-4 py-6 font-mono text-sm leading-relaxed text-gray-500 md:px-6">
-    {{ page.meta }}
-  </div>
+
+{% if page.meta %}
+    <div class="bg-stone-100 px-4 py-6 font-mono text-sm leading-relaxed text-gray-500 md:px-6">
+        {{ page.meta }}
+    </div>
+{% endif %}
 
 </header>

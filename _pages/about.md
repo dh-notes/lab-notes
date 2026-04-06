@@ -1,6 +1,6 @@
 ---
 layout: about
-kicker: "information"
+overtitle: "information"
 title: About
 permalink: /about/
 ---

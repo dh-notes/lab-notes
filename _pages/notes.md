@@ -2,7 +2,7 @@
 layout: notes
 title: Notes
 permalink: /notes/
-kicker: "archive"
+overtitle: "archive"
 meta: "Chronological journal entries. Newest first."
 ---
 
