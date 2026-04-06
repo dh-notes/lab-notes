@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: about
 kicker: "information"
 title: About
 permalink: /about/
