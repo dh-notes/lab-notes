@@ -2,13 +2,13 @@
   "type": "module",
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
-    "autoprefixer": "^10.4.20",
+    "autoprefixer": "^10.4.27",
     "cssnano": "^7.0.6",
-    "postcss": "^8.5.1",
-    "tailwindcss": "^4.0.0"
+    "postcss": "^8.5.8",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^4.2.2"
   },
   "dependencies": {
-    "@tailwindcss/postcss": "^4.0.0",
-    "postcss-cli": "^11.0.0"
+    "@tailwindcss/postcss": "^4.2.2"
   }
 }

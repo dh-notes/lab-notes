@@ -1,17 +1,34 @@
-<header class="masthead">
-  <div class="m-logo">
-    <a href="{{ '/' | relative_url }}">Lab<span class="slash">/</span>Notes</a>
+<header class="grid grid-cols-3 items-baseline gap-x-4 bg-stone-50 px-6 py-2">
+    <div class="justify-self-start">
+        <a href="{{ '/' | relative_url }}" class="text-xl font-semibold tracking-tight">
+            Lab<span class="text-red-500">/</span>Notes
+        </a>
+    </div>
+
+  <div></div>
+
+  <div class="justify-self-end whitespace-nowrap text-sm text-gray-600">
+    Method, experiment, and practice in collective scholarship.
   </div>
-  <div class="m-vol">Lab-based research in the humanities and social sciences</div>
 </header>
 
-<nav class="section-nav" aria-label="Primary">
-  <div class="section-nav-inner">
-    <a href="{{ '/' | relative_url }}" class="section-link{% if page.url == '/' %} is-current{% endif %}" {% if page.url == '/' %}aria-current="page"{% endif %}>Home</a>
+<nav class="" aria-label="Primary">
+  <div class="flex flex-wrap gap-x-6 gap-y-3 px-6 py-2">
+    <a
+      href="{{ '/' | relative_url }}"
+      class="font-mono text-[0.68rem] uppercase tracking-[0.12em] {% if page.url == '/' %}text-black underline underline-offset-[0.22rem] decoration-[1px]{% else %}text-gray-500 hover:text-black{% endif %}"
+      {% if page.url == '/' %}aria-current="page"{% endif %}
+    >
+      Home
+    </a>
 
     {% for menuItem in site.data.navbar %}
       {% assign href = menuItem.path | relative_url %}
-      <a href="{{ href }}" class="section-link{% if page.url == menuItem.path %} is-current{% endif %}" {% if page.url == menuItem.path %}aria-current="page"{% endif %}>
+      <a
+        href="{{ href }}"
+        class="font-mono text-[0.68rem] uppercase tracking-[0.12em] {% if page.url == menuItem.path %}text-black underline underline-offset-[0.22rem] decoration-[1px]{% else %}text-gray-500 hover:text-black{% endif %}"
+        {% if page.url == menuItem.path %}aria-current="page"{% endif %}
+      >
         {{ menuItem.name }}
       </a>
     {% endfor %}
