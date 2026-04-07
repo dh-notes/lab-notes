@@ -1,0 +1,13 @@
+{% assign text = include.text %}
+{% assign href = include.href %}
+
+{% if href %}
+  <a href="{{ href | relative_url }}"
+     class="font-mono text-[0.68rem] uppercase tracking-[0.12em] text-gray-700 hover:text-red-600">
+    {{ text }}
+  </a>
+{% else %}
+  <span class="font-mono text-[0.68rem] uppercase tracking-[0.12em] text-gray-700">
+    {{ text }}
+  </span>
+{% endif %}
