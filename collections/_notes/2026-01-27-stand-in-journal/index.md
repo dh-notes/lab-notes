@@ -3,7 +3,8 @@ layout: note
 title: The Limits of Network Analysis
 date: 2026-01-27
 authors:
-  - Name Researcher
+  - Wax Meber
+  - Demile Erkheim
 tags:
   - computational methods
 summary: >

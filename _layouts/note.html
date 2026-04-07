@@ -4,89 +4,80 @@ layout: default
 
 <article class="border-b border-black">
 
-  <header class="grid grid-cols-1 md:grid-cols-[minmax(0,3fr)_minmax(220px,1fr)] border-b border-black">
+    <header class="grid grid-cols-1 md:grid-cols-[minmax(0,3fr)_minmax(220px,1fr)] border-b border-black">
 
-    <!-- main -->
-    <div class="px-4 py-3 md:px-6 md:border-r md:border-black">
+        <!-- main -->
+        <div class="px-4 py-3 md:px-6 md:border-r md:border-black">
 
-      <!-- kicker row -->
-    <span class="block text-right font-mono text-[0.68rem] uppercase tracking-[0.12em] text-red-600">
-      Note {{ page.date | date: "%y%m%d" }}
-    </span>
+          <!-- kicker row -->
+        <span class="block text-right font-mono text-[0.68rem] uppercase tracking-[0.12em] text-red-600">
+            Note {{ page.date | date: "%y%m%d" }}
+        </span>
 
-      <!-- title -->
-      <h1 class="max-w-2xl font-serif text-[clamp(1.9rem,3vw,2.6rem)] leading-snug tracking-normal text-black">
-        {{ page.title }}
-      </h1>
+          <!-- title -->
+          <h1 class="max-w-2xl font-serif text-[clamp(1.9rem,3vw,2.6rem)] leading-snug tracking-normal text-black">
+            {{ page.title }}
+          </h1>
 
-      {% if page.authors %}
-        <div class="mt-3 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-gray-500">
-          {% for author in page.authors %}
-            <span>{{ author }}</span>{% unless forloop.last %}<span class="text-red-600"> · </span>{% endunless %}
-          {% endfor %}
+          {% if page.authors %}
+            <div class="mt-3 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-gray-500">
+              {% for author in page.authors %}
+                <span>{{ author }}</span>{% unless forloop.last %}<span class="text-red-600"> · </span>{% endunless %}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+
+          {% if page.summary %}
+            <p class="mt-4 max-w-[50ch] text-base leading-[1.55] text-neutral-700">
+              {{ page.summary }}
+            </p>
+          {% endif %}
+
         </div>
-      {% endif %}
 
+        <!-- meta -->
+        <aside class="bg-gray-100 px-4 py-6 md:px-6">
 
-      {% if page.summary %}
-        <p class="mt-4 max-w-[50ch] text-base leading-[1.55] text-neutral-700">
-          {{ page.summary }}
-        </p>
-      {% endif %}
+          {% if page.date %}
+            <div>
+              <span class="block font-mono text-[0.68rem] uppercase tracking-[0.12em] text-gray-500">
+                Published
+              </span>
+              <div class="mt-1 font-mono text-[0.74rem] leading-[1.75] text-neutral-800">
+                {{ page.date | date: "%B %-d, %Y" }}
+              </div>
+            </div>
+          {% endif %}
 
-    </div>
+          {% if page.tags %}
+            <div class="mt-5 pt-5 border-t border-black/10">
+              <span class="block font-mono text-[0.68rem] uppercase tracking-[0.12em] text-gray-500">
+                Tags
+              </span>
+              <div class="mt-1 font-mono text-[0.74rem] leading-[1.75] text-neutral-800">
+                {% for tag in page.tags %}
+                  <span>{{ tag }}</span>{% unless forloop.last %}<br>{% endunless %}
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
 
-    <!-- meta -->
-    <aside class="bg-gray-100 px-4 py-6 md:px-6">
+        </aside>
 
-      {% if page.date %}
-        <div>
-          <span class="block font-mono text-[0.68rem] uppercase tracking-[0.12em] text-gray-500">
-            Published
-          </span>
-          <div class="mt-1 font-mono text-[0.74rem] leading-[1.75] text-neutral-800">
-            {{ page.date | date: "%B %-d, %Y" }}
-          </div>
-        </div>
-      {% endif %}
+      </header>
 
-      {% if page.tags %}
-        <div class="mt-5 pt-5 border-t border-black/10">
-          <span class="block font-mono text-[0.68rem] uppercase tracking-[0.12em] text-gray-500">
-            Tags
-          </span>
-          <div class="mt-1 font-mono text-[0.74rem] leading-[1.75] text-neutral-800">
-            {% for tag in page.tags %}
-              <span>{{ tag }}</span>{% unless forloop.last %}<br>{% endunless %}
-            {% endfor %}
-          </div>
-        </div>
-      {% endif %}
-
-    </aside>
-
-  </header>
-
-  <!-- body -->
-  <div class="max-w-[760px] px-4 py-9 md:px-6 md:py-10 prose prose-neutral">
-    {{ content }}
-  </div>
-
-  {% if page.tags %}
-    <footer class="border-t border-black px-4 py-4 md:px-6">
-      <span class="block font-mono text-[0.68rem] uppercase tracking-[0.12em] text-gray-500">
-        Filed under
-      </span>
-
-      <div class="mt-2 flex flex-wrap gap-2">
-        {% for tag in page.tags %}
-          <span class="border border-black/20 px-2 py-[3px] font-mono text-[0.66rem] uppercase tracking-[0.08em]">
-            {{ tag }}
-          </span>
-        {% endfor %}
+      <!-- body -->
+      <div class="max-w-[760px] px-4 py-9 md:px-6 md:py-10 prose prose-neutral">
+        {{ content }}
       </div>
+
+    <footer class="px-4 md:px-6 py-4">
+        {% include chip.html text="filed under:" %}
+        {% if page.tags %}
+            {% include tags.html items=page.tags %}
+        {% endif %}
     </footer>
-  {% endif %}
 
 </article>
 

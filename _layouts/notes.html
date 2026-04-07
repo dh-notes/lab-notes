@@ -4,7 +4,7 @@ layout: default
 
 {{ content }}
 
-<section class="border-b">
+<section class="">
 
     {% include page-lead.html %}
 
@@ -13,13 +13,18 @@ layout: default
 
         <div class="w-full">
             {% for post in items %}
-            <article class="grid grid-cols-1 border-b border-black/10 md:grid-cols-[170px_1fr]">
-              <div class="border-b border-black/10 px-4 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-gray-500 md:border-b-0 md:border-r md:px-6">
+            <article class="grid grid-cols-1 md:grid-cols-[170px_1fr]">
+              <div class="px-4 py-4 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-gray-500 md:px-6">
                 {{ post.date | date: "%Y-%m-%d" }}
+
+                  {% if post.tags %}
+                      {% include tags.html items=post.tags %}
+                  {% endif %}
+
               </div>
 
               <div class="px-4 py-4 md:px-6 md:pb-[1.15rem]">
-                <h2 class="mb-1.5 font-sans text-[1.4rem] font-black uppercase leading-[1] tracking-[-0.025em]">
+                <h2 class="mb-1.5 font-sans text-[1.4rem] font-serif leading-[1] tracking-[-0.025em]">
                   <a href="{{ post.url | relative_url }}" class="hover:text-red-600">
                     {{ post.title }}
                   </a>
@@ -28,10 +33,6 @@ layout: default
                 <div class="mb-2 font-mono text-[0.68rem] uppercase tracking-[0.06em] leading-[1.7] text-gray-500">
                   {% if post.authors %}
                     <span>{{ post.authors | join: ", " }}</span>
-                  {% endif %}
-                  {% if post.tags %}
-                    {% if post.authors %}<span> · </span>{% endif %}
-                    <span>{{ post.tags | join: " · " }}</span>
                   {% endif %}
                 </div>
 
@@ -44,6 +45,7 @@ layout: default
                     {{ post.excerpt | strip_html | truncate: 180 }}
                   </p>
                 {% endif %}
+
               </div>
             </article>
           {% endfor %}

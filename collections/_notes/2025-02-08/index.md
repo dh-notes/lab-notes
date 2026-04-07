@@ -9,13 +9,7 @@ summary: >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ornare enim odio, sit amet ornare
     nibh consequat at. In lobortis sem sed ullamcorper luctus. Donec mattis laoreet nisi, in
     placerat risus varius eu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit
-    amet purus egestas, faucibus lacus nec, pretium dolor. Aliquam at lectus vel velit tincidunt
-    vulputate vel nec odio. Nam sodales malesuada efficitur. Aenean ac aliquam dui. Pellentesque
-    sollicitudin semper diam, ut tempor urna scelerisque eget. Ut dignissim diam ac augue faucibus,
-    ac elementum tellus imperdiet. Nullam viverra, urna vel malesuada feugiat, tellus orci
-    condimentum lectus, ut ornare ipsum nulla auctor nisi. Curabitur id magna leo. Praesent et nisl
-    quis lorem bibendum molestie.
-
+    amet purus egestas, faucibus lacus nec, pretium dolor.
 
 tags: [methods, text]
 ---
