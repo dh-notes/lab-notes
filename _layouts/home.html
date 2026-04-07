@@ -28,14 +28,14 @@ layout: default
         </div>
 
         <!-- title -->
-        <h2 class="mb-3 font-sans text-[1.5rem] font-black uppercase leading-[0.98] tracking-[-0.03em]">
+        <h2 class="mb-3 font-serif text-[1.5rem] leading-[0.98] tracking-[-0.03em]">
           <a href="{{ post.url | relative_url }}" class="hover:text-red-600">
             {{ post.title }}
           </a>
         </h2>
 
         <!-- summary -->
-        <p class="mb-4 max-w-[40ch] text-[0.9rem] leading-[1.65] text-neutral-700">
+        <p class="mb-4 font-serif max-w-[40ch] text-[0.9rem] leading-[1.65] text-neutral-700">
           {% if post.summary %}
             {{ post.summary }}
           {% else %}
