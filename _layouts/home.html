@@ -8,12 +8,8 @@ layout: default
 
 <!-- header -->
 <div class="flex items-baseline justify-between gap-4 px-4 py-3 md:px-6">
-  <span class="font-mono text-[0.68rem] uppercase tracking-[0.12em] text-gray-500">
-    Recent notes
-  </span>
-  <a href="{{ '/notes/' | relative_url }}" class="font-mono text-[0.68rem] uppercase tracking-[0.12em] hover:text-red-600">
-    View all →
-  </a>
+  {% include chip.html text="Recent ↓" %}
+  {% include chip.html href="/notes/" text="View all →" %}
 </div>
 
 {% assign items = site.notes | sort: "date" | reverse %}
@@ -22,8 +18,7 @@ layout: default
   <div class="grid grid-cols-1 md:grid-cols-3">
     
     {% for post in items limit:6 %}
-      <article class="min-h-[17rem] border-black/10 px-4 py-5 md:border-r md:px-6">
-
+      <article class="min-h-72 px-4 py-5 md:px-6 md:border-r md:border-black/10 md:[&:nth-child(3n)]:border-r-0">
         <!-- meta -->
         <div class="mb-3 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[0.66rem] leading-[1.65] text-gray-500">
           <span>{{ post.date | date: "%Y-%m-%d" }}</span>
