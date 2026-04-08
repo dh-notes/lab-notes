@@ -52,6 +52,12 @@ editors:
   role: Associate Editor
   affiliation: Institute of Design SUPSI
 
+board:
+
+- name: Stephen Wittek
+  affiliation: Carnegie Mellon University
+
+
 submission-guidelines: |
 
     We accept submissions in a range of formats, including Word documents, PDFs, and plain text
