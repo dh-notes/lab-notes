@@ -4,10 +4,11 @@ layout: default
 
 <article class="border-b border-black">
 
-    <header class="grid grid-cols-1 md:grid-cols-[minmax(0,3fr)_minmax(220px,1fr)] border-b border-black">
+    <header class="grid grid-cols-1 md:grid-cols-[minmax(0,3fr)_minmax(220px,1fr)] border-b
+        border-black/20">
 
         <!-- main -->
-        <div class="px-4 py-3 md:px-6 md:border-r md:border-black">
+        <div class="px-4 py-3 md:px-6">
 
           <!-- kicker row -->
         <span class="block text-right font-mono text-[0.68rem] uppercase tracking-[0.12em] text-red-600">
@@ -25,7 +26,7 @@ layout: default
 
 
           {% if page.summary %}
-            <p class="mt-4 max-w-[50ch] text-base leading-[1.55] text-neutral-700">
+            <p class="mt-4 ml-6 max-w-[50ch] text-base text-sans leading-[1.55] text-neutral-700">
               {{ page.summary }}
             </p>
           {% endif %}
@@ -64,7 +65,7 @@ layout: default
       </header>
 
       <!-- body -->
-      <div class="max-w-[760px] px-4 py-9 md:px-6 md:py-10 prose prose-neutral">
+      <div class="max-w-[760px] px-4 py-9 md:px-6 md:py-10 prose prose-neutral font-serif ">
         {{ content }}
       </div>
 
