@@ -1,0 +1,7 @@
+{% assign authors = include.items %}
+
+{% if authors and authors != empty %}
+  <div class="mb-2 font-mono text-[0.78rem] uppercase tracking-[0.06em] leading-[1.7] text-gray-500">
+    <span>{{ authors | join: ", " }}</span>
+  </div>
+{% endif %}

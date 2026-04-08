@@ -34,7 +34,7 @@ editors:
 
 - name: Jeffrey Schnapp
   role: Editor
-  affiliation: MetaLab, Harvard
+  affiliation: MetaLab, Harvard University
 
 - name: Seohyon Jung
   role: Editor
@@ -42,12 +42,25 @@ editors:
 
 - name: Dennis Yi Tenen
   role: Editor
-  affiliation: Narrative Intelligence Lab, Columbia
+  affiliation: Narrative Intelligence Lab, Columbia University
 
 - name: Johan Malmstedt
   role: Associate Editor
+  affiliation: University of Gothenburg
 
 - name: Serena Cangiano
   role: Associate Editor
+  affiliation: Institute of Design SUPSI
+
+submission-guidelines: |
+
+    We accept submissions in a range of formats, including Word documents, PDFs, and plain text
+    text. Citations should follow the Chicago Manual of Style (notes and bibliography).
+
+    Texts in Markdown with BibTeX or otherwise structured references are appreciated.
+
+    Notes may include figures, diagrams, code, or other supporting materials.
+
+    To submit, send your manuscript and any supporting materials to [email/contact].
 
 ---
