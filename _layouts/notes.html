@@ -28,11 +28,7 @@ layout: default
                   </a>
                 </h2>
 
-                <div class="mb-2 font-mono text-[0.68rem] uppercase tracking-[0.06em] leading-[1.7] text-gray-500">
-                  {% if post.authors %}
-                    <span>{{ post.authors | join: ", " }}</span>
-                  {% endif %}
-                </div>
+                {% include authors.html items=post.authors %}
 
                 {% if post.summary %}
                   <p class="m-0 max-w-[54ch] text-[0.9rem] leading-[1.65] text-neutral-700">

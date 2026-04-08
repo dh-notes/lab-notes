@@ -2,40 +2,40 @@
 layout: default
 ---
 
-<div class="mx-auto px-4 py-4 md:px-6 md:py-5">
+<div class="py-4 md:py-5">
     {% include prose.html content=content %}
 </div>
 
 <!-- header -->
 <div class="flex items-baseline justify-between gap-4 px-4 py-3 md:px-6">
-  {% include chip.html text="Recent ↓" %}
+    {% include chip.html text="Recent ↓" %}
   {% include chip.html href="/notes/" text="View all →" %}
 </div>
 
 {% assign items = site.notes | sort: "date" | reverse %}
 {% if items and items.size > 0 %}
 
-  <div class="grid grid-cols-1 md:grid-cols-3">
+  <div class="grid grid-cols-1 md:grid-cols-2">
 
     {% for post in items limit:6 %}
-      <article class="min-h-72 px-4 py-5 md:px-6 md:border-r md:border-black/10 md:[&:nth-child(3n)]:border-r-0">
+      <article class="min-h-72 px-4 py-5 md:px-6 md:border-r md:border-black/10 md:[&:nth-child(2n)]:border-r-0">
         <!-- meta -->
-        <div class="mb-3 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[0.66rem] leading-[1.65] text-gray-500">
+        <div class="mb-3 flex flex-wrap gap-x-3 gap-y-1 font-mono text-sm leading-[1.65] text-gray-500">
           <span>{{ post.date | date: "%Y-%m-%d" }}</span>
-          {% if post.authors %}
-            <span>{{ post.authors | join: ", " }}</span>
-          {% endif %}
         </div>
 
         <!-- title -->
-        <h2 class="mb-3 font-serif text-[1.5rem] leading-[0.98] tracking-[-0.03em]">
+        <h2 class="mb-1 font-serif text-xl leading-[0.98] tracking-[-0.03em]">
           <a href="{{ post.url | relative_url }}" class="hover:text-red-600">
             {{ post.title }}
           </a>
         </h2>
 
+        <!-- authors-->
+        {% include authors.html items=post.authors %}
+
         <!-- summary -->
-        <p class="mb-4 font-serif max-w-[40ch] text-[0.9rem] leading-[1.65] text-neutral-700">
+        <p class="mb-4 ml-4 font-serif text-base leading-7 text-neutral-700">
           {% if post.summary %}
             {{ post.summary }}
           {% else %}

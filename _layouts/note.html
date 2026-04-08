@@ -20,11 +20,7 @@ layout: default
           </h1>
 
           {% if page.authors %}
-            <div class="mt-3 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-gray-500">
-              {% for author in page.authors %}
-                <span>{{ author }}</span>{% unless forloop.last %}<span class="text-red-600"> · </span>{% endunless %}
-              {% endfor %}
-            </div>
+              {% include authors.html items=page.authors %}
           {% endif %}
 
 
