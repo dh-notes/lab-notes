@@ -6,8 +6,6 @@ layout: default
 
 <section class="">
 
-    {% include page-lead.html %}
-
     {% assign items = site.notes | sort: "date" | reverse %}
     {% if items and items.size > 0 %}
 
