@@ -45,14 +45,7 @@ layout: default
 
         <!-- tags -->
         {% if post.tags %}
-          <div class="font-mono text-[0.66rem] uppercase tracking-[0.08em] text-red-600">
-            {% for tag in post.tags %}
-              <span>{{ tag }}</span>
-              {% unless forloop.last %}
-                <span class="text-gray-500"> · </span>
-              {% endunless %}
-            {% endfor %}
-          </div>
+            {% include tags.html items=post.tags %}
         {% endif %}
 
       </article>
