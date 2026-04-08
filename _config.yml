@@ -41,6 +41,6 @@ collections:
 defaults:
   - scope:
       path: "collections/_notes"
-      type: "notes"
+      type: "archive"
     values:
       layout: note

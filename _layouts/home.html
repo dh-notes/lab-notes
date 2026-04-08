@@ -18,9 +18,9 @@ layout: default
   <div class="grid grid-cols-1 md:grid-cols-2">
 
     {% for post in items limit:6 %}
-      <article class="min-h-72 px-4 py-5 md:px-6 md:border-r md:border-black/10 md:[&:nth-child(2n)]:border-r-0">
+      <article class="min-h-72 px-4 py-5 md:px-6 border-t md:border-r border-black/10 md:[&:nth-child(2n)]:border-r-0">
         <!-- meta -->
-        <div class="mb-3 flex flex-wrap gap-x-3 gap-y-1 font-mono text-sm leading-[1.65] text-gray-500">
+        <div class="md:mb-2 flex flex-wrap gap-x-3 gap-y-1 font-mono text-sm justify-end leading-[1.65] text-gray-500">
           <span>{{ post.date | date: "%Y-%m-%d" }}</span>
         </div>
 
