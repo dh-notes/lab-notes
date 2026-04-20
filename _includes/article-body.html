@@ -1,0 +1,35 @@
+<div class="grid grid-cols-1 md:grid-cols-[minmax(0,3fr)_minmax(220px,1fr)]">
+
+  <!-- body (main column) -->
+  <div class="px-4 py-10 md:px-6 md:py-12 md:border-r md:border-ink/10
+              prose prose-neutral max-w-none
+              prose-p:font-mono prose-p:text-[0.82rem] prose-p:leading-[1.9]
+              prose-li:font-mono prose-li:text-[0.82rem] prose-li:leading-[1.9]
+              prose-headings:font-sans prose-headings:font-black prose-headings:uppercase
+              prose-headings:tracking-[-0.02em] prose-headings:text-ink
+              prose-h2:text-[1.4rem] prose-h2:mt-10 prose-h2:mb-4
+              prose-a:text-ink prose-a:border-b prose-a:border-ink/30 prose-a:no-underline
+              hover:prose-a:text-red hover:prose-a:border-red
+              prose-em:italic prose-strong:font-bold">
+    {{ content }}
+  </div>
+
+  <!-- references (right column) -->
+  <aside class="hidden md:block bg-paper-white px-6 py-12">
+    {% if page.references %}
+      {% for ref in page.references %}
+        <div class="mb-8 pb-6 border-b border-ink/10 last:border-b-0">
+          <span class="block font-mono text-[0.68rem] tracking-[0.08em] text-red mb-1">
+            {{ ref.label }}
+          </span>
+          <div class="font-mono text-[0.72rem] leading-[1.7] text-grey
+                      [&_a]:text-ink [&_a]:border-b [&_a]:border-ink/20
+                      [&_em]:italic [&_strong]:font-bold [&_strong]:text-ink">
+            {{ ref.text | markdownify }}
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </aside>
+
+</div>

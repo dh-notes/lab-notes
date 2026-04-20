@@ -1,0 +1,57 @@
+<header class="grid grid-cols-1 md:grid-cols-[minmax(0,3fr)_minmax(220px,1fr)] border-b border-ink/20">
+
+  <!-- main column -->
+  <div class="px-4 py-8 md:px-6 md:py-10 md:border-r md:border-ink/20">
+
+    <span class="block font-mono text-[0.62rem] uppercase tracking-[0.14em] text-ink mb-6">
+      Lab Note &middot; {{ page.date | date: "%Y-%m-%d" }}
+    </span>
+
+    <h1 class="font-sans font-black uppercase text-[clamp(2.2rem,4.5vw,5rem)] leading-[0.95] tracking-[-0.025em] text-ink mb-4">
+      {{ page.title }}
+    </h1>
+
+    {% if page.summary %}
+      <p class="max-w-[55ch] font-mono text-[clamp(1rem,1.8vw,1.6rem)] leading-[1.3] text-ink/70 mb-8">
+        {{ page.summary }}
+      </p>
+    {% endif %}
+
+    {% if page.authors %}
+      <div class="font-sans font-bold text-base text-ink">
+        {{ page.authors | join: ", " }}
+      </div>
+    {% endif %}
+
+  </div>
+
+  <!-- meta column -->
+  <aside class="bg-paper px-4 py-8 md:px-6 md:py-10 space-y-6">
+
+    {% if page.date %}
+      <div>
+        <span class="block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-grey mb-1">
+          Published
+        </span>
+        <div class="font-mono text-[0.74rem] leading-[1.6] text-ink">
+          {{ page.date | date: "%B %-d, %Y" }}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if page.tags %}
+      <div>
+        <span class="block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-grey mb-1">
+          Tags
+        </span>
+        <div class="font-mono text-[0.74rem] leading-[1.6] text-ink">
+          {% for tag in page.tags %}
+            <div>{{ tag }}</div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+  </aside>
+
+</header>
