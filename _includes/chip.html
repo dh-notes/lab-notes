@@ -3,11 +3,11 @@
 
 {% if href %}
   <a href="{{ href | relative_url }}"
-     class="font-mono text-[0.88rem] uppercase tracking-[0.12em] text-gray-700 hover:text-red-600">
+     class="font-mono text-[0.88rem] uppercase tracking-[0.12em] text-ink/70 hover:text-red">
     {{ text }}
   </a>
 {% else %}
-  <span class="font-mono text-[0.88rem] uppercase tracking-[0.12em] text-gray-700">
+  <span class="font-mono text-[0.88rem] uppercase tracking-[0.12em] text-ink/70">
     {{ text }}
   </span>
 {% endif %}
