@@ -6,6 +6,7 @@ group :jekyll_plugins do
   gem 'jekyll', "~> 4.0.0"
   gem 'jekyll-postcss-v2'
   gem "jekyll-inline-svg"
+  gem 'jekyll-sitemap'
   gem 'webrick'
   gem 'base64'
   gem 'csv'

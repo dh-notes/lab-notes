@@ -1,10 +1,14 @@
 url: "https://dh-notes.github.io"
 baseurl: "/lab-notes"
 title: "Lab Notes"
-
+description: "A peer-reviewed journal of methodological reflection on research design and method in the humanities and social sciences."
+journal_abbrev: "Lab Notes"
+# publisher: ""
+# issn: "0000-0000"   # uncomment and fill in when you have one registered
 plugins:
   - jekyll-postcss-v2
   - jekyll-inline-svg
+  - jekyll-sitemap
 
 markdown: kramdown
 
@@ -41,6 +45,6 @@ collections:
 defaults:
   - scope:
       path: "collections/_notes"
-      type: "archive"
+      type: "notes"
     values:
       layout: note
