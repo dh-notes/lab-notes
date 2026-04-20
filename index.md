@@ -1,8 +1,7 @@
 ---
 layout: home
-title: Home
-permalink: /
+kicker: A Peer-Reviewed Journal
+statement: 
 ---
 
-*Lab Notes* publishes concise papers (1,200–2,500 words) that formalize the procedures,
-methods, and practices of research in the humanities and social sciences.
+Lab Notes publishes short, process-oriented notes from humanities and social-science research. A note is a form for an observation that is not yet a finding — for a moment of reading that reorganizes the assumptions of a larger project still in progress.

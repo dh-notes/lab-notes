@@ -2,40 +2,95 @@
 layout: default
 ---
 
-<div class="py-4 md:py-5">
-    {% include prose.html content=content %}
-</div>
+<!-- PAGE LEAD — editorial statement + meta -->
+<header class="grid grid-cols-1 md:grid-cols-[minmax(0,3fr)_minmax(220px,1fr)] border-b border-ink/20">
 
-<!-- header -->
-<div class="flex items-baseline justify-between gap-4 px-4 py-3 md:px-6">
-  {% include chip.html text="Recent ↓" %}
-  {% include chip.html href="/archive/" text="View all →" %}
-</div>
+  <div class="px-4 py-10 md:px-6 md:py-12 md:border-r md:border-ink/20">
 
+    {% if page.kicker %}
+      <span class="block font-mono text-[0.62rem] uppercase tracking-[0.14em] text-red mb-6">
+        {{ page.kicker }}
+      </span>
+    {% endif %}
+
+    {% if page.statement %}
+      <h1 class="font-sans font-black uppercase text-[clamp(2.2rem,4.5vw,5rem)] leading-[0.95] tracking-[-0.025em] text-ink mb-6">
+        {{ page.statement }}
+      </h1>
+    {% endif %}
+
+    <div class="prose prose-neutral max-w-[55ch]
+                prose-p:font-mono prose-p:text-[clamp(1rem,1.6vw,1.3rem)] prose-p:leading-[1.4] prose-p:text-ink/70">
+      {{ content }}
+    </div>
+  </div>
+
+  <aside class="bg-paper px-4 py-10 md:px-6 md:py-12 space-y-6">
+    <div>
+      <span class="block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-grey mb-1">
+        Access
+      </span>
+      <div class="font-mono text-[0.74rem] leading-[1.6] text-ink">
+        Open &middot; peer-reviewed
+      </div>
+    </div>
+
+    <div>
+      <span class="block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-grey mb-1">
+        License
+      </span>
+      <div class="font-mono text-[0.74rem] leading-[1.6] text-ink">
+        CC BY 4.0
+      </div>
+    </div>
+
+    <div>
+      <span class="block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-grey mb-1">
+        Submissions
+      </span>
+      <div class="font-mono text-[0.74rem] leading-[1.6] text-ink">
+        <a href="{{ '/about/' | relative_url }}" class="border-b border-ink/30 hover:text-red hover:border-red">
+          See guidelines →
+        </a>
+      </div>
+    </div>
+  </aside>
+
+</header>
+
+<!-- SECTION HEADER -->
 {% assign items = site.notes | sort: "date" | reverse %}
+<div class="flex items-baseline justify-between gap-4 px-4 py-3 md:px-6 border-b border-ink/10">
+  <span class="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-grey">
+    Recent notes
+  </span>
+  <a href="{{ '/archive/' | relative_url }}"
+     class="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-ink hover:text-red">
+    View all {{ items | size }} →
+  </a>
+</div>
+
+<!-- ARTICLES GRID -->
 {% if items and items.size > 0 %}
 
   <div class="grid grid-cols-1 md:grid-cols-2">
 
     {% for post in items limit:6 %}
-      <article class="min-h-72 px-4 py-5 md:px-6 border-t md:border-r border-black/10 md:[&:nth-child(2n)]:border-r-0">
-        <!-- meta -->
-        <div class="md:mb-2 flex flex-wrap gap-x-3 gap-y-1 font-mono text-sm justify-end leading-[1.65] text-gray-500">
+      <article class="min-h-72 px-4 py-10 md:px-6 md:py-12 border-b md:border-r border-ink/10 md:[&:nth-child(2n)]:border-r-0">
+
+        <div class="mb-4 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[0.68rem] uppercase tracking-[0.08em] text-grey">
           <span>{{ post.date | date: "%Y-%m-%d" }}</span>
         </div>
 
-        <!-- title -->
-        <h2 class="mb-1 font-serif text-xl leading-[0.98] tracking-[-0.03em]">
-          <a href="{{ post.url | relative_url }}" class="hover:text-red-600">
+        <h2 class="mb-3 font-sans font-black uppercase text-[clamp(1.4rem,2.2vw,1.8rem)] leading-[0.98] tracking-[-0.025em]">
+          <a href="{{ post.url | relative_url }}" class="hover:text-red">
             {{ post.title }}
           </a>
         </h2>
 
-        <!-- authors-->
         {% include authors.html items=post.authors %}
 
-        <!-- summary -->
-        <p class="mb-4 ml-4 font-serif text-base leading-7 text-neutral-700">
+        <p class="mt-3 font-mono text-[0.82rem] leading-[1.75] text-ink/80">
           {% if post.summary %}
             {{ post.summary }}
           {% else %}
@@ -43,9 +98,10 @@ layout: default
           {% endif %}
         </p>
 
-        <!-- tags -->
         {% if post.tags %}
+          <div class="mt-4">
             {% include tags.html items=post.tags %}
+          </div>
         {% endif %}
 
       </article>
@@ -54,7 +110,7 @@ layout: default
   </div>
 
 {% else %}
-  <div class="px-4 py-5 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-gray-500 md:px-6">
+  <div class="px-4 py-12 md:px-6 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-grey">
     No notes yet.
   </div>
 {% endif %}
