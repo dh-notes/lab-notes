@@ -1,6 +1,7 @@
 ---
 layout: note
 title: The Limits of Network Analysis
+pdf_url: /notes/2026-01-27-stand-in-journal/article.pdf
 date: 2026-01-27
 authors:
   - Wax Meber
