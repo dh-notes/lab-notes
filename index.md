@@ -1,6 +1,5 @@
 ---
 layout: home
-kicker: A Peer-Reviewed Journal
 statement: 
 ---
 
