@@ -1,25 +1,25 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>
-            {% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}
-        </title>
-        <meta name="description" content="{{ site.description | default: 'Lab Notes is a journal of methodological reflection on lab-based research in the humanities and social sciences.' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}
+    </title>
+    <meta name="description" content="{{ site.description | default: 'Lab Notes is a journal of methodological reflection on lab-based research in the humanities and social sciences.' }}">
 
-        {% include scholar-meta.html %}
+    {% include scholar-meta.html %}
 
-        <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-    </head>
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  </head>
 
-    <body class="font-sans text-ink bg-paper-white antialiased">
-        {% include header.html %}
+  <body class="bg-paper-white font-sans text-ink antialiased">
+    {% include header.html %}
 
-        <main>
-          {{ content }}
-        </main>
+    <main class="px-4 md:px-6">
+      {{ content }}
+    </main>
 
-        {% include footer.html %}
-    </body>
+    {% include footer.html %}
+  </body>
 </html>
