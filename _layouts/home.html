@@ -5,7 +5,7 @@ layout: default
 {% assign items = site.notes | sort: "date" | reverse %}
 
 <header class="grid grid-cols-1 border-b border-ink/20 md:grid-cols-[minmax(0,3fr)_minmax(220px,1fr)]">
-  <div class="py-10 md:border-r md:border-ink/20 md:py-12">
+  <div class="py-10 md:py-12 md:pr-8 md:border-r md:border-ink/20">
     {% if page.kicker %}
       <span class="mb-6 block font-mono text-[0.62rem] uppercase tracking-[0.14em] text-red">
         {{ page.kicker }}
@@ -23,7 +23,7 @@ layout: default
     </div>
   </div>
 
-  <aside class="bg-paper py-10 md:py-12">
+  <aside class="bg-paper px-4 py-10 md:px-8 md:py-12">
     <div class="space-y-6">
       <div>
         <span class="mb-1 block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-grey">
@@ -70,7 +70,7 @@ layout: default
 {% if items and items.size > 0 %}
   <div class="grid grid-cols-1 md:grid-cols-2">
     {% for post in items limit:6 %}
-      <article class="min-h-72 border-b border-ink/10 py-10 md:border-r md:py-12">
+      <article class="min-h-72 border-b border-ink/10 px-4 py-10 md:border-r md:px-6 md:py-12">
         <div class="mb-4 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[0.68rem] uppercase tracking-[0.08em] text-grey">
           <span>{{ post.date | date: "%Y-%m-%d" }}</span>
         </div>
