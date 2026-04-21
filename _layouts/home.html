@@ -2,87 +2,80 @@
 layout: default
 ---
 
-<!-- PAGE LEAD — editorial statement + meta -->
-<header class="grid grid-cols-1 md:grid-cols-[minmax(0,3fr)_minmax(220px,1fr)] border-b border-ink/20">
+{% assign items = site.notes | sort: "date" | reverse %}
 
-  <div class="px-4 py-10 md:px-6 md:py-12 md:border-r md:border-ink/20">
-
+<header class="grid grid-cols-1 border-b border-ink/20 md:grid-cols-[minmax(0,3fr)_minmax(220px,1fr)]">
+  <div class="py-10 md:border-r md:border-ink/20 md:py-12">
     {% if page.kicker %}
-      <span class="block font-mono text-[0.62rem] uppercase tracking-[0.14em] text-red mb-6">
+      <span class="mb-6 block font-mono text-[0.62rem] uppercase tracking-[0.14em] text-red">
         {{ page.kicker }}
       </span>
     {% endif %}
 
     {% if page.statement %}
-      <h1 class="font-sans font-black uppercase text-[clamp(2.2rem,4.5vw,5rem)] leading-[0.95] tracking-[-0.025em] text-ink mb-6">
+      <h1 class="mb-6 font-sans font-black uppercase text-[clamp(2.2rem,4.5vw,5rem)] leading-[0.95] tracking-[-0.025em] text-ink">
         {{ page.statement }}
       </h1>
     {% endif %}
 
-    <div class="prose prose-neutral max-w-[55ch]
-                prose-p:font-mono prose-p:text-[clamp(1rem,1.6vw,1.3rem)] prose-p:leading-[1.4] prose-p:text-ink/70">
+    <div class="prose prose-neutral max-w-[55ch] prose-p:font-mono prose-p:text-[clamp(1rem,1.6vw,1.3rem)] prose-p:leading-[1.4] prose-p:text-ink/70">
       {{ content }}
     </div>
   </div>
 
-  <aside class="bg-paper px-4 py-10 md:px-6 md:py-12 space-y-6">
-    <div>
-      <span class="block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-grey mb-1">
-        Access
-      </span>
-      <div class="font-mono text-[0.74rem] leading-[1.6] text-ink">
-        Open &middot; peer-reviewed
+  <aside class="bg-paper py-10 md:py-12">
+    <div class="space-y-6">
+      <div>
+        <span class="mb-1 block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-grey">
+          Access
+        </span>
+        <div class="font-mono text-[0.74rem] leading-[1.6] text-ink">
+          Open &middot; peer-reviewed
+        </div>
       </div>
-    </div>
 
-    <div>
-      <span class="block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-grey mb-1">
-        License
-      </span>
-      <div class="font-mono text-[0.74rem] leading-[1.6] text-ink">
-        CC BY 4.0
+      <div>
+        <span class="mb-1 block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-grey">
+          License
+        </span>
+        <div class="font-mono text-[0.74rem] leading-[1.6] text-ink">
+          CC BY 4.0
+        </div>
       </div>
-    </div>
 
-    <div>
-      <span class="block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-grey mb-1">
-        Submissions
-      </span>
-      <div class="font-mono text-[0.74rem] leading-[1.6] text-ink">
-        <a href="{{ '/about/' | relative_url }}" class="border-b border-ink/30 hover:text-red hover:border-red">
-          See guidelines →
-        </a>
+      <div>
+        <span class="mb-1 block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-grey">
+          Submissions
+        </span>
+        <div class="font-mono text-[0.74rem] leading-[1.6] text-ink">
+          <a href="{{ '/about/' | relative_url }}" class="border-b border-ink/30 hover:border-red hover:text-red">
+            See guidelines →
+          </a>
+        </div>
       </div>
     </div>
   </aside>
-
 </header>
 
-<!-- SECTION HEADER -->
-{% assign items = site.notes | sort: "date" | reverse %}
-<div class="flex items-baseline justify-between gap-4 px-4 py-3 md:px-6 border-b border-ink/10">
+<div class="flex items-baseline justify-between gap-4 border-b border-ink/10 py-3">
   <span class="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-grey">
     Recent notes
   </span>
-  <a href="{{ '/archive/' | relative_url }}"
-     class="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-ink hover:text-red">
+
+  <a href="{{ '/archive/' | relative_url }}" class="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-ink hover:text-red">
     View all {{ items | size }} →
   </a>
 </div>
 
-<!-- ARTICLES GRID -->
 {% if items and items.size > 0 %}
-
   <div class="grid grid-cols-1 md:grid-cols-2">
-
     {% for post in items limit:6 %}
-      <article class="min-h-72 px-4 py-10 md:px-6 md:py-12 border-b md:border-r border-ink/10 md:[&:nth-child(2n)]:border-r-0">
-
+      <article class="min-h-72 border-b border-ink/10 py-10 md:border-r md:py-12">
         <div class="mb-4 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[0.68rem] uppercase tracking-[0.08em] text-grey">
           <span>{{ post.date | date: "%Y-%m-%d" }}</span>
         </div>
 
-        <h2 class="mb-3 font-sans font-black uppercase text-[clamp(1.4rem,2.2vw,1.8rem)] leading-[0.98] tracking-[-0.025em]">
+        <h2 class="mb-3 font-sans font-black uppercase text-[clamp(1.4rem,2.2vw,1.8rem)] leading-[0.98] tracking-[-0.025em] text-ink">
           <a href="{{ post.url | relative_url }}" class="hover:text-red">
             {{ post.title }}
           </a>
@@ -103,14 +96,7 @@ layout: default
             {% include tags.html items=post.tags %}
           </div>
         {% endif %}
-
       </article>
     {% endfor %}
-
-  </div>
-
-{% else %}
-  <div class="px-4 py-12 md:px-6 font-mono text-[0.72rem] uppercase tracking-[0.08em] text-grey">
-    No notes yet.
   </div>
 {% endif %}
