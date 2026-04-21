@@ -1,5 +1,6 @@
 ---
 title: Acadeimic Co-authorship through the Ages
+pdf_url: /notes/2025-02-08/article.pdf
 date: 2026-02-17
 authors:
   - Fra Angelico
