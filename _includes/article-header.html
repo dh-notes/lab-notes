@@ -52,6 +52,21 @@
       </div>
     {% endif %}
 
+    {% if page.pdf_url %}
+      <div>
+        <span class="block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-grey mb-1">
+          Download
+        </span>
+        <a href="{{ page.pdf_url | relative_url }}"
+           class="inline-flex items-baseline gap-2 font-mono text-[0.74rem] leading-[1.6] text-ink
+                  border-b border-ink/30 hover:text-red hover:border-red"
+           download>
+          Article (PDF)
+          <span class="text-[0.62rem] text-grey">↓</span>
+        </a>
+      </div>
+    {% endif %}
+
   </aside>
 
 </header>
