@@ -1,5 +1,6 @@
 ---
 title: Doing Ethnography Online
+pdf_url: /notes/2026-05-09/article.pdf
 date: 2026-01-27
 authors:
   -  Nargaret Nead
