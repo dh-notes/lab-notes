@@ -1,13 +1,11 @@
-<header class="bg-paper px-6 py-2 border-b border-ink">
-  <div class="flex flex-wrap gap-x-4 md:gap-x-6 gap-y-3 px-6">
-    <div>
-      <a href="{{ '/' | relative_url }}" class="font-sans text-3xl font-semibold tracking-tight shrink-0">
-        Lab<span class="text-red">/</span>Notes
-      </a>
-    </div>
+<header class="border-b border-ink bg-paper px-6 py-2">
+  <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+    <a href="{{ '/' | relative_url }}" class="shrink-0 font-sans text-3xl font-semibold tracking-tight">
+      Lab<span class="text-red">/</span>Notes
+    </a>
 
     <nav class="min-w-0" aria-label="Primary">
-      <div class="flex flex-wrap gap-x-4 md:gap-x-6 gap-y-3 font-mono text-lg uppercase tracking-[0.12em]">
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-lg uppercase tracking-[0.12em]">
         <a href="{{ '/' | relative_url }}" class="{% if page.url == '/' %}text-ink underline underline-offset-[0.22rem] decoration-[1px]{% else %}text-grey hover:text-ink{% endif %}"
           {% if page.url == '/' %}aria-current="page"{% endif %}>
           Home
@@ -24,7 +22,7 @@
     </nav>
   </div>
 
-  <div class="text-grey font-mono text-xs leading-[1.75]">
+  <div class="font-mono text-sm leading-[1.75] text-grey">
     A peer-reviewed journal on research design and method.
   </div>
 </header>
