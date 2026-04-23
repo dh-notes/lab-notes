@@ -58,13 +58,13 @@ layout: default
 </header>
 
 <div class="flex items-baseline justify-between gap-4 border-b border-ink/10 py-3">
-  <span class="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-grey">
-    Recent notes ↓
-  </span>
 
-  <a href="{{ '/archive/' | relative_url }}" class="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-ink hover:text-red">
-    View all {{ items | size }} →
-  </a>
+    {% include chip.html text="Recent notes ↓" %}
+
+    {% capture view_all_text %}View all {{ items.size }} →{% endcapture %}
+
+    {% include chip.html href="/archive/" text=view_all_text %}
+
 </div>
 
 {% if items and items.size > 0 %}

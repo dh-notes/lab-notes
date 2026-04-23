@@ -47,13 +47,9 @@ permalink: /archive/
           </div>
 
           <footer class="px-4 py-4 text-right md:px-6 md:pb-5">
-            <a
-              href="{{ post.url | relative_url }}"
-              class="font-mono text-[0.65rem] uppercase tracking-[0.12em] text-ink hover:text-red"
-            >
-              Read →
-            </a>
+              {% include chip.html href=post.url text="Read →" %}
           </footer>
+
         </article>
       {% endfor %}
     </div>
