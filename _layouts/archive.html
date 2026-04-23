@@ -17,10 +17,9 @@ permalink: /archive/
   </header>
 
   {% if items and items.size > 0 %}
-    <div>
       {% for post in items %}
         <article class="grid border-b border-ink/10 md:grid-cols-[140px_minmax(0,1fr)_120px]">
-          <div class="px-4 py-4 font-mono text-[0.68rem] uppercase tracking-[0.08em] text-grey md:px-6 md:py-5 md:text-left text-right">
+          <div class="px-4 py-4 whitespace-nowrap font-mono text-xs uppercase tracking-[0.08em] text-grey md:px-6 md:py-5 md:text-left text-right">
             {{ post.date | date: "%Y-%m-%d" }}
           </div>
 
@@ -52,7 +51,6 @@ permalink: /archive/
 
         </article>
       {% endfor %}
-    </div>
   {% else %}
     <div class="border-b border-ink/10 px-4 py-10 md:px-6 md:py-12">
       <p class="font-mono text-[0.82rem] text-ink/70">
