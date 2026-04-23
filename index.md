@@ -3,6 +3,8 @@ layout: home
 statement:
 ---
 
-Lab Notes publishes short, process-oriented notes from humanities and social-science research.
-A note is a form for an observation that is not yet a finding — for a moment of reading that
-reorganizes the assumptions of a larger project still in progress.
+<i>Lab Notes</i> publishes short, peer-reviewed papers on research design and method in the humanities
+and social sciences. We focus on procedures, workflows, and forms of coordination that organize
+research in practice. These are often produced en route to publication or required to sustain
+collaborative, lab-based work.
+
