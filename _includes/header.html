@@ -1,5 +1,5 @@
 <header class="border-b border-ink bg-paper px-6 py-2">
-  <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+  <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-1 md:gap-y-3">
     <a href="{{ '/' | relative_url }}" class="shrink-0 font-sans text-3xl font-semibold tracking-tight">
       Lab<span class="text-red">/</span>Notes
     </a>
@@ -22,7 +22,8 @@
     </nav>
   </div>
 
-  <div class="font-mono text-sm leading-[1.75] text-grey">
+  <!-- hide in mobile -->
+  <div class="font-mono text-sm leading-[1.75] text-grey hidden md:block">
     A peer-reviewed journal on research design and method.
   </div>
 </header>
