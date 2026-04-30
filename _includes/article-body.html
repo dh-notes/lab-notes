@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 md:grid-cols-[minmax(0,3fr)_minmax(220px,1fr)]">
+<div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_280px]">
 
   <!-- body (main column) -->
   <div class="px-4 py-10 md:px-6 md:py-12 md:border-r md:border-ink/10
@@ -14,22 +14,7 @@
     {{ content }}
   </div>
 
-  <!-- references (right column) -->
-  <aside class="hidden md:block bg-paper-white px-6 py-12">
-    {% if page.references %}
-      {% for ref in page.references %}
-        <div class="mb-8 pb-6 border-b border-ink/10 last:border-b-0">
-          <span class="block font-mono text-[0.68rem] tracking-[0.08em] text-red mb-1">
-            {{ ref.label }}
-          </span>
-          <div class="font-mono text-[0.72rem] leading-[1.7] text-grey
-                      [&_a]:text-ink [&_a]:border-b [&_a]:border-ink/20
-                      [&_em]:italic [&_strong]:font-bold [&_strong]:text-ink">
-            {{ ref.text | markdownify }}
-          </div>
-        </div>
-      {% endfor %}
-    {% endif %}
-  </aside>
+  <!-- right column (empty; notes live in the apparatus below the dark border) -->
+  <aside class="hidden md:block bg-paper"></aside>
 
 </div>
