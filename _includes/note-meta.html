@@ -1,0 +1,8 @@
+{% assign date = include.date %}
+{% assign kicker = include.kicker | default: "Lab Note" %}
+
+{% if date %}
+  <span class="block font-mono text-[0.7rem] uppercase tracking-[0.14em] text-red mb-3">
+    {{ kicker }} &middot; {{ date | date: "%Y-%m-%d" }}
+  </span>
+{% endif %}
