@@ -1,0 +1,15 @@
+{% assign title = include.title %}
+{% assign url = include.url %}
+{% assign size = include.size | default: "card" %}
+
+{% if size == "hero" %}
+  {% assign classes = "font-sans font-black text-[clamp(2.2rem,4.5vw,5rem)] leading-[0.95] tracking-[-0.025em] text-ink" %}
+{% else %}
+  {% assign classes = "font-sans font-black text-[clamp(1.4rem,2.2vw,1.8rem)] leading-[1.05] tracking-[-0.02em] text-ink" %}
+{% endif %}
+
+{% if url %}
+  <h2 class="{{ classes }}"><a href="{{ url | relative_url }}" class="hover:text-red">{{ title }}</a></h2>
+{% else %}
+  <h1 class="{{ classes }}">{{ title }}</h1>
+{% endif %}
