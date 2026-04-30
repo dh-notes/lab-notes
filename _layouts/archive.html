@@ -7,8 +7,11 @@ permalink: /archive/
 {% assign items = site.notes | sort: "date" | reverse %}
 
 <section>
-  <header class="pt-8 pb-2">
-    {% include chip.html text="All notes ↓" %}
+  <header class="grid md:grid-cols-[minmax(0,1fr)_280px]">
+    <div class="pt-8 pb-2 px-4 md:px-6">
+      {% include chip.html text="All notes ↓" %}
+    </div>
+    <div class="bg-paper"></div>
   </header>
 
   {% if items and items.size > 0 %}
