@@ -1,0 +1,8 @@
+<div>
+  <span class="block font-mono text-[0.72rem] uppercase tracking-[0.12em] text-grey mb-1">
+    {{ include.label }}
+  </span>
+  <div class="font-mono text-base leading-[1.5] {{ include.color | default: 'text-ink' }}">
+    {{ include.value }}
+  </div>
+</div>
