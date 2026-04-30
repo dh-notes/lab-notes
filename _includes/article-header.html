@@ -1,24 +1,12 @@
-<header class="grid grid-cols-1 md:grid-cols-[minmax(0,3fr)_minmax(220px,1fr)] border-b border-ink/20">
+<header class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_280px] border-b border-ink/20">
 
   <!-- main column -->
   <div class="px-4 py-8 md:px-6 md:py-10 md:border-r md:border-ink/20">
 
-    <span class="block font-mono text-[0.62rem] uppercase tracking-[0.14em] text-ink mb-6">
-      Lab Note &middot; {{ page.date | date: "%Y-%m-%d" }}
-    </span>
-    <div class="mb-4">
-       {% include note-title.html title=page.title size="hero" %}
-    </div>
-
-    <div class="mb-8">
-     {% include note-summary.html text=page.summary %}
-    </div>
-
-    {% if page.authors %}
-      <div class="font-sans font-bold text-base text-ink">
-        {{ page.authors | join: ", " }}
-      </div>
-    {% endif %}
+    {% include note-meta.html date=page.date %}
+    {% include note-title.html title=page.title size="hero" %}
+    {% include note-summary.html text=page.summary size="lede" %}
+    {% include authors.html items=page.authors %}
 
   </div>
 
@@ -26,8 +14,8 @@
   <aside class="bg-paper px-4 py-8 md:px-6 md:py-10 space-y-6">
 
     {% if page.date %}
-      {% capture date_value %}{{ page.date | date: "%B %-d, %Y" }}{% endcapture %}
-      {% include meta-field.html label="Published" value=date_value color="text-red" %}
+      {% capture published_value %}{{ page.date | date: "%B %-d, %Y" }}{% endcapture %}
+      {% include meta-field.html label="Published" value=published_value color="text-red" %}
     {% endif %}
 
     {% if page.tags %}
@@ -36,18 +24,8 @@
     {% endif %}
 
     {% if page.pdf_url %}
-      <div>
-        <span class="block font-mono text-[0.62rem] uppercase tracking-[0.12em] text-grey mb-1">
-          Download
-        </span>
-        <a href="{{ page.pdf_url | relative_url }}"
-           class="inline-flex items-baseline gap-2 font-mono text-[0.74rem] leading-[1.6] text-ink
-                  border-b border-ink/30 hover:text-red hover:border-red"
-           download>
-          Article (PDF)
-          <span class="text-[0.62rem] text-grey">↓</span>
-        </a>
-      </div>
+      {% capture download_value %}<a href="{{ page.pdf_url | relative_url }}" class="border-b border-ink/30 hover:text-red hover:border-red" download>Article (PDF) <span class="text-[0.72rem] text-grey">↓</span></a>{% endcapture %}
+      {% include meta-field.html label="Download" value=download_value %}
     {% endif %}
 
   </aside>
