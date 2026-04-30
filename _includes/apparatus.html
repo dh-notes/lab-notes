@@ -1,51 +1,21 @@
+{% if include.notes and include.notes != "" %}
 <section class="border-t border-ink">
+  <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_280px]">
 
-  <!-- apparatus header -->
-  <div class="grid grid-cols-1 md:grid-cols-[minmax(0,3fr)_minmax(220px,1fr)]">
-    <div class="px-4 py-3 md:px-6 md:border-r md:border-ink/10
-                flex items-baseline justify-between">
-      <span class="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-grey">
-        Supplementary Apparatus
-      </span>
-      {% if page.tags %}
-        <span class="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-grey">
-          {{ page.tags | size }} {% if page.tags.size == 1 %}tag{% else %}tags{% endif %}
-        </span>
-      {% endif %}
-    </div>
-    <div class="hidden md:block bg-paper-white"></div>
-  </div>
-
-  <!-- footnotes (kramdown auto-renders these into .footnotes at the bottom of `content`,
-       so we style them via the same 3:1 grid using a wrapper selector) -->
-  <div class="grid grid-cols-1 md:grid-cols-[minmax(0,3fr)_minmax(220px,1fr)] border-t border-ink/10">
-
-    <div class="px-4 py-8 md:px-6 md:py-10 md:border-r md:border-ink/10">
-      <h3 class="font-sans font-black uppercase text-base tracking-[-0.02em] text-ink mb-4">
-        Filed under
+    <div class="px-4 py-8 md:px-6 md:py-10 md:border-r md:border-ink/10
+                prose prose-neutral max-w-none
+                prose-p:font-mono prose-p:text-[0.78rem] prose-p:leading-[1.85]
+                prose-li:font-mono prose-li:text-[0.78rem] prose-li:leading-[1.85]
+                prose-a:text-ink prose-a:border-b prose-a:border-ink/30 prose-a:no-underline
+                hover:prose-a:text-red hover:prose-a:border-red">
+      <h3 class="font-sans font-black text-base tracking-[-0.02em] text-ink mb-4 not-prose">
+        Notes
       </h3>
-
-      {% if page.tags %}
-        {% include tags.html items=page.tags %}
-      {% else %}
-        <p class="font-mono text-[0.74rem] text-grey">No tags.</p>
-      {% endif %}
+      {{ include.notes }}
     </div>
 
-    <aside class="bg-paper px-4 py-8 md:px-6 md:py-10">
-      <span class="block font-mono text-[0.62rem] uppercase tracking-[0.14em] text-grey mb-2">
-        Metadata
-      </span>
-      <div class="font-mono text-[0.72rem] leading-[1.8] text-ink/80">
-        {% if page.authors %}
-          <div>{{ page.authors | join: ", " }}</div>
-        {% endif %}
-        {% if page.date %}
-          <div>{{ page.date | date: "%B %-d, %Y" }}</div>
-        {% endif %}
-      </div>
-    </aside>
+    <aside class="hidden md:block bg-paper"></aside>
 
   </div>
-
 </section>
+{% endif %}
