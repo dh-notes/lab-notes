@@ -37,8 +37,6 @@ blandit eget. Vestibulum finibus facilisis mi vitae efficitur. Suspendisse non e
 elementum tristique. Pellentesque at lectus dolor.
 
 
-## Notes
-
 [^1]: Jane Doe, *A Very Good Paper* (Journal of Examples 12, no. 3, 2020): 45–67.
 
 [^2]: Alex Smith, *Methods in Practice* (New York: Example Press, 2019), 42.
