@@ -33,8 +33,6 @@ tellus porta. Cras id felis id urna venenatis malesuada non venenatis orci. Sed 
 interdum non libero id, imperdiet cursus diam. Nunc at cursus ipsum. Nunc sagittis nulla varius
 dolor pharetra, sed iaculis velit molestie. Maecenas eget sagittis purus, in iaculis massa.
 
-## Notes
-
 [^1]: Jane Doe, *A Very Good Paper* (Journal of Examples 12, no. 3, 2020): 45–67.
 
 [^2]: Alex Smith, *Methods in Practice* (New York: Example Press, 2019), 42.
