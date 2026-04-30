@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<div class="grid grid-cols-1 gap-10 md:grid-cols-[minmax(0,1fr)_360px]">
+<div class="grid grid-cols-1 gap-10 md:grid-cols-[minmax(0,1fr)_280px]">
   <div>
     <article id="editorial-statement" class="grid grid-cols-1 gap-y-2 border-t border-ink/10 py-6 scroll-mt-24 md:grid-cols-[90px_minmax(0,1fr)] md:gap-x-8">
       <div class="font-mono text-sm text-grey">01</div>
@@ -54,16 +54,13 @@ layout: default
       {% for editor in page.editors %}
         <div>
           <div>{{ editor.name }}</div>
-
           {% if editor.role %}
             <div class="text-grey italic">{{ editor.role }}</div>
           {% endif %}
-
           {% if editor.affiliation %}
             <div class="text-grey">{{ editor.affiliation }}</div>
           {% endif %}
         </div>
-
         {% unless forloop.last %}
           <div class="h-4"></div>
         {% endunless %}
