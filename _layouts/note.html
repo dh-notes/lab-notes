@@ -2,10 +2,17 @@
 layout: default
 ---
 
+{% assign body_content = content %}
+{% assign notes_content = "" %}
+
+{% if content contains '<div class="footnotes"' %}
+  {% assign parts = content | split: '<div class="footnotes"' %}
+  {% assign body_content = parts[0] %}
+  {% assign notes_content = '<div class="footnotes"' | append: parts[1] %}
+{% endif %}
+
 <article class="border-b border-ink">
-
   {% include article-header.html %}
-  {% include article-body.html %}
-  {% include apparatus.html %}
-
+  {% include article-body.html content=body_content %}
+  {% include apparatus.html notes=notes_content %}
 </article>
