@@ -7,7 +7,7 @@ affiliations:
 orcids:
   - name: Johan Malmstedt
     id: 0000-0001-9876-5432
-corresponding: dyt2107@columbia.edu
+corresponding: johan.malmstedt@lir.gu.se
 date: 2026-01-01
 status: approved
 tags:
