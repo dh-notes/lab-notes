@@ -1,26 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{ '/assets/favicon/favicon.svg' | relative_url }}" type="image/svg+xml">
-    <title>
-      {% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}
-    </title>
-    <meta name="description" content="{{ site.description | default: 'Lab Notes is a journal of methodological reflection on lab-based research in the humanities and social sciences.' }}">
-
-    {% include scholar-meta.html %}
-
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-  </head>
-
-  <body class="bg-paper-white font-sans text-ink antialiased">
-    {% include header.html %}
-
-    <main class="mx-6">
-      {{ content }}
-    </main>
-
-    {% include footer.html %}
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,700;0,800;0,900;1,400;1,800&family=Fragment+Mono:ital@0;1&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/dist.css' | relative_url }}" />
+</head>
+<body>
+  {% include header.html %}
+  {{ content }}
+  {% include footer.html %}
+</body>
 </html>

@@ -2,33 +2,22 @@ url: "https://labnotesjournal.org"
 baseurl: ""
 title: "Lab Notes"
 description: "A peer-reviewed journal of methodological reflection on research design and method in the humanities and social sciences."
+tagline: "A peer-reviewed journal on research design and method."
 journal_abbrev: "Lab Notes"
-# publisher: ""
-# issn: "0000-0000"   # uncomment and fill in when you have one registered
+
 plugins:
-  - jekyll-postcss-v2
-  - jekyll-inline-svg
   - jekyll-sitemap
 
 markdown: kramdown
-
 kramdown:
   footnote_nr: 1
-
-svg:
-  optimize: true
-
-postcss:
-  cache: false
 
 exclude:
   - package.json
   - postcss.config.js
-  - tailwind.config.js
   - yarn.lock
   - package-lock.json
   - node_modules
-  - documents/
   - README.md
   - .jekyll-cache/
   - _site/

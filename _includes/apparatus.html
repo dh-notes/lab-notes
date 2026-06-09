@@ -1,21 +1,8 @@
 {% if include.notes and include.notes != "" %}
-<section class="border-t border-ink">
-  <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_280px]">
-
-    <div class="px-4 py-8 md:px-6 md:py-10 md:border-r md:border-ink/10
-                prose prose-neutral max-w-none
-                prose-p:font-mono prose-p:text-[0.78rem] prose-p:leading-[1.85]
-                prose-li:font-mono prose-li:text-[0.78rem] prose-li:leading-[1.85]
-                prose-a:text-ink prose-a:border-b prose-a:border-ink/30 prose-a:no-underline
-                hover:prose-a:text-red hover:prose-a:border-red">
-      <h3 class="font-sans font-black text-base tracking-[-0.02em] text-ink mb-4 not-prose">
-        Notes
-      </h3>
-      {{ include.notes }}
-    </div>
-
-    <aside class="hidden md:block bg-paper"></aside>
-
+<div class="footnotes">
+  <h3 class="footnotes-title">Notes</h3>
+  <div style="max-width:var(--col-6);font-family:'Fragment Mono',monospace;font-size:0.65rem;line-height:1.7;color:var(--grey)">
+    {{ include.notes }}
   </div>
-</section>
+</div>
 {% endif %}

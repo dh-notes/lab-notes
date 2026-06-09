@@ -1,33 +1,43 @@
-<header class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_280px] border-b border-ink/20">
+<div class="page-grid">
 
-  <!-- main column -->
-  <div class="px-4 py-8 md:px-6 md:py-10 md:border-r md:border-ink/20">
+  <div class="page-main">
+    <div class="article-header">
+      <div class="article-header-main">
+        <h1 class="article-title">{{ page.title }}</h1>
 
-    {% include note-meta.html date=page.date %}
-    {% include note-title.html title=page.title size="hero" %}
-    {% include note-summary.html text=page.summary size="lede" %}
-    {% include authors.html items=page.authors %}
+        {% assign article_subtitle = page.subtitle | default: page.deck %}
+        {% if article_subtitle %}
+        <p class="article-subtitle">{{ article_subtitle }}</p>
+        {% endif %}
 
-  </div>
+        {% if page.authors %}
+        <div class="authors">
+          <div class="author-lines">
+            {% for author in page.authors %}
+              <span class="author-line">{{ author }}{% if page.affiliations %}<sup>{% if page.affiliations.size == 1 %}1{% else %}{{ forloop.index }}{% endif %}</sup>{% endif %}</span>{% unless forloop.last %}<span class="author-sep">·</span>{% endunless %}
+            {% endfor %}
+          </div>
 
-  <!-- meta column -->
-  <aside class="bg-paper px-4 py-8 md:px-6 md:py-10 space-y-6">
+          {% if page.affiliations %}
+          <div class="affiliations">
+            {% for affiliation in page.affiliations %}
+              <div><span class="affil-n">{{ forloop.index }}</span>{{ affiliation }}</div>
+            {% endfor %}
+          </div>
+          {% endif %}
 
-    {% if page.date %}
-      {% capture published_value %}{{ page.date | date: "%B %-d, %Y" }}{% endcapture %}
-      {% include meta-field.html label="Published" value=published_value color="text-red" %}
-    {% endif %}
+          {% if page.orcids %}
+          <div class="orcid-row">
+            {% for item in page.orcids %}
+              <div>{{ item.name }} &nbsp;<span class="orcid-id">{{ item.id }}</span></div>
+            {% endfor %}
+          </div>
+          {% endif %}
 
-    {% if page.tags %}
-      {% capture tags_value %}{% for tag in page.tags %}{{ tag }}{% unless forloop.last %} &middot; {% endunless %}{% endfor %}{% endcapture %}
-      {% include meta-field.html label="Keywords" value=tags_value color="text-red" %}
-    {% endif %}
-
-    {% if page.pdf_url %}
-      {% capture download_value %}<a href="{{ page.pdf_url | relative_url }}" class="border-b border-ink/30 hover:text-red hover:border-red" download>Article (PDF) <span class="text-[0.72rem] text-grey">↓</span></a>{% endcapture %}
-      {% include meta-field.html label="Download" value=download_value %}
-    {% endif %}
-
-  </aside>
-
-</header>
+          {% if page.corresponding %}
+          <div class="corresponding">* Correspondence: <a href="mailto:{{ page.corresponding }}">{{ page.corresponding }}</a></div>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>

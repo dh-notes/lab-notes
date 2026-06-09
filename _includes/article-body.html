@@ -1,20 +1,95 @@
-<div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_280px]">
+    {% if page.abstract or page.summary %}
+    <div class="abstract-band">
+      <div class="abstract-main">
+        <span class="abstract-label">Abstract</span>
+        <div class="abstract-text">
+          <p>{% if page.abstract %}{{ page.abstract }}{% else %}{{ page.summary }}{% endif %}</p>
+        </div>
+      </div>
+    </div>
+    {% endif %}
 
-  <!-- body (main column) -->
-  <div class="px-4 py-10 md:px-6 md:py-12 md:border-r md:border-ink/10
-              prose prose-neutral max-w-none
-              prose-p:font-mono prose-p:text-[0.82rem] prose-p:leading-[1.9]
-              prose-li:font-mono prose-li:text-[0.82rem] prose-li:leading-[1.9]
-              prose-headings:font-sans prose-headings:font-black prose-headings:uppercase
-              prose-headings:tracking-[-0.02em] prose-headings:text-ink
-              prose-h2:text-[1.4rem] prose-h2:mt-10 prose-h2:mb-4
-              prose-a:text-ink prose-a:border-b prose-a:border-ink/30 prose-a:no-underline
-              hover:prose-a:text-red hover:prose-a:border-red
-              prose-em:italic prose-strong:font-bold">
-    {{ content }}
-  </div>
+    <div class="body-text">
+      {{ content }}
+    </div>
 
-  <!-- right column (empty; notes live in the apparatus below the dark border) -->
-  <aside class="hidden md:block bg-paper"></aside>
+  </div><!-- end page-main -->
 
-</div>
+  <!-- SIDEBAR -->
+  <div class="page-side">
+
+    {% if page.doi %}
+    <div class="meta-block">
+      <span class="meta-label">DOI</span>
+      <div class="doi-value"><a href="https://doi.org/{{ page.doi }}">{{ page.doi }}</a></div>
+    </div>
+    {% endif %}
+
+    {% if page.volume_info %}
+    <div class="meta-block">
+      <span class="meta-label">Published in</span>
+      <div class="meta-value"><em>{{ site.title }}</em><br>{{ page.volume_info }}</div>
+    </div>
+    {% endif %}
+
+    {% if page.publisher %}
+    <div class="meta-block">
+      <span class="meta-label">Publisher</span>
+      <div class="meta-value">{{ page.publisher }}</div>
+    </div>
+    {% endif %}
+
+    {% if page.received or page.revised or page.accepted or page.date %}
+    <div class="meta-block">
+      <span class="meta-label">Publication history</span>
+      <div class="dates-grid">
+        {% if page.received %}<div class="date-item"><span class="date-label">Received</span><span class="date-val">{{ page.received }}</span></div>{% endif %}
+        {% if page.revised  %}<div class="date-item"><span class="date-label">Revised</span><span class="date-val">{{ page.revised }}</span></div>{% endif %}
+        {% if page.accepted %}<div class="date-item"><span class="date-label">Accepted</span><span class="date-val">{{ page.accepted }}</span></div>{% endif %}
+        {% if page.date     %}<div class="date-item"><span class="date-label">Published</span><span class="date-val">{{ page.date | date: "%d %b %Y" }}</span></div>{% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if page.tags %}
+    <div class="meta-block">
+      <span class="meta-label">Keywords</span>
+      <ul class="kw-list">
+        {% for tag in page.tags %}<li>{{ tag }}</li>{% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    {% if page.pdf_url %}
+    <div class="meta-block">
+      <span class="meta-label">Download</span>
+      <div class="resource-link"><a href="{{ page.pdf_url }}" target="_blank">Article (PDF) ↓</a></div>
+    </div>
+    {% endif %}
+
+    {% if page.resources %}
+    <div class="meta-block">
+      <span class="meta-label">External Resources</span>
+      {% for r in page.resources %}
+        <div class="resource-link"><a href="{{ r.url }}" target="_blank">{{ r.label }} ↗</a></div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if page.doi %}
+    <div class="meta-block">
+      <span class="meta-label">ACM Reference Format</span>
+      <div class="meta-value" style="font-size:0.82rem;line-height:1.7">
+        {% for author in page.authors %}{{ author }}{% unless forloop.last %}, {% endunless %}{% endfor %}.
+        {{ page.date | date: "%Y" }}.
+        {{ page.title }}.
+        <em>{{ site.title }}</em>.
+        {% if page.volume_info %}{{ page.volume_info }}.{% endif %}
+        <a href="https://doi.org/{{ page.doi }}">https://doi.org/{{ page.doi }}</a>
+      </div>
+    </div>
+    {% endif %}
+
+  </div><!-- end page-side -->
+
+</div><!-- end page-grid -->

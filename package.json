@@ -1,14 +1,13 @@
 {
+  "name": "lab-notes",
   "type": "module",
-  "devDependencies": {
-    "@tailwindcss/typography": "^0.5.16",
-    "autoprefixer": "^10.4.27",
-    "cssnano": "^7.0.6",
-    "postcss": "^8.5.8",
-    "postcss-cli": "^11.0.1",
-    "tailwindcss": "^4.2.2"
+  "scripts": {
+    "build": "tailwindcss --input assets/css/main.css --output assets/css/dist.css",
+    "watch": "tailwindcss --input assets/css/main.css --output assets/css/dist.css --watch"
   },
-  "dependencies": {
-    "@tailwindcss/postcss": "^4.2.2"
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "@tailwindcss/postcss": "^4.3.0",
+    "tailwindcss": "^4.3.0"
   }
 }
