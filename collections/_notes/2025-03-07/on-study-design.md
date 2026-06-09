@@ -1,11 +1,11 @@
 ---
 title: "On Study Design in Computational Humanities"
 authors:
-  - Dennis Yi Tenen
+  - Johan Malmstedt
 affiliations:
   - Department of English and Comparative Literature, Columbia University, New York NY 10027, USA
 orcids:
-  - name: D. Y. Tenen
+  - name: Johan Malmstedt
     id: 0000-0001-9876-5432
 corresponding: dyt2107@columbia.edu
 date: 2026-01-01
