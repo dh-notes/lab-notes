@@ -1072,3 +1072,9 @@ a    { color: inherit; text-decoration: none; }
 .bibliography .bib-item::before {
   color: var(--red) !important;
 }
+
+/* Article pages: space before the global footer */
+.page-grid:has(.article-header) + .site-footer,
+.page-grid:has(.article-header) + .footnotes + .site-footer {
+  margin-top: 2.5rem;
+}
