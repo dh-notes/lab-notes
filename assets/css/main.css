@@ -170,7 +170,7 @@ a    { color: inherit; text-decoration: none; }
 
 /* ─── INDEX ─── */
 .index {
-  border-bottom: var(--rule);
+  border-bottom: none;
 }
 /* Desktop: three independent vertical columns */
 .index-desktop {
