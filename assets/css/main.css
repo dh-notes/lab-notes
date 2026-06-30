@@ -276,8 +276,8 @@ a    { color: inherit; text-decoration: none; }
 .article-masthead .m-vol  { grid-column: span 1; }
 
 /* ─── ARTICLE: PAGE GRID ─── */
-.article-page {
-  margin-bottom: 2.5rem;
+.page-grid ~ .site-footer {
+  margin-top: 2.5rem;
 }
 .page-grid {
   display: grid;
