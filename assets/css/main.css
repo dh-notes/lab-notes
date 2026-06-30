@@ -32,11 +32,12 @@ a    { color: inherit; text-decoration: none; }
 /* ─── MASTHEAD ─── */
 .masthead {
   border-bottom: var(--rule);
-  padding: 0.55rem 1rem;
+  padding: 0 1rem;
+  min-height: 2.75rem;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 0;
-  align-items: baseline;
+  align-items: center;   /* was: baseline */
   background: var(--white);
 }
 .m-logo {
@@ -250,8 +251,10 @@ a    { color: inherit; text-decoration: none; }
 
 /* ─── FOOTER ─── */
 .site-footer {
-  padding: 0.55rem 1rem;
-  border-top: var(--rule);
+  padding: 0 1rem;
+  min-height: 2.75rem;     /* identical to masthead */
+  border-top: var(--rule); /* matching rule */
+  background: var(--white); /* matching bar, was transparent */
   display: flex;
   justify-content: space-between;
   align-items: center;
