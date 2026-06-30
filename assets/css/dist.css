@@ -435,8 +435,7 @@ a {
   margin-left: auto;
 }
 .site-footer {
-  padding: 0.55rem 1rem;
-  border-top: var(--rule);
+  padding: 0.6rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
