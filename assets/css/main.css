@@ -1086,3 +1086,21 @@ a    { color: inherit; text-decoration: none; }
   color: var(--red) !important;
 }
 
+@media (min-width: 801px) {
+  .index {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .index-desktop {
+    flex: 1 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+  }
+
+  .index-col {
+    min-height: 100%;
+  }
+}
