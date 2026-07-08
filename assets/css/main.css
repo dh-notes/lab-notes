@@ -1,5 +1,28 @@
 @import "tailwindcss";
 
+/* ─── NIMBUS SANS (self-hosted TeX Gyre Heros, GUST Font License) ─── */
+@font-face {
+  font-family: 'Nimbus Sans';
+  src: url('../fonts/NimbusSans-Regular.woff') format('woff');
+  font-weight: 100 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Nimbus Sans';
+  src: url('../fonts/NimbusSans-Bold.woff') format('woff');
+  font-weight: 700 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Nimbus Sans';
+  src: url('../fonts/NimbusSans-Italic.woff') format('woff');
+  font-weight: 100 600; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Nimbus Sans';
+  src: url('../fonts/NimbusSans-BoldItalic.woff') format('woff');
+  font-weight: 700 900; font-style: italic; font-display: swap;
+}
+
+
 /*
   LABNOTES — Swiss Photomonth aesthetic
   Exact port of the MVP CSS into Tailwind v4
@@ -10,7 +33,7 @@
   --black:     #0a0a0a;
   --white:     #f7f7f5;
   --off-white: #ffffff;
-  --red:       #d42b2b;
+  --red:       #ff0000;
   --grey:      #555;
   --rule:      1px solid var(--black);
   --col-unit:  calc(100vw / 12);
@@ -24,7 +47,7 @@
 html { font-size: 15px; background: #f7f7f5; color: var(--black); }
 
 body {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Nimbus Sans', Arial, sans-serif;
   font-weight: 400;
   line-height: 1.15;
   min-height: 100vh;
@@ -40,13 +63,13 @@ body > * {
 a    { color: inherit; text-decoration: none; }
 
 /* ─── LOGO WORDMARK ─── */
-.logo-lab   { font-family: 'Helvetica Neue','Barlow','Arial Black',sans-serif; font-weight: 800; }
-.logo-notes { font-family: 'DM Serif Display',Georgia,serif; font-style: italic; font-weight: 400; }
+.logo-lab   { font-family: 'Nimbus Sans','Barlow','Arial Black',sans-serif; font-weight: 800; color: var(--red); }
+.logo-notes { font-family: 'DM Serif Display',Georgia,serif; font-style: italic; font-weight: 400; color: var(--black); }
 
 /* ─── MASTHEAD ─── */
 .masthead {
   border-bottom: var(--rule);
-  padding: 0.55rem 1rem;
+  padding: 0.75rem 1rem;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 0;
@@ -56,7 +79,7 @@ a    { color: inherit; text-decoration: none; }
 .m-logo {
   grid-column: span 8;
   font-family: 'Fragment Mono', monospace;
-  font-size: 0.88rem;
+  font-size: 1.6rem;
   font-weight: 400;
   letter-spacing: 0.03em;
   color: var(--grey);
@@ -67,6 +90,28 @@ a    { color: inherit; text-decoration: none; }
   font-size: 0.88rem;
   color: var(--grey);
   text-align: right;
+}
+
+
+/* Tagline split out of the wordmark link (nimbus header) */
+.m-tagline-dash {
+  display: inline-block;
+  font-family: 'Fragment Mono', monospace;
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--grey);
+  margin: 0 0.6rem;
+  vertical-align: middle;
+}
+.m-tagline {
+  display: inline-block;
+  font-family: 'Fragment Mono', monospace;
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: var(--grey);
+  text-decoration: none;
+  vertical-align: middle;
 }
 
 .m-nav {
@@ -95,7 +140,7 @@ a    { color: inherit; text-decoration: none; }
   flex-direction: column;
 }
 .about-band p {
-  font-family: 'Helvetica Neue', 'Barlow', 'Arial Black', sans-serif;
+  font-family: 'Nimbus Sans', 'Barlow', 'Arial Black', sans-serif;
   font-weight: 800;
   font-size: clamp(1.69rem, 2.6vw, 2.6rem);
   line-height: 1.05;
@@ -184,7 +229,7 @@ a    { color: inherit; text-decoration: none; }
 
 /* ─── INDEX ─── */
 .index {
-  border-bottom: none;
+  border-bottom: var(--rule);
 }
 /* Desktop: three independent vertical columns */
 .index-desktop {
@@ -229,7 +274,7 @@ a    { color: inherit; text-decoration: none; }
 }
 
 .index-title {
-  font-family: 'Helvetica Neue', 'Barlow', 'Arial Black', sans-serif;
+  font-family: 'Nimbus Sans', 'Barlow', 'Arial Black', sans-serif;
   font-weight: 800;
   font-size: clamp(1.36rem, 1.87vw, 1.73rem);
   line-height: 1.15;
@@ -281,7 +326,7 @@ a    { color: inherit; text-decoration: none; }
 /* ─── ARTICLE: MASTHEAD (3-col) ─── */
 .article-masthead {
   border-bottom: var(--rule);
-  padding: 0.55rem 1rem;
+  padding: 0.75rem 1rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0 1rem;
@@ -330,7 +375,7 @@ a    { color: inherit; text-decoration: none; }
 }
 .article-header-main { padding: 0; }
 .article-title {
-  font-family: 'Helvetica Neue', 'Barlow', sans-serif;
+  font-family: 'Nimbus Sans', 'Barlow', sans-serif;
   font-weight: 900;
   font-size: clamp(2rem, 3vw, 3.2rem);
   line-height: 1.02;
@@ -430,7 +475,7 @@ a    { color: inherit; text-decoration: none; }
   padding: 3rem 1rem;
 }
 .body-text h2 {
-  font-family: 'Helvetica Neue', 'Barlow', sans-serif;
+  font-family: 'Nimbus Sans', 'Barlow', sans-serif;
   font-weight: 900;
   font-size: 2rem;
   letter-spacing: -0.025em;
@@ -532,7 +577,7 @@ a    { color: inherit; text-decoration: none; }
   border-top: var(--rule);
 }
 .footnotes-title {
-  font-family: 'Helvetica Neue', 'Barlow', sans-serif;
+  font-family: 'Nimbus Sans', 'Barlow', sans-serif;
   font-weight: 900;
   font-size: 1rem;
   letter-spacing: -0.02em;
@@ -569,7 +614,7 @@ a    { color: inherit; text-decoration: none; }
   pointer-events: none;
 }
 #folio-num {
-  font-family: 'Helvetica Neue', 'Barlow', 'Arial Black', sans-serif;
+  font-family: 'Nimbus Sans', 'Barlow', 'Arial Black', sans-serif;
   font-weight: 900;
   font-size: clamp(2.25rem, 4.5vw, 4rem);
   line-height: 1;
@@ -664,15 +709,15 @@ a    { color: inherit; text-decoration: none; }
 }
 .figure-caption {
   font-family: 'Fragment Mono', monospace;
-  font-size: 0.65rem;
-  line-height: 1.6;
+  font-size: 0.82rem;
+  line-height: 1.65;
   color: var(--grey);
 }
 .figure-caption strong { color: var(--black); font-weight: 700; }
 .figure-credit {
   font-family: 'Fragment Mono', monospace;
-  font-size: 0.58rem;
-  color: rgba(0,0,0,0.35);
+  font-size: 0.75rem;
+  color: var(--grey);
   margin-top: 0.2rem;
 }
 
@@ -806,8 +851,9 @@ a    { color: inherit; text-decoration: none; }
   text-align: right;
   font-family: 'Fragment Mono', monospace;
   font-size: 0.72rem;
-  color: var(--black);
-  margin-top: 0.4rem;
+  color: var(--red);
+  letter-spacing: 0.06em;
+  margin-top: 0.6rem;
 }
 @media (min-width: 801px) {
   .index-item:hover .index-title,
@@ -887,7 +933,7 @@ a    { color: inherit; text-decoration: none; }
 }
 .article-header-main { padding: 0; }
 .article-title {
-  font-family: 'Helvetica Neue', 'Barlow', sans-serif;
+  font-family: 'Nimbus Sans', 'Barlow', sans-serif;
   font-weight: 900;
   font-size: clamp(2rem, 3vw, 3.2rem);
   line-height: 1.02;
@@ -1103,4 +1149,19 @@ a    { color: inherit; text-decoration: none; }
   .index-col {
     min-height: 100%;
   }
+}
+
+
+/* ─── NIMBUS FINAL DESIGN OVERRIDES (header) ─── */
+.about-band .logo-lab { color: var(--black); }
+
+@media (max-width: 800px) {
+  .masthead, .article-masthead { padding: 0.65rem 1rem; }
+  .m-logo { font-size: 1.15rem; }
+  .m-tagline, .m-tagline-dash { display: none !important; }
+  .m-nav { gap: 1.2rem; }
+}
+@media (max-width: 500px) {
+  .m-logo { font-size: 1rem; }
+  .m-nav { gap: 0.8rem; }
 }
