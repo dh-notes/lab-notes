@@ -44,11 +44,17 @@ permalink: /about/
 
       <p>Notes may include figures, diagrams, code, or other supporting materials.</p>
 
-      <p>To submit, send your manuscript and any supporting materials to [email/contact].</p>
+      <p>
+        Please direct your submissions to 
+        <a href="mailto:submit@labnotesjournal.com">submit@labnotesjournal.com</a>.
+      </p>
 
       <h2>Contact</h2>
 
-      <p>Coming soon.</p>
+      <p> 
+        For editorial questions, please contact
+        <a href="mailto:editor@labnotesjournal.com">editor@labnotesjournal.com</a>.
+      </p>
 
     </div>
   </div>
