@@ -88,16 +88,16 @@ permalink: /about/
       {% include sidebar-label.html text="Editorial Board" %}
       <div class="font-fragment text-[0.84rem] leading-[1.75] text-ink">
         <div class="mb-4">
-          <div>Stephen Wittek</div>
-          <div class="text-grey">Carnegie Mellon University</div>
-        </div>
-        <div class="mb-4">
           <div>Wendy Hui Kyong Chun</div>
           <div class="text-grey">Simon Fraser University</div>
         </div>
         <div class="mb-4">
           <div>Meredith Martin</div>
           <div class="text-grey">Princeton University</div>
+        </div>
+        <div class="mb-4">
+          <div>Stephen Wittek</div>
+          <div class="text-grey">Carnegie Mellon University</div>
         </div>
         <div>
           <div>Setsuko Yokoyama</div>
