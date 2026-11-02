@@ -4,12 +4,11 @@ title: Home
 permalink: /
 ---
 
-{% capture band_text %}{% include logo.html lab="text-ink" %}
-    publishes short, peer-reviewed papers on research design and method in the
-    humanities and social sciences. We document procedures, workflows, and forms of coordination
-    that organize research in practice, from data collection through annotation, modeling, and
-    interpretation. These materials are often produced en route to publication or required to
-    sustain collaborative, lab-based work.{% endcapture %}
+{% capture band_text %}Peer-reviewed notes on research design and method in
+    <span class="mt-[0.1em] block font-fragment text-[length:min(var(--text-band),calc(100cqw/(var(--flap-cols,28)*0.58)))] font-normal leading-[1.2] tracking-[0] whitespace-nowrap" data-flap-phrases="{{ site.data.topics | jsonify | escape }}">
+      <span class="sr-only">{{ site.data.topics.first }}</span>
+      <span aria-hidden="true" data-flap-board>{{ site.data.topics.first }}</span>
+    </span>{% endcapture %}
 {% include about-band.html content=band_text %}
 
 {% assign all_notes = site.notes | sort: "date" | reverse %}
@@ -143,5 +142,83 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
     rotateAll();
     setInterval(rotateAll, 5000);
   }, 1200);
+})();
+
+// ─── HEADLINE PHRASE: same split-flap logic as the badges, on a fixed grid of cells ───
+(function () {
+  var host = document.querySelector('[data-flap-phrases]');
+  if (!host) return;
+  var phrases;
+  try { phrases = JSON.parse(host.getAttribute('data-flap-phrases')); } catch (e) { return; }
+  if (!phrases || phrases.length < 2) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var board  = host.querySelector('[data-flap-board]');
+  var COLS   = Math.max.apply(null, phrases.map(function (p) { return p.length; }));
+  var STAGGER = 45, OUT_DUR = 160, IN_DUR = 200, HOLD = 4200;
+
+  host.style.setProperty('--flap-cols', COLS);
+  board.textContent = '';
+  board.className = 'inline-block';
+  board.style.width = (COLS * 0.56) + 'em';
+
+  function padded(text) { while (text.length < COLS) text += ' '; return text; }
+  function glyph(c) { return c === ' ' ? '\u00a0' : c; }
+
+  for (var i = 0; i < COLS; i++) {
+    var cell = document.createElement('span');
+    cell.setAttribute('data-flap', '');
+    cell.className = 'inline-block h-[1.2em] w-[0.56em] text-center align-top leading-[1.2em] [perspective:400px]';
+    var inner = document.createElement('span');
+    inner.className = 'block h-full w-full text-center leading-[1.2em] backface-hidden';
+    inner.textContent = glyph(padded(phrases[0])[i]);
+    cell.appendChild(inner);
+    board.appendChild(cell);
+  }
+  var cells = Array.from(board.querySelectorAll('[data-flap] > span'));
+
+  function flipCell(span, ch, delay) {
+    setTimeout(function () {
+      span.classList.remove('animate-flap-in');
+      span.classList.add('animate-flap-out');
+      setTimeout(function () {
+        span.classList.remove('animate-flap-out');
+        span.textContent = glyph(ch);
+        span.classList.add('animate-flap-in');
+        setTimeout(function () { span.classList.remove('animate-flap-in'); }, IN_DUR);
+      }, OUT_DUR);
+    }, delay);
+  }
+
+  var current = 0, order = [], paused = false;
+  function shuffle(a) {
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function nextIndex() {
+    if (!order.length) {
+      order = shuffle(phrases.map(function (_, i) { return i; }).filter(function (i) { return i !== current; }));
+    }
+    return order.shift();
+  }
+  function rotate() {
+    if (paused || document.hidden) return;
+    var next = nextIndex(), from = padded(phrases[current]), to = padded(phrases[next]), n = 0;
+    for (var i = 0; i < COLS; i++) {
+      if (from[i] !== to[i]) flipCell(cells[i], to[i], n++ * STAGGER);
+    }
+    current = next;
+  }
+
+  // Pause while the pointer or keyboard focus is on the intro, so the text can be read.
+  var band = host.closest('div') || host;
+  band.addEventListener('mouseenter', function () { paused = true; });
+  band.addEventListener('mouseleave', function () { paused = false; });
+  band.addEventListener('focusin',    function () { paused = true; });
+  band.addEventListener('focusout',   function () { paused = false; });
+
+  setTimeout(function () { rotate(); setInterval(rotate, HOLD); }, 2600);
 })();
 </script>
