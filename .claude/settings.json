@@ -22,7 +22,7 @@
       "allowWrite": ["~/.bundle", "~/.cache/gem"]
     },
     "network": {
-      "allowedDomains": ["github.com", "*.githubusercontent.com"]
+      "allowedDomains": ["github.com", "*.githubusercontent.com", "registry.npmjs.org"]
     }
   }
 }
