@@ -5,7 +5,7 @@ permalink: /
 ---
 
 {% capture band_text %}Peer-reviewed notes on research design and method in
-    <span class="mt-[0.1em] block font-fragment text-[length:min(var(--text-band),calc(100cqw/(var(--flap-cols,28)*0.58)))] font-normal leading-[1.2] tracking-[0] whitespace-nowrap" data-flap-phrases="{{ site.data.topics | jsonify | escape }}">
+    <span class="mt-[0.1em] block text-red text-[length:min(var(--text-band),calc(100cqw/(var(--flap-em,14)*1.02)))] leading-[1.2] whitespace-nowrap" data-flap-phrases="{{ site.data.topics | jsonify | escape }}">
       <span class="sr-only">{{ site.data.topics.first }}</span>
       <span aria-hidden="true" data-flap-board>{{ site.data.topics.first }}</span>
     </span>{% endcapture %}
@@ -144,7 +144,8 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
   }, 1200);
 })();
 
-// ─── HEADLINE PHRASE: same split-flap logic as the badges, on a fixed grid of cells ───
+// ─── HEADLINE PHRASE: same split-flap logic as the badges. Each cell is as wide as its own
+//     letter (the headline font is proportional), and the font size is set from the longest phrase.
 (function () {
   var host = document.querySelector('[data-flap-phrases]');
   if (!host) return;
@@ -153,72 +154,95 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
   if (!phrases || phrases.length < 2) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  var board  = host.querySelector('[data-flap-board]');
-  var COLS   = Math.max.apply(null, phrases.map(function (p) { return p.length; }));
-  var STAGGER = 45, OUT_DUR = 160, IN_DUR = 200, HOLD = 4200;
+  var board = host.querySelector('[data-flap-board]');
+  var COLS = Math.max.apply(null, phrases.map(function (p) { return p.length; }));
+  var STAGGER = 45, OUT_DUR = 160, IN_DUR = 200, HOLD = 4200, TRACKING = -0.02;
 
-  host.style.setProperty('--flap-cols', COLS);
-  board.textContent = '';
-  board.className = 'inline-block';
-  board.style.width = (COLS * 0.56) + 'em';
+  var fontsReady = (document.fonts && document.fonts.load)
+    ? document.fonts.load('800 100px "Nimbus Sans"').catch(function () {})
+    : Promise.resolve();
 
-  function padded(text) { while (text.length < COLS) text += ' '; return text; }
-  function glyph(c) { return c === ' ' ? '\u00a0' : c; }
-
-  for (var i = 0; i < COLS; i++) {
-    var cell = document.createElement('span');
-    cell.setAttribute('data-flap', '');
-    cell.className = 'inline-block h-[1.2em] w-[0.56em] text-center align-top leading-[1.2em] [perspective:400px]';
-    var inner = document.createElement('span');
-    inner.className = 'block h-full w-full text-center leading-[1.2em] backface-hidden';
-    inner.textContent = glyph(padded(phrases[0])[i]);
-    cell.appendChild(inner);
-    board.appendChild(cell);
-  }
-  var cells = Array.from(board.querySelectorAll('[data-flap] > span'));
-
-  function flipCell(span, ch, delay) {
-    setTimeout(function () {
-      span.classList.remove('animate-flap-in');
-      span.classList.add('animate-flap-out');
-      setTimeout(function () {
-        span.classList.remove('animate-flap-out');
-        span.textContent = glyph(ch);
-        span.classList.add('animate-flap-in');
-        setTimeout(function () { span.classList.remove('animate-flap-in'); }, IN_DUR);
-      }, OUT_DUR);
-    }, delay);
-  }
-
-  var current = 0, order = [], paused = false;
-  function shuffle(a) {
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t;
+  fontsReady.then(function () {
+    var ctx = document.createElement('canvas').getContext('2d');
+    ctx.font = '800 100px "Nimbus Sans", Barlow, "Arial Black", sans-serif';
+    var advance = {};
+    function em(ch) {            // width of one letter in em, including the headline's tight tracking
+      if (ch === '') return 0;
+      if (!(ch in advance)) advance[ch] = ctx.measureText(ch).width / 100 + TRACKING;
+      return advance[ch];
     }
-    return a;
-  }
-  function nextIndex() {
-    if (!order.length) {
-      order = shuffle(phrases.map(function (_, i) { return i; }).filter(function (i) { return i !== current; }));
+    function chars(text) {       // fixed-length array; '' marks an unused cell
+      var a = [];
+      for (var i = 0; i < COLS; i++) a.push(i < text.length ? text[i] : '');
+      return a;
     }
-    return order.shift();
-  }
-  function rotate() {
-    if (paused || document.hidden) return;
-    var next = nextIndex(), from = padded(phrases[current]), to = padded(phrases[next]), n = 0;
+    function glyph(c) { return c === ' ' ? '\u00a0' : c; }
+
+    var widest = Math.max.apply(null, phrases.map(function (p) {
+      return chars(p).reduce(function (sum, c) { return sum + em(c); }, 0);
+    }));
+    host.style.setProperty('--flap-em', widest);
+
+    board.textContent = '';
+    board.className = 'inline-block';
+    var first = chars(phrases[0]);
     for (var i = 0; i < COLS; i++) {
-      if (from[i] !== to[i]) flipCell(cells[i], to[i], n++ * STAGGER);
+      var cell = document.createElement('span');
+      cell.setAttribute('data-flap', '');
+      cell.className = 'inline-block h-[1.2em] text-center align-top leading-[1.2em] tracking-[0] [perspective:400px]';
+      cell.style.width = em(first[i]) + 'em';
+      var inner = document.createElement('span');
+      inner.className = 'block h-full w-full text-center leading-[1.2em] backface-hidden';
+      inner.textContent = glyph(first[i]);
+      cell.appendChild(inner);
+      board.appendChild(cell);
     }
-    current = next;
-  }
+    var cells = Array.from(board.querySelectorAll('[data-flap] > span'));
 
-  // Pause while the pointer or keyboard focus is on the intro, so the text can be read.
-  var band = host.closest('div') || host;
-  band.addEventListener('mouseenter', function () { paused = true; });
-  band.addEventListener('mouseleave', function () { paused = false; });
-  band.addEventListener('focusin',    function () { paused = true; });
-  band.addEventListener('focusout',   function () { paused = false; });
+    function flipCell(span, ch, delay) {
+      setTimeout(function () {
+        span.classList.remove('animate-flap-in');
+        span.classList.add('animate-flap-out');
+        setTimeout(function () {
+          span.classList.remove('animate-flap-out');
+          span.textContent = glyph(ch);
+          span.parentElement.style.width = em(ch) + 'em';
+          span.classList.add('animate-flap-in');
+          setTimeout(function () { span.classList.remove('animate-flap-in'); }, IN_DUR);
+        }, OUT_DUR);
+      }, delay);
+    }
 
-  setTimeout(function () { rotate(); setInterval(rotate, HOLD); }, 2600);
+    var current = 0, order = [], paused = false;
+    function shuffle(a) {
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t;
+      }
+      return a;
+    }
+    function nextIndex() {
+      if (!order.length) {
+        order = shuffle(phrases.map(function (_, i) { return i; }).filter(function (i) { return i !== current; }));
+      }
+      return order.shift();
+    }
+    function rotate() {
+      if (paused || document.hidden) return;
+      var next = nextIndex(), from = chars(phrases[current]), to = chars(phrases[next]), n = 0;
+      for (var i = 0; i < COLS; i++) {
+        if (from[i] !== to[i]) flipCell(cells[i], to[i], n++ * STAGGER);
+      }
+      current = next;
+    }
+
+    // Pause while the pointer or keyboard focus is on the intro, so the text can be read.
+    var band = host.closest('div') || host;
+    band.addEventListener('mouseenter', function () { paused = true; });
+    band.addEventListener('mouseleave', function () { paused = false; });
+    band.addEventListener('focusin',    function () { paused = true; });
+    band.addEventListener('focusout',   function () { paused = false; });
+
+    setTimeout(function () { rotate(); setInterval(rotate, HOLD); }, 2600);
+  });
 })();
 </script>
