@@ -14,10 +14,6 @@ tags:
   - causal inference
   - study design
   - natural experiment
-  - computational humanities
-  - research methods
-  - distant reading
-  - corpus construction
 subtitle: "Causal Inference, Natural Experiments, and the Conditions of Knowledge Production in Humanistic Research"
 summary: "Causal Inference, Natural Experiments, and the Conditions of Knowledge Production in Humanistic Research"
 abstract: "Reading Thad Dunning's Natural Experiments in the Social Sciences (Cambridge, 2012), this note reflects on the problem of study design in computational humanities research. Dunning's central question — how can causal inference be improved? — proves unexpectedly generative when transposed into humanistic inquiry, where causal and statistical assumptions are often difficult to explicate and defend, let alone validate. This note argues that the natural experiment framework, understood as a design-based method in which control over confounding variables emerges from research-design choices rather than ex post statistical adjustment, offers a productive model for computational approaches to literary and historical corpora."
