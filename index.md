@@ -143,8 +143,10 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
   }, 1200);
 })();
 
-// ─── HEADLINE PHRASE: same split-flap logic as the badges. Each cell is as wide as its own
-//     letter (the headline font is proportional), and the font size is set from the longest phrase.
+// ─── HEADLINE PHRASE: a split-flap board. Every cell is cut in half at its centre seam:
+//     the old top half falls forward, then the new bottom half drops into place.
+//     Each cell is as wide as its own letter (the headline font is proportional), and the font
+//     size is set from the longest phrase so it always fits.
 (function () {
   var host = document.querySelector('[data-flap-phrases]');
   if (!host) return;
@@ -156,7 +158,7 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
   var board = host.querySelector('[data-flap-board]');
   var label = host.querySelector('[data-flap-label]');
   var COLS = Math.max.apply(null, phrases.map(function (p) { return p.length; }));
-  var STAGGER = 90, OUT_DUR = 320, IN_DUR = 380, HOLD = 6500, TRACKING = -0.02;
+  var STAGGER = 90, FALL = 320, RISE = 380, HOLD = 6500, TRACKING = -0.02;
 
   var fontsReady = (document.fonts && document.fonts.load)
     ? document.fonts.load('italic 400 100px "DM Serif Display"').catch(function () {})
@@ -183,33 +185,56 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
     }));
     host.style.setProperty('--flap-em', widest + em('.'));
 
+    var LAYER  = 'absolute inset-0 block text-center leading-[1.2em] whitespace-nowrap';
+    var TOP    = '[clip-path:inset(-0.5em_-0.5em_50%_-0.5em)]';
+    var BOTTOM = '[clip-path:inset(50%_-0.5em_-0.5em_-0.5em)]';
+    function layer(extra, ch) {
+      var l = document.createElement('span');
+      l.className = LAYER + ' ' + extra;
+      l.textContent = glyph(ch);
+      return l;
+    }
+
     board.textContent = '';
     board.className = 'inline-block';
     var first = chars(phrases[0]);
-    for (var i = 0; i < COLS; i++) {
+    var cells = first.map(function (ch) {
       var cell = document.createElement('span');
       cell.setAttribute('data-flap', '');
-      cell.className = 'inline-block h-[1.2em] text-center align-top leading-[1.2em] tracking-[0] [perspective:400px]';
-      cell.style.width = em(first[i]) + 'em';
-      var inner = document.createElement('span');
-      inner.className = 'block h-full w-full text-center leading-[1.2em] backface-hidden';
-      inner.textContent = glyph(first[i]);
-      cell.appendChild(inner);
+      cell.className = 'relative inline-block h-[1.2em] align-top leading-[1.2em] tracking-[0] [perspective:400px]';
+      cell.style.width = em(ch) + 'em';
+      var c = {
+        el: cell,
+        top:        layer(TOP, ch),                                           // static top half (shows the new letter once the flap has fallen)
+        bottom:     layer(BOTTOM, ch),                                        // static bottom half (shows the old letter until the new one lands)
+        flapTop:    layer(TOP + ' backface-hidden', ch),                      // falls forward, showing the old letter
+        flapBottom: layer(BOTTOM + ' backface-hidden [transform:rotateX(90deg)]', ch)  // swings down, showing the new letter
+      };
+      c.flapBottom.style.visibility = 'hidden';
+      [c.top, c.bottom, c.flapTop, c.flapBottom].forEach(function (l) { cell.appendChild(l); });
       board.appendChild(cell);
-    }
-    var cells = Array.from(board.querySelectorAll('[data-flap] > span'));
+      return c;
+    });
 
-    function flipCell(span, ch, delay) {
+    function flipCell(c, ch, delay) {
       setTimeout(function () {
-        span.classList.remove('animate-board-in');
-        span.classList.add('animate-board-out');
+        c.top.textContent = glyph(ch);                    // new top half waits underneath the flap
+        c.flapBottom.textContent = glyph(ch);
+        c.flapTop.classList.add('animate-board-fall');    // old top half falls forward
         setTimeout(function () {
-          span.classList.remove('animate-board-out');
-          span.textContent = glyph(ch);
-          span.parentElement.style.width = em(ch) + 'em';
-          span.classList.add('animate-board-in');
-          setTimeout(function () { span.classList.remove('animate-board-in'); }, IN_DUR);
-        }, OUT_DUR);
+          c.flapTop.style.visibility = 'hidden';
+          c.el.style.width = em(ch) + 'em';
+          c.flapBottom.style.visibility = 'visible';
+          c.flapBottom.classList.add('animate-board-rise');   // new bottom half drops into place
+          setTimeout(function () {
+            c.bottom.textContent = glyph(ch);             // settle: static halves now show the new letter
+            c.flapTop.textContent = glyph(ch);
+            c.flapTop.classList.remove('animate-board-fall');
+            c.flapTop.style.visibility = 'visible';
+            c.flapBottom.classList.remove('animate-board-rise');
+            c.flapBottom.style.visibility = 'hidden';
+          }, RISE);
+        }, FALL);
       }, delay);
     }
 
