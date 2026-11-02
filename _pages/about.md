@@ -9,9 +9,9 @@ permalink: /about/
     in the humanities and social sciences, making visible what is typically left implicit.{% endcapture %}
 {% include about-band.html content=band_text %}
 
-<div class="page-grid">
-  <div class="page-main">
-    <div class="body-text">
+<div class="grid grid-cols-[repeat(12,1fr)] items-start">
+  <div class="col-span-12 min-w-0 rail:col-span-8 rail:border-r rail:border-ink">
+    <div class="prose-article px-4 py-6 stack:py-12">
 
       <h2>Editorial Statement</h2>
 
@@ -56,62 +56,62 @@ permalink: /about/
     </div>
   </div>
 
-  <div class="page-side">
+  <div class="col-span-12 flex flex-col gap-8 border-t border-ink px-4 py-6 rail:sticky rail:top-0 rail:col-span-4 rail:max-h-[100vh] overflow-y-auto rail:border-t-0 rail:px-6 rail:py-10 [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-thumb]:bg-[rgba(0,0,0,0.15)]">
 
-    <div class="meta-block">
-      <span class="meta-label">Masthead</span>
-      <div class="meta-value" style="font-size:0.84rem;line-height:1.75">
-        <div style="margin-bottom:1rem">
+    <div>
+      {% include sidebar-label.html text="Masthead" %}
+      <div class="font-fragment text-[0.84rem] leading-[1.75] text-ink">
+        <div class="mb-4">
           <div>Jeffrey Schnapp</div>
-          <div style="color:var(--grey);font-style:italic">Editor</div>
-          <div style="color:var(--grey)">MetaLab, Harvard University</div>
+          <div class="text-grey italic">Editor</div>
+          <div class="text-grey">MetaLab, Harvard University</div>
         </div>
-        <div style="margin-bottom:1rem">
+        <div class="mb-4">
           <div>Seohyon Jung</div>
-          <div style="color:var(--grey);font-style:italic">Editor</div>
-          <div style="color:var(--grey)">LitLab, KAIST (S. Korea)</div>
+          <div class="text-grey italic">Editor</div>
+          <div class="text-grey">LitLab, KAIST (S. Korea)</div>
         </div>
-        <div style="margin-bottom:1rem">
+        <div class="mb-4">
           <div>Dennis Yi Tenen</div>
-          <div style="color:var(--grey);font-style:italic">Editor</div>
-          <div style="color:var(--grey)">Narrative Intelligence Lab, Columbia University</div>
+          <div class="text-grey italic">Editor</div>
+          <div class="text-grey">Narrative Intelligence Lab, Columbia University</div>
         </div>
-        <div style="margin-bottom:1rem">
+        <div class="mb-4">
           <div>Johan Malmstedt</div>
-          <div style="color:var(--grey);font-style:italic">Associate Editor</div>
-          <div style="color:var(--grey)">University of Gothenburg</div>
+          <div class="text-grey italic">Associate Editor</div>
+          <div class="text-grey">University of Gothenburg</div>
         </div>
         <div>
           <div>Serena Cangiano</div>
-          <div style="color:var(--grey);font-style:italic">Associate Editor</div>
-          <div style="color:var(--grey)">Institute of Design SUPSI</div>
+          <div class="text-grey italic">Associate Editor</div>
+          <div class="text-grey">Institute of Design SUPSI</div>
         </div>
       </div>
     </div>
 
-    <div class="meta-block" style="border-top:1px solid rgba(0,0,0,0.1);padding-top:1.5rem;margin-top:0.5rem">
-      <span class="meta-label">Editorial Board</span>
-      <div class="meta-value" style="font-size:0.84rem;line-height:1.75">
+    <div class="mt-2 border-t border-rule pt-6">
+      {% include sidebar-label.html text="Editorial Board" %}
+      <div class="font-fragment text-[0.84rem] leading-[1.75] text-ink">
         <div>
           <div>Stephen Wittek</div>
-          <div style="color:var(--grey)">Carnegie Mellon University</div>
+          <div class="text-grey">Carnegie Mellon University</div>
         </div>
       </div>
     </div>
 
-    <div class="meta-block">
-      <span class="meta-label">Access</span>
-      <div class="meta-value">Open · peer-reviewed</div>
+    <div>
+      {% include sidebar-label.html text="Access" %}
+      <div class="font-fragment text-[0.9rem] leading-[1.7] text-ink">Open · peer-reviewed</div>
     </div>
 
-    <div class="meta-block">
-      <span class="meta-label">License</span>
-      <div class="meta-value">CC BY 4.0</div>
+    <div>
+      {% include sidebar-label.html text="License" %}
+      <div class="font-fragment text-[0.9rem] leading-[1.7] text-ink">CC BY 4.0</div>
     </div>
 
-    <div class="meta-block">
-      <span class="meta-label">Submissions</span>
-      <div class="resource-link"><a href="#">See guidelines →</a></div>
+    <div>
+      {% include sidebar-label.html text="Submissions" %}
+      <div class="font-fragment text-[0.82rem] leading-[2]"><a class="hover:text-red" href="#">See guidelines →</a></div>
     </div>
 
   </div>

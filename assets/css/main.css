@@ -12,17 +12,23 @@
   --color-grey: #555;
   --color-stone: #d8d8d5;
   --color-grey-dark: #444;
+  --color-rule: rgba(0, 0, 0, 0.1);
+  --color-rule-faint: rgba(0, 0, 0, 0.06);
 
   --font-sans: 'Nimbus Sans', Arial, sans-serif;
+  --font-headline: 'Nimbus Sans', 'Barlow', sans-serif;
   --font-wordmark: 'Nimbus Sans', 'Barlow', 'Arial Black', sans-serif;
   --font-editorial: 'DM Serif Display', Georgia, serif;
   --font-fragment: 'Fragment Mono', monospace;
 
   --tracking-mono: 0.03em;
 
+  --text-title: clamp(2rem, 3vw, 3.2rem);
   --text-band: clamp(1.69rem, 2.6vw, 2.6rem);
   --text-index-title: clamp(1.36rem, 1.87vw, 1.73rem);
 
+  --container-col-4: calc(4 * (100vw / 12));
+  --container-col-6: calc(6 * (100vw / 12));
   --container-col-8: calc(8 * (100vw / 12));
 
   --animate-flap-out: flapOut 160ms ease-in forwards;
@@ -68,31 +74,12 @@
 }
 
 
-/*
-  LABNOTES — Swiss Photomonth aesthetic
-  Exact port of the MVP CSS into Tailwind v4
-*/
-
-/* ─── TOKENS ─── */
-:root {
-  --black:     #0a0a0a;
-  --white:     #f7f7f5;
-  --off-white: #ffffff;
-  --red:       #ff0000;
-  --grey:      #555;
-  --rule:      1px solid var(--black);
-  --col-unit:  calc(100vw / 12);
-  --col-4:     calc(4 * var(--col-unit));
-  --col-6:     calc(6 * var(--col-unit));
-  --col-8:     calc(8 * var(--col-unit));
-}
-
 /* ─── BASE ───
    Tailwind's preflight already resets margin/padding/box-sizing and makes links inherit
    colour, so those hand-written resets are gone. Element defaults live in @layer base so
    utility classes can override them. */
 @layer base {
-  html { font-size: 15px; background: #f7f7f5; color: var(--black); }
+  html { font-size: 15px; background: var(--color-paper); color: var(--color-ink); }
 
   body {
     font-family: 'Nimbus Sans', Arial, sans-serif;
@@ -109,638 +96,195 @@
   }
 }
 
-/* ─── ARTICLE: PAGE GRID ─── */
-.page-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 0;
-  align-items: start;
-}
-.page-main {
-  grid-column: span 8;
-  border-right: var(--rule);
-  min-width: 0;
-}
-.page-side {
-  grid-column: span 4;
-  padding: 2.5rem 1.5rem;
-  position: sticky;
-  top: 0;
-  max-height: 100vh;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-.page-side::-webkit-scrollbar       { width: 3px; }
-.page-side::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); }
-
-@media (max-width: 900px) {
-  .page-main { grid-column: span 12; border-right: none; }
-  .page-side { display: none; }
-}
-
-/* ─── ARTICLE: HEADER ─── */
-.article-header {
-  padding: 3rem 0 1.5rem 0;
-  padding-left: 1rem;
-  border-bottom: var(--rule);
-}
-.article-header-main { padding: 0; }
-.article-title {
-  font-family: 'Nimbus Sans', 'Barlow', sans-serif;
-  font-weight: 900;
-  font-size: clamp(2rem, 3vw, 3.2rem);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-  text-transform: none;
-  max-width: var(--col-4);
-  margin-bottom: 1.5rem;
-}
-.article-subtitle {
-  font-family: 'Fragment Mono', monospace;
-  font-style: normal;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #444;
-  margin-bottom: 2rem;
-  max-width: var(--col-4);
-  padding-top: 0.15rem;
-}
-.authors {
-  margin-bottom: 1.5rem;
-  max-width: var(--col-4);
-}
-.author-lines { display: block; }
-.author-line {
-  font-family: 'Fragment Mono', monospace;
-  font-weight: 400;
-  font-size: 0.88rem;
-  letter-spacing: 0.03em;
-  display: inline;
-}
-.author-line sup {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.55rem;
-  font-weight: 400;
-  color: var(--black);
-  vertical-align: super;
-  letter-spacing: 0;
-}
-.author-sep { color: var(--grey); margin: 0 0.3rem; }
-.affiliations {
-  margin-top: 0.6rem;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.82rem;
-  line-height: 1.9;
-  color: var(--grey);
-}
-.affil-n {
-  color: var(--black);
-  margin-right: 0.25rem;
-}
-.orcid-row {
-  margin-top: 0.5rem;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.82rem;
-  color: var(--grey);
-  line-height: 1.8;
-}
-.orcid-id {
-  color: var(--black);
-  font-weight: 400;
-}
-.corresponding {
-  margin-top: 0.4rem;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.72rem;
-  color: var(--grey);
-}
-.corresponding a { border-bottom: 1px solid var(--grey); }
-
-/* ─── ARTICLE: ABSTRACT ─── */
-.abstract-band {
-  background: #d8d8d5;
-  color: var(--black);
-  border-bottom: var(--rule);
-  border-top: var(--rule);
-}
-.abstract-main { padding: 2rem 1rem 2.5rem; }
-.abstract-label {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--grey);
-  margin-bottom: 1rem;
-  display: block;
-}
-.abstract-text {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.88rem;
-  line-height: 1.9;
-  color: var(--grey);
-}
-.abstract-text em { font-style: italic; color: var(--black); }
-
-/* ─── ARTICLE: BODY ─── */
-.body-text {
-  padding: 3rem 1rem;
-}
-.body-text h2 {
-  font-family: 'Nimbus Sans', 'Barlow', sans-serif;
-  font-weight: 900;
-  font-size: 2rem;
-  letter-spacing: -0.025em;
-  margin: 2.5rem 0 1rem;
-  padding-top: 2rem;
-}
-.body-text h2:first-child { margin-top: 0; padding-top: 0; }
-.body-text p {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 1rem;
-  line-height: 1.85;
-  color: var(--black);
-  margin-bottom: 1.2em;
-  max-width: var(--col-6);
-}
-.body-text p em  { font-style: italic; }
-.body-text p strong { font-weight: 700; }
-.fn-ref {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.6rem;
-  color: var(--red);
-  vertical-align: super;
-  cursor: pointer;
-}
-
-/* ─── ARTICLE: SIDEBAR META ─── */
-.meta-block { margin-bottom: 0; }
-.meta-label {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--grey);
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  padding-bottom: 0.25rem;
-  margin-bottom: 0.4rem;
-  display: block;
-}
-.meta-value {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.9rem;
-  line-height: 1.7;
-  color: var(--black);
-}
-.meta-value.red { color: var(--red); }
-.meta-value a { color: var(--black); }
-.meta-value a:hover { color: var(--red); }
-.kw-list {
-  list-style: none;
-  padding: 0;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.9rem;
-  line-height: 1.7;
-}
-.kw-list li { color: var(--red); }
-
-/* ─── ARTICLE: BIBLIOGRAPHY ─── */
-.bibliography {
-  padding: 2.5rem 1rem 3rem;
-  max-width: var(--col-6);
-}
-.bibliography-title {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--grey);
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  padding-bottom: 0.25rem;
-  margin-bottom: 1rem;
-  display: block;
-  font-weight: 400;
-}
-.bib-list { list-style: none; padding: 0; }
-.bib-item {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.9rem;
-  line-height: 1.7;
-  color: var(--black);
-  padding: 0.3rem 0 0.3rem 2rem;
-  position: relative;
-  counter-increment: bib;
-}
-.bib-list { counter-reset: bib; }
-.bib-item::before {
-  content: counter(bib);
-  position: absolute;
-  left: 0;
-  top: 0.3rem;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.78rem;
-  color: var(--grey);
-}
-.bib-item em { font-style: italic; }
-
-/* ─── ARTICLE: FOOTNOTES ─── */
-.footnotes {
-  padding: 2rem 1rem;
-  border-top: var(--rule);
-}
-.footnotes-title {
-  font-family: 'Nimbus Sans', 'Barlow', sans-serif;
-  font-weight: 900;
-  font-size: 1rem;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  padding-bottom: 0.4rem;
-  border-bottom: var(--rule);
-}
-.fn-list { list-style: none; padding: 0; max-width: var(--col-6); }
-.fn-item {
-  display: grid;
-  grid-template-columns: 1.5rem 1fr;
-  gap: 0 0.5rem;
-  margin-bottom: 0.6rem;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.65rem;
-  line-height: 1.7;
-  color: var(--grey);
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-}
-.fn-item:last-child { border-bottom: none; }
-.fn-num { color: var(--red); font-size: 0.6rem; padding-top: 0.1rem; }
-
-/* ─── FOLIO (floating page counter) ─── */
-#folio-box {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 200;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  pointer-events: none;
-}
-#folio-num {
-  font-family: 'Nimbus Sans', 'Barlow', 'Arial Black', sans-serif;
-  font-weight: 900;
-  font-size: clamp(2.25rem, 4.5vw, 4rem);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: var(--black);
-  background: var(--white);
-  border: 1px solid var(--black);
-  padding: 0.4rem 0.7rem 0.35rem;
-  user-select: none;
-  text-align: center;
-}
-#folio-cite-trigger {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--black);
-  background: var(--white);
-  text-align: center;
-  padding: 0.25rem 0.7rem 0.3rem;
-  cursor: pointer;
-  pointer-events: auto;
-  border: 1px solid var(--black);
-  border-top: none;
-}
-#folio-cite-trigger:hover { background: #f2f2f2; }
-#folio-cite {
-  background: var(--black);
-  color: var(--off-white);
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.55rem;
-  line-height: 1.75;
-  padding: 0.6rem 0.7rem;
-  width: 16rem;
-  max-width: 92vw;
-  display: none;
-  pointer-events: auto;
-  cursor: text;
-  user-select: all;
-}
-#folio-cite.visible { display: block; }
-#folio-cite-label {
-  font-size: 0.44rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: rgba(255,255,255,0.35);
-  margin-bottom: 0.4rem;
-  display: block;
-  user-select: none;
-}
-
-/* ─── RESPONSIVE ─── */
-@media (max-width: 800px) {
-  /* Article layout: stack */
-  .page-main { grid-column: span 12 !important; border-right: none; }
-  .page-side { display: none; }
-}
-/* ─── FIGURE ─── */
-.figure {
-  margin: 2.5rem 0;
-  max-width: var(--col-6);
-}
-.figure-n {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--red);
-  margin-bottom: 0.5rem;
-  display: block;
-}
-.figure-inner {
-  background: #f2f2f2;
-  aspect-ratio: 16/9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  width: 100%;
-  margin-bottom: 0.7rem;
-}
-.figure-caption {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.82rem;
-  line-height: 1.65;
-  color: var(--grey);
-}
-.figure-caption strong { color: var(--black); font-weight: 700; }
-.figure-credit {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.75rem;
-  color: var(--grey);
-  margin-top: 0.2rem;
-}
-
-/* ─── SIDEBAR EXTRAS ─── */
-.doi-value {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.82rem;
-  word-break: break-all;
-}
-.doi-value a:hover { color: var(--red); }
-
-.dates-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-}
-.date-item {}
-.date-label {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--grey);
-  display: block;
-}
-.date-val {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.88rem;
-  color: var(--black);
-}
-
-.resource-link {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.82rem;
-  line-height: 2;
-}
-.resource-link a:hover { color: var(--red); }
-
-/* ─── MOBILE: ARTICLE BODY FIX ─── */
-/* Prevent max-width col vars from cramping text on narrow screens */
-@media (max-width: 800px) {
-  .article-title    { max-width: 100% !important; }
-  .article-subtitle { max-width: 100% !important; }
-  .authors          { max-width: 100% !important; }
-  .body-text p      { max-width: 100% !important; }
-  .bibliography     { max-width: 100% !important; padding: 1.5rem 1rem; }
-  .fn-list          { max-width: 100% !important; }
-  .body-text        { padding: 1.5rem 1rem; }
-  .article-header   { padding: 1.5rem 1rem; }
-}
-
-/* ─── ARTICLE SIDEBAR: STACK ON MOBILE ─── */
-@media (max-width: 900px) {
-  .page-side {
-    grid-column: span 12 !important;
-    position: static !important;
-    max-height: none !important;
-    border-top: var(--rule);
-    border-right: none;
-    padding: 1.5rem 1rem;
-    display: flex !important;
+/* ─── CONTENT COMPONENTS ───
+   Styles for content we cannot put utility classes on: Markdown output (headings, paragraphs,
+   kramdown footnotes) and the classes note authors write inside articles (figure, bibliography,
+   fn-list). Page chrome uses utilities in the templates instead. */
+@layer components {
+  /* Article body text (the .prose-article wrapper in article-body.html and about.md) */
+  .prose-article h2 {
+    font-family: var(--font-headline);
+    font-weight: 900;
+    font-size: 2rem;
+    letter-spacing: -0.025em;
+    margin: 2.5rem 0 1rem;
+    padding-top: 2rem;
   }
-}
-
-/* ─── FOOTNOTE / NOTE COLOR NORMALIZATION ─── */
-.body-text sup,
-.body-text sup a,
-.body-text a.footnote,
-.body-text .fn-ref,
-.footnotes .fn-num,
-.footnotes ol li::marker,
-.footnotes a.footnote,
-.footnotes .reversefootnote {
-  color: var(--red) !important;
-}
-
-.footnotes ol {
-  padding-left: 1.35rem;
-  max-width: var(--col-6);
-}
-
-.footnotes li {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.65rem;
-  line-height: 1.7;
-  color: var(--grey);
-  padding-left: 0.35rem;
-  margin-bottom: 0.6rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-}
-
-.footnotes li:last-child { border-bottom: none; }
-
-.footnotes p {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.65rem;
-  line-height: 1.7;
-  color: var(--grey);
-  margin: 0;
-}
-
-
-/* ─── FINAL PRECISION: ARTICLE HEADER + MOBILE MASTHEAD ─── */
-.article-type { display: none !important; }
-.article-header {
-  padding: 3rem 0 1.5rem 1rem;
-  border-bottom: var(--rule);
-}
-.article-header-main { padding: 0; }
-.article-title {
-  font-family: 'Nimbus Sans', 'Barlow', sans-serif;
-  font-weight: 900;
-  font-size: clamp(2rem, 3vw, 3.2rem);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-  text-transform: none;
-  max-width: var(--col-4);
-  margin: 0 0 1.5rem 0;
-}
-.article-subtitle {
-  font-family: 'Fragment Mono', monospace;
-  font-style: normal;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #444;
-  max-width: var(--col-4);
-  margin: 0 0 2rem 0;
-  padding-top: 0.15rem;
-}
-.authors {
-  max-width: var(--col-4);
-  margin: 0 0 1.5rem 0;
-}
-.author-lines { display: block; }
-.author-line {
-  font-family: 'Fragment Mono', monospace;
-  font-weight: 400;
-  font-size: 0.88rem;
-  letter-spacing: 0.03em;
-  display: inline;
-}
-.author-line sup {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.55rem;
-  font-weight: 400;
-  color: var(--black);
-  vertical-align: super;
-  letter-spacing: 0;
-}
-.author-sep { color: var(--grey); margin: 0 0.3rem; }
-.affiliations {
-  margin-top: 0.6rem;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.82rem;
-  line-height: 1.9;
-  color: var(--grey);
-}
-.affil-n {
-  color: var(--black);
-  margin-right: 0.25rem;
-}
-.orcid-row {
-  margin-top: 0.5rem;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.82rem;
-  color: var(--grey);
-  line-height: 1.8;
-}
-.orcid-id {
-  color: var(--black);
-  font-weight: 400;
-}
-.corresponding {
-  margin-top: 0.4rem;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.72rem;
-  color: var(--grey);
-}
-.corresponding a { border-bottom: 1px solid var(--grey); }
-.abstract-band {
-  background: #d8d8d5;
-  color: var(--black);
-  border-top: none;
-  border-bottom: var(--rule);
-}
-@media (max-width: 800px) {
-  .article-header { padding: 1.5rem 1rem; }
-  .article-title {
-    max-width: 100% !important;
-    font-size: clamp(2rem, 3vw, 3.2rem) !important;
+  .prose-article h2:first-child { margin-top: 0; padding-top: 0; }
+  .prose-article p {
+    font-family: var(--font-fragment);
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--color-ink);
+    margin-bottom: 1.2em;
+    max-width: 100%;
   }
-  .article-subtitle,
-  .authors { max-width: 100% !important; }
-}
-/* V17: reliable red note numbers for both custom notes and Markdown footnotes.
-   Tailwind's reset removes native ordered-list markers, so Markdown footnotes
-   need explicit counter numbers rather than browser list markers. */
-.body-text sup[id^="fnref"],
-.body-text sup[id^="fnref"] a,
-.body-text a.footnote,
-.body-text a[role="doc-noteref"],
-.body-text .fn-ref,
-.footnotes .fn-num,
-.footnotes .reversefootnote,
-.footnotes a[role="doc-backlink"] {
-  color: var(--red) !important;
-}
+  .prose-article p em { font-style: italic; }
+  .prose-article p strong { font-weight: 700; }
 
-.footnotes ol:not(.fn-list) {
-  list-style: none !important;
-  counter-reset: labnotes-footnote;
-  padding-left: 0 !important;
-  max-width: var(--col-6);
-}
+  /* Note references: the same red for custom notes and Markdown footnotes */
+  .prose-article sup,
+  .prose-article sup a,
+  .prose-article a.footnote,
+  .prose-article a[role="doc-noteref"],
+  .prose-article .fn-ref { color: var(--color-red); }
+  .fn-ref {
+    font-family: var(--font-fragment);
+    font-size: 0.6rem;
+    color: var(--color-red);
+    vertical-align: super;
+    cursor: pointer;
+  }
 
-.footnotes ol:not(.fn-list) > li {
-  counter-increment: labnotes-footnote;
-  display: grid !important;
-  grid-template-columns: 1.5rem 1fr;
-  gap: 0 0.5rem;
-}
+  /* Figures */
+  .figure { margin: 2.5rem 0; max-width: var(--container-col-6); }
+  .figure-n {
+    font-family: var(--font-fragment);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-red);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .figure-inner {
+    background: #f2f2f2;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 0.7rem;
+  }
+  .figure-caption {
+    font-family: var(--font-fragment);
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: var(--color-grey);
+  }
+  .figure-caption strong { color: var(--color-ink); font-weight: 700; }
+  .figure-credit {
+    font-family: var(--font-fragment);
+    font-size: 0.75rem;
+    color: var(--color-grey);
+    margin-top: 0.2rem;
+  }
 
-.footnotes ol:not(.fn-list) > li::before {
-  content: counter(labnotes-footnote);
-  grid-column: 1;
-  grid-row: 1;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.6rem;
-  line-height: 1.7;
-  color: var(--red) !important;
-  padding-top: 0.1rem;
-}
+  /* Bibliography */
+  .bibliography { padding: 1.5rem 1rem; max-width: 100%; }
+  .bibliography-title {
+    font-family: var(--font-fragment);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-grey);
+    border-bottom: 1px solid var(--color-rule);
+    padding-bottom: 0.25rem;
+    margin-bottom: 1rem;
+    display: block;
+    font-weight: 400;
+  }
+  .bib-list { list-style: none; padding: 0; counter-reset: bib; }
+  .bib-item {
+    font-family: var(--font-fragment);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--color-ink);
+    padding: 0.3rem 0 0.3rem 2rem;
+    position: relative;
+    counter-increment: bib;
+  }
+  .bib-item::before {
+    content: counter(bib);
+    position: absolute;
+    left: 0;
+    top: 0.3rem;
+    font-family: var(--font-fragment);
+    font-size: 0.78rem;
+    color: var(--color-red);
+  }
+  .bib-item em { font-style: italic; }
 
-.footnotes ol:not(.fn-list) > li > * {
-  grid-column: 2;
-}
-
-.footnotes .fn-list {
-  list-style: none !important;
-  padding-left: 0 !important;
-}
-
-.footnotes .fn-list > .fn-item {
-  display: grid !important;
-  grid-template-columns: 1.5rem 1fr;
-  gap: 0 0.5rem;
-}
-
-.footnotes .fn-list > .fn-item > .fn-num {
-  color: var(--red) !important;
-}
-
-@media (max-width: 800px) {
+  /* Footnotes: kramdown's generated list, and the notes block (apparatus.html) */
+  .footnotes { padding: 2rem 1rem; border-top: 1px solid var(--color-ink); }
+  .footnotes-title {
+    font-family: var(--font-headline);
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--color-ink);
+  }
+  .footnotes a.footnote,
+  .footnotes a[role="doc-backlink"],
+  .footnotes .reversefootnote,
+  .footnotes .fn-num { color: var(--color-red); }
   .footnotes ol:not(.fn-list) {
-    max-width: 100% !important;
+    list-style: none;
+    counter-reset: labnotes-footnote;
+    padding-left: 0;
+    max-width: 100%;
+  }
+  .footnotes li {
+    font-family: var(--font-fragment);
+    font-size: 0.65rem;
+    line-height: 1.7;
+    color: var(--color-grey);
+    padding-left: 0.35rem;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-rule-faint);
+  }
+  .footnotes li:last-child { border-bottom: none; }
+  .footnotes p {
+    font-family: var(--font-fragment);
+    font-size: 0.65rem;
+    line-height: 1.7;
+    color: var(--color-grey);
+    margin: 0;
+  }
+  .footnotes ol:not(.fn-list) > li {
+    counter-increment: labnotes-footnote;
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0 0.5rem;
+  }
+  .footnotes ol:not(.fn-list) > li::before {
+    content: counter(labnotes-footnote);
+    grid-column: 1;
+    grid-row: 1;
+    font-family: var(--font-fragment);
+    font-size: 0.6rem;
+    line-height: 1.7;
+    color: var(--color-red);
+    padding-top: 0.1rem;
+  }
+  .footnotes ol:not(.fn-list) > li > * { grid-column: 2; }
+
+  /* Custom notes list written by authors (ol.fn-list > li.fn-item > .fn-num) */
+  .fn-list { list-style: none; padding: 0; max-width: 100%; }
+  .fn-item {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0 0.5rem;
+    margin-bottom: 0.6rem;
+    font-family: var(--font-fragment);
+    font-size: 0.65rem;
+    line-height: 1.7;
+    color: var(--color-grey);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-rule-faint);
+  }
+  .fn-item:last-child { border-bottom: none; }
+  .fn-num { color: var(--color-red); font-size: 0.6rem; padding-top: 0.1rem; }
+
+  @media (width >= theme(--breakpoint-stack)) {
+    .prose-article p,
+    .footnotes ol:not(.fn-list),
+    .fn-list { max-width: var(--container-col-6); }
+    .bibliography { padding: 2.5rem 1rem 3rem; max-width: var(--container-col-6); }
   }
 }
-
-/* V17: reference-list numbers use the same LabNotes red as notes. */
-.bibliography .bib-item::before {
-  color: var(--red) !important;
-}
-

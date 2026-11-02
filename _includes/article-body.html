@@ -1,95 +1,95 @@
     {% if page.abstract or page.summary %}
-    <div class="abstract-band">
-      <div class="abstract-main">
-        <span class="abstract-label">Abstract</span>
-        <div class="abstract-text">
+    <div class="border-b border-ink bg-stone text-ink">
+      <div class="px-4 pt-8 pb-10">
+        <span class="mb-4 block font-fragment text-[0.7rem] uppercase tracking-[0.18em] text-grey">Abstract</span>
+        <div class="font-fragment text-[0.88rem] leading-[1.9] text-grey [&_em]:italic [&_em]:text-ink">
           <p>{% if page.abstract %}{{ page.abstract }}{% else %}{{ page.summary }}{% endif %}</p>
         </div>
       </div>
     </div>
     {% endif %}
 
-    <div class="body-text">
+    <div class="prose-article px-4 py-6 stack:py-12">
       {{ content }}
     </div>
 
   </div><!-- end page-main -->
 
   <!-- SIDEBAR -->
-  <div class="page-side">
+  <div class="col-span-12 flex flex-col gap-8 border-t border-ink px-4 py-6 rail:sticky rail:top-0 rail:col-span-4 rail:max-h-[100vh] overflow-y-auto rail:border-t-0 rail:px-6 rail:py-10 [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-thumb]:bg-[rgba(0,0,0,0.15)]">
 
     {% if page.doi %}
-    <div class="meta-block">
-      <span class="meta-label">DOI</span>
-      <div class="doi-value"><a href="https://doi.org/{{ page.doi }}">{{ page.doi }}</a></div>
+    <div>
+      {% include sidebar-label.html text="DOI" %}
+      <div class="font-fragment text-[0.82rem] break-all"><a class="hover:text-red" href="https://doi.org/{{ page.doi }}">{{ page.doi }}</a></div>
     </div>
     {% endif %}
 
     {% if page.volume_info %}
-    <div class="meta-block">
-      <span class="meta-label">Published in</span>
-      <div class="meta-value"><em>{{ site.title }}</em><br>{{ page.volume_info }}</div>
+    <div>
+      {% include sidebar-label.html text="Published in" %}
+      <div class="font-fragment text-[0.9rem] leading-[1.7] text-ink"><em>{{ site.title }}</em><br>{{ page.volume_info }}</div>
     </div>
     {% endif %}
 
     {% if page.publisher %}
-    <div class="meta-block">
-      <span class="meta-label">Publisher</span>
-      <div class="meta-value">{{ page.publisher }}</div>
+    <div>
+      {% include sidebar-label.html text="Publisher" %}
+      <div class="font-fragment text-[0.9rem] leading-[1.7] text-ink">{{ page.publisher }}</div>
     </div>
     {% endif %}
 
     {% if page.received or page.revised or page.accepted or page.date %}
-    <div class="meta-block">
-      <span class="meta-label">Publication history</span>
-      <div class="dates-grid">
-        {% if page.received %}<div class="date-item"><span class="date-label">Received</span><span class="date-val">{{ page.received }}</span></div>{% endif %}
-        {% if page.revised  %}<div class="date-item"><span class="date-label">Revised</span><span class="date-val">{{ page.revised }}</span></div>{% endif %}
-        {% if page.accepted %}<div class="date-item"><span class="date-label">Accepted</span><span class="date-val">{{ page.accepted }}</span></div>{% endif %}
-        {% if page.date     %}<div class="date-item"><span class="date-label">Published</span><span class="date-val">{{ page.date | date: "%d %b %Y" }}</span></div>{% endif %}
+    <div>
+      {% include sidebar-label.html text="Publication history" %}
+      <div class="grid grid-cols-[1fr_1fr] gap-2">
+        {% if page.received %}<div><span class="block font-fragment text-[0.75rem] uppercase tracking-[0.1em] text-grey">Received</span><span class="font-fragment text-[0.88rem] text-ink">{{ page.received }}</span></div>{% endif %}
+        {% if page.revised  %}<div><span class="block font-fragment text-[0.75rem] uppercase tracking-[0.1em] text-grey">Revised</span><span class="font-fragment text-[0.88rem] text-ink">{{ page.revised }}</span></div>{% endif %}
+        {% if page.accepted %}<div><span class="block font-fragment text-[0.75rem] uppercase tracking-[0.1em] text-grey">Accepted</span><span class="font-fragment text-[0.88rem] text-ink">{{ page.accepted }}</span></div>{% endif %}
+        {% if page.date     %}<div><span class="block font-fragment text-[0.75rem] uppercase tracking-[0.1em] text-grey">Published</span><span class="font-fragment text-[0.88rem] text-ink">{{ page.date | date: "%d %b %Y" }}</span></div>{% endif %}
       </div>
     </div>
     {% endif %}
 
     {% if page.tags %}
-    <div class="meta-block">
-      <span class="meta-label">Keywords</span>
-      <ul class="kw-list">
-        {% for tag in page.tags %}<li>{{ tag }}</li>{% endfor %}
+    <div>
+      {% include sidebar-label.html text="Keywords" %}
+      <ul class="font-fragment text-[0.9rem] leading-[1.7]">
+        {% for tag in page.tags %}<li class="text-red">{{ tag }}</li>{% endfor %}
       </ul>
     </div>
     {% endif %}
 
     {% if page.pdf_url %}
-    <div class="meta-block">
-      <span class="meta-label">Download</span>
-      <div class="resource-link"><a href="{{ page.pdf_url }}" target="_blank">Article (PDF) ↓</a></div>
+    <div>
+      {% include sidebar-label.html text="Download" %}
+      <div class="font-fragment text-[0.82rem] leading-[2]"><a class="hover:text-red" href="{{ page.pdf_url }}" target="_blank">Article (PDF) ↓</a></div>
     </div>
     {% endif %}
 
     {% if page.resources %}
-    <div class="meta-block">
-      <span class="meta-label">External Resources</span>
+    <div>
+      {% include sidebar-label.html text="External Resources" %}
       {% for r in page.resources %}
-        <div class="resource-link"><a href="{{ r.url }}" target="_blank">{{ r.label }} ↗</a></div>
+        <div class="font-fragment text-[0.82rem] leading-[2]"><a class="hover:text-red" href="{{ r.url }}" target="_blank">{{ r.label }} ↗</a></div>
       {% endfor %}
     </div>
     {% endif %}
 
     {% if page.doi %}
-    <div class="meta-block">
-      <span class="meta-label">ACM Reference Format</span>
-      <div class="meta-value" style="font-size:0.82rem;line-height:1.7">
+    <div>
+      {% include sidebar-label.html text="ACM Reference Format" %}
+      <div class="font-fragment text-[0.82rem] leading-[1.7] text-ink">
         {% for author in page.authors %}{{ author }}{% unless forloop.last %}, {% endunless %}{% endfor %}.
         {{ page.date | date: "%Y" }}.
         {{ page.title }}.
         <em>{{ site.title }}</em>.
         {% if page.volume_info %}{{ page.volume_info }}.{% endif %}
-        <a href="https://doi.org/{{ page.doi }}">https://doi.org/{{ page.doi }}</a>
+        <a class="hover:text-red" href="https://doi.org/{{ page.doi }}">https://doi.org/{{ page.doi }}</a>
       </div>
     </div>
     {% endif %}
 
-  </div><!-- end page-side -->
+  </div><!-- end sidebar -->
 
-</div><!-- end page-grid -->
+</div><!-- end page grid -->
