@@ -1,0 +1,15 @@
+{%- comment -%}
+  One note in the archive list. The whole card is a link.
+  note: the note document
+{%- endcomment -%}
+{%- assign href = include.note.url | relative_url -%}
+<a href="{{ href }}" class="group block px-4 py-[1.1rem] [box-shadow:0_1px_0_0_rgba(0,0,0,0.08)]">
+  <span class="block font-wordmark text-index-title font-extrabold leading-[1.15] tracking-[-0.02em]">{{ include.note.title }}</span>
+  <div class="mt-[0.35rem] flex items-center gap-4">
+    <span class="flex-1 font-fragment text-[0.845rem] tracking-[0.04em] text-grey group-hover:text-ink">{{ include.note.authors | join: ", " }}</span>
+    <span class="font-fragment text-[0.72rem] text-grey">{{ include.note.date | date: "%b %Y" }}</span>
+    {%- if include.note.tags %}
+    <span class="relative ml-auto inline-block h-[1.2em] shrink-0 whitespace-nowrap font-fragment text-[0.82rem] lowercase leading-[1.2em] tracking-[0] text-red">{{ include.note.tags | first }}</span>
+    {%- endif %}
+  </div>
+</a>

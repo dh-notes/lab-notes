@@ -12,43 +12,11 @@ permalink: /
 
 {% assign all_notes = site.notes | sort: "date" | reverse %}
 
-<p class="border-b border-ink px-4 py-2 font-fragment text-[0.7rem] uppercase tracking-[0.14em] text-red">Layout A: three columns (current)</p>
-
-<section class="border-b border-ink stack:flex stack:flex-[1_0_auto] stack:flex-col">
-
-  <!-- THREE COLUMNS (desktop), newest→oldest left-to-right -->
-  <div class="hidden stack:grid stack:flex-[1_0_auto] stack:grid-cols-3 stack:items-stretch">
-    {% for col in (0..2) %}
-    <div class="stack:min-h-full border-r border-ink last:border-r-0">
-      {% for note in all_notes %}{% assign mod = forloop.index0 | modulo: 3 %}{% if mod == col %}
-        {% include index-item.html note=note variant="home" %}
-      {% endif %}{% endfor %}
-    </div>
-    {% endfor %}
-  </div>
-
-  <!-- FLAT LIST (mobile), newest→oldest -->
-  <div class="block stack:hidden">
-    {% for note in all_notes %}
-      {% include index-item.html note=note variant="home" %}
-    {% endfor %}
-  </div>
-
-</section>
-
-<p class="border-b border-ink px-4 py-2 font-fragment text-[0.7rem] uppercase tracking-[0.14em] text-red">Layout B: rows</p>
-
-<section class="border-b border-ink">
+<section class="border-b border-ink stack:flex-[1_0_auto]">
+  {% assign total = all_notes.size %}
   {% for note in all_notes %}
-    {% include index-row.html note=note number=forloop.index numbers=true %}
-  {% endfor %}
-</section>
-
-<p class="border-b border-ink px-4 py-2 font-fragment text-[0.7rem] uppercase tracking-[0.14em] text-red">Layout C: two columns</p>
-
-<section class="border-b border-ink">
-  {% for note in all_notes %}
-    {% include index-row.html note=note number=forloop.index %}
+    {% assign number = total | minus: forloop.index0 %}
+    {% include index-row.html note=note number=number %}
   {% endfor %}
 </section>
 

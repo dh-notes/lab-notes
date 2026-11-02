@@ -1,18 +1,16 @@
 {%- comment -%}
   One note as a full-width row on the 12-column grid. The whole row is a link.
   note:   the note document
-  number: its position in the list (1 = newest); numbers: pass true to show the year and number column
+  number: its permanent number (1 = the oldest note), shown as "note 001"
 {%- endcomment -%}
 {%- assign href = include.note.url | relative_url -%}
-{%- assign n = include.number | plus: 100 | slice: 1, 2 -%}
+{%- assign n = include.number | plus: 1000 | slice: 1, 3 -%}
 {%- assign blurb = include.note.abstract | default: include.note.summary -%}
-<a href="{{ href }}" class="group grid grid-cols-1 gap-x-4 gap-y-3 border-b border-ink/25 px-4 py-6 stack:grid-cols-12" data-index-item>
-  {%- if include.numbers %}
+<a href="{{ href }}" class="group grid grid-cols-1 gap-x-4 gap-y-3 border-b border-ink/25 px-4 py-6 stack:grid-cols-12">
   <div class="font-fragment text-[0.78rem] leading-[1.5] tracking-[0.04em] text-grey stack:col-span-2">
-    <span class="block">{{ include.note.date | date: "%Y" }}</span>
-    <span class="block">{{ n }}</span>
+    <span class="block whitespace-nowrap">{{ include.note.date | date: "%d %b %Y" }}</span>
+    <span class="block">note {{ n }}</span>
   </div>
-  {%- endif %}
   <div class="stack:col-span-5">
     {%- if include.note.tags.size > 0 %}
     <p class="mb-[0.4rem] truncate font-fragment text-[0.7rem] lowercase leading-[1.3] tracking-[0.04em] text-ink">
@@ -25,6 +23,6 @@
     <span class="mt-[0.35rem] block font-fragment text-[0.845rem] tracking-[0.04em] text-grey group-hover:text-ink">{{ include.note.authors | join: ", " }}</span>
   </div>
   {%- if blurb != "" %}
-  <p class="line-clamp-6 text-[0.86rem] leading-[1.45] text-grey group-hover:text-ink {% if include.numbers %}stack:col-span-5{% else %}stack:col-span-7{% endif %}">{{ blurb }}</p>
+  <p class="line-clamp-6 text-[0.86rem] leading-[1.45] text-grey group-hover:text-ink stack:col-span-5">{{ blurb }}</p>
   {%- endif %}
 </a>
