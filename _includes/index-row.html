@@ -6,12 +6,12 @@
 {%- assign href = include.note.url | relative_url -%}
 {%- assign n = include.number | plus: 1000 | slice: 1, 3 -%}
 {%- assign blurb = include.note.abstract | default: include.note.summary -%}
-<a href="{{ href }}" class="group grid grid-cols-1 gap-x-4 gap-y-3 border-b border-ink/25 px-4 py-6 stack:grid-cols-12">
-  <div class="font-fragment text-[0.78rem] leading-[1.5] tracking-[0.04em] text-grey stack:col-span-2">
+<a href="{{ href }}" class="group grid grid-cols-1 gap-y-3 border-b border-ink/25 px-4 py-6 stack:grid-cols-12 stack:gap-0 stack:py-0">
+  <div class="font-fragment text-[0.78rem] leading-[1.5] tracking-[0.04em] text-grey stack:col-span-2 stack:border-r stack:border-ink/25 stack:py-6 stack:pr-4">
     <span class="block whitespace-nowrap">{{ include.note.date | date: "%d %b %Y" }}</span>
     <span class="block">note {{ n }}</span>
   </div>
-  <div class="stack:col-span-5">
+  <div class="stack:col-span-5 stack:py-6 stack:pl-4">
     {%- if include.note.tags.size > 0 %}
     <p class="mb-[0.4rem] truncate font-fragment text-[0.7rem] lowercase leading-[1.3] tracking-[0.04em] text-ink">
       {%- for tag in include.note.tags limit: 3 -%}
@@ -23,6 +23,8 @@
     <span class="mt-[0.35rem] block font-fragment text-[0.845rem] tracking-[0.04em] text-grey group-hover:text-ink">{{ include.note.authors | join: ", " }}</span>
   </div>
   {%- if blurb != "" %}
-  <p class="line-clamp-6 text-[0.86rem] leading-[1.45] text-grey group-hover:text-ink stack:col-span-5">{{ blurb }}</p>
+  <div class="stack:col-span-5 stack:py-6 stack:pl-4">
+    <p class="line-clamp-6 text-[0.86rem] leading-[1.45] text-grey group-hover:text-ink">{{ blurb }}</p>
+  </div>
   {%- endif %}
 </a>
