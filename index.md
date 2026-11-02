@@ -8,11 +8,11 @@ permalink: /
     <span class="inline-block font-editorial italic text-red text-[length:min(var(--text-band),calc(100cqw/(var(--flap-em,14)*1.02)))] leading-[1.2] whitespace-nowrap" data-flap-phrases="{{ site.data.topics | jsonify | escape }}">
       <span class="sr-only" data-flap-label>{{ site.data.topics.first }}</span><span aria-hidden="true" data-flap-board>{{ site.data.topics.first }}</span><span aria-hidden="true">.</span>
     </span>{% endcapture %}
-{% include about-band.html content=band_text weight="font-normal" %}
+{% include about-band.html content=band_text weight="font-normal" label="doi ↓" %}
 
 {% assign all_notes = site.notes | sort: "date" | reverse %}
 
-<section class="border-b border-ink stack:flex-[1_0_auto]">
+<section class="stack:flex-[1_0_auto]">
   {% assign total = all_notes.size %}
   {% for note in all_notes %}
     {% assign number = total | minus: forloop.index0 %}
