@@ -14,6 +14,7 @@
   --color-grey-dark: #444;
   --color-rule: rgba(0, 0, 0, 0.1);
   --color-rule-faint: rgba(0, 0, 0, 0.06);
+  --color-tab: rgba(10, 10, 10, 0.35);
 
   --font-sans: 'Nimbus Sans', Arial, sans-serif;
   --font-headline: 'Nimbus Sans', 'Barlow', sans-serif;
@@ -30,9 +31,6 @@
   --container-col-4: calc(4 * (100vw / 12));
   --container-col-6: calc(6 * (100vw / 12));
   --container-col-8: calc(8 * (100vw / 12));
-
-  --animate-flap-out: flapOut 160ms ease-in forwards;
-  --animate-flap-in: flapIn 200ms ease-out forwards;
 
   --breakpoint-phone: 501px;
   --breakpoint-narrow: 601px;
