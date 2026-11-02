@@ -56,7 +56,7 @@ permalink: /about/
     </div>
   </div>
 
-  <div class="col-span-12 flex flex-col gap-8 border-t border-ink px-4 py-6 rail:sticky rail:top-0 rail:col-span-4 rail:max-h-[100vh] overflow-y-auto rail:border-t-0 rail:px-6 rail:py-10 [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-thumb]:bg-[rgba(0,0,0,0.15)]">
+  <div class="col-span-12 flex flex-col gap-8 border-t border-ink px-4 py-6 rail:sticky rail:top-0 rail:col-span-4 rail:max-h-[100vh] rail:overflow-y-auto rail:border-t-0 rail:px-6 rail:py-10 [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-thumb]:bg-[rgba(0,0,0,0.15)]">
 
     <div>
       {% include sidebar-label.html text="Masthead" %}

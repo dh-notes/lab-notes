@@ -1,4 +1,4 @@
-<div class="col-span-12 flex flex-col gap-8 border-t border-ink px-4 py-6 rail:sticky rail:top-0 rail:col-span-4 rail:max-h-[100vh] overflow-y-auto rail:border-t-0 rail:px-6 rail:py-10 [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-thumb]:bg-[rgba(0,0,0,0.15)]">
+<div class="col-span-12 flex flex-col gap-8 border-t border-ink px-4 py-6 rail:sticky rail:top-0 rail:col-span-4 rail:max-h-[100vh] rail:overflow-y-auto rail:border-t-0 rail:px-6 rail:py-10 [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-thumb]:bg-[rgba(0,0,0,0.15)]">
 
   {% if page.doi %}
   <div>
@@ -61,7 +61,7 @@
   {% if page.doi %}
   <div>
     {% include sidebar-label.html text="ACM Reference Format" %}
-    <div class="font-fragment text-[0.82rem] leading-[1.7] text-ink">
+    <div class="font-fragment text-[0.82rem] leading-[1.7] break-words text-ink">
       {% for author in page.authors %}{{ author }}{% unless forloop.last %}, {% endunless %}{% endfor %}.
       {{ page.date | date: "%Y" }}.
       {{ page.title }}.
