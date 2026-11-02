@@ -8,7 +8,7 @@ permalink: /
     <span class="mt-[0.1em] block text-red text-[length:min(var(--text-band),calc(100cqw/(var(--flap-em,14)*1.02)))] leading-[1.2] whitespace-nowrap" data-flap-phrases="{{ site.data.topics | jsonify | escape }}">
       <span class="sr-only" data-flap-label>{{ site.data.topics.first }}</span><span aria-hidden="true" class="select-none" data-flap-board>{{ site.data.topics.first }}</span><span aria-hidden="true">.</span>
     </span>{% endcapture %}
-{% include about-band.html content=band_text weight="font-normal" %}
+{% include about-band.html content=band_text weight="font-normal" class="italic" %}
 
 {% assign all_notes = site.notes | sort: "date" | reverse %}
 
@@ -159,12 +159,12 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
   var STAGGER = 45, OUT_DUR = 160, IN_DUR = 200, HOLD = 4200, TRACKING = -0.02;
 
   var fontsReady = (document.fonts && document.fonts.load)
-    ? document.fonts.load('400 100px "Nimbus Sans"').catch(function () {})
+    ? document.fonts.load('italic 400 100px "Nimbus Sans"').catch(function () {})
     : Promise.resolve();
 
   fontsReady.then(function () {
     var ctx = document.createElement('canvas').getContext('2d');
-    ctx.font = '400 100px "Nimbus Sans", Barlow, "Arial Black", sans-serif';
+    ctx.font = 'italic 400 100px "Nimbus Sans", Barlow, "Arial Black", sans-serif';
     var advance = {};
     function em(ch) {            // width of one letter in em, including the headline's tight tracking
       if (ch === '') return 0;
