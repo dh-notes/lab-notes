@@ -20,9 +20,6 @@
     "allowUnsandboxedCommands": false,
     "excludedCommands": ["git fetch *", "git pull *", "git push *"],
     "filesystem": {
-      "denyRead": ["~"],
-      "allowRead": [".", "~/.gitconfig", "~/.config/git",
-                    "~/.rbenv", "~/gems", "~/.bundle", "~/.cache/gem", "~/.local/share/gem"],
       "allowWrite": ["~/.bundle", "~/.cache/gem"]
     },
     "network": {
