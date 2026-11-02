@@ -12,6 +12,8 @@ permalink: /
 
 {% assign all_notes = site.notes | sort: "date" | reverse %}
 
+<p class="border-b border-ink px-4 py-2 font-fragment text-[0.7rem] uppercase tracking-[0.14em] text-red">Layout A: three columns (current)</p>
+
 <section class="border-b border-ink stack:flex stack:flex-[1_0_auto] stack:flex-col">
 
   <!-- THREE COLUMNS (desktop), newest→oldest left-to-right -->
@@ -32,6 +34,14 @@ permalink: /
     {% endfor %}
   </div>
 
+</section>
+
+<p class="border-b border-ink px-4 py-2 font-fragment text-[0.7rem] uppercase tracking-[0.14em] text-red">Layout B: rows</p>
+
+<section class="border-b border-ink">
+  {% for note in all_notes %}
+    {% include index-row.html note=note number=forloop.index %}
+  {% endfor %}
 </section>
 
 <script>

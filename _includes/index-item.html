@@ -12,9 +12,9 @@
     {%- endfor -%}
   </p>
   {%- endif %}
-  <span class="block font-wordmark text-index-title font-extrabold leading-[1.15] tracking-[-0.02em] transition-[color] duration-100 ease-[ease] group-hover:text-red">{{ include.note.title }}</span>
+  <span class="block font-wordmark text-index-title font-extrabold leading-[1.15] tracking-[-0.02em]">{{ include.note.title }}</span>
   <div class="mt-[0.35rem] flex items-center gap-4">
-    <span class="flex-1 font-fragment text-[0.845rem] tracking-[0.04em] text-grey-dark">{{ include.note.authors | join: ", " }}</span>
+    <span class="flex-1 font-fragment text-[0.845rem] tracking-[0.04em] text-grey group-hover:text-ink">{{ include.note.authors | join: ", " }}</span>
     {%- if include.variant == "archive" %}
     <span class="font-fragment text-[0.72rem] text-grey">{{ include.note.date | date: "%b %Y" }}</span>
     {%- if include.note.tags %}
@@ -25,7 +25,7 @@
   {%- if include.variant == "home" %}
   {%- assign blurb = include.note.abstract | default: include.note.summary %}
   {%- if blurb != "" %}
-  <p class="mt-[0.7rem] line-clamp-6 text-[0.86rem] leading-[1.45] text-grey-dark">{{ blurb }}</p>
+  <p class="mt-[0.7rem] line-clamp-6 text-[0.86rem] leading-[1.45] text-grey group-hover:text-ink">{{ blurb }}</p>
   {%- endif %}
   {%- endif %}
 </a>
