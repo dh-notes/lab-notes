@@ -10,6 +10,8 @@
   --color-paper: #f7f7f5;
   --color-red: #ff0000;
   --color-grey: #555;
+  --color-stone: #d8d8d5;
+  --color-grey-dark: #444;
 
   --font-sans: 'Nimbus Sans', Arial, sans-serif;
   --font-wordmark: 'Nimbus Sans', 'Barlow', 'Arial Black', sans-serif;
@@ -18,11 +20,30 @@
 
   --tracking-mono: 0.03em;
 
+  --text-band: clamp(1.69rem, 2.6vw, 2.6rem);
+  --text-index-title: clamp(1.36rem, 1.87vw, 1.73rem);
+
+  --container-col-8: calc(8 * (100vw / 12));
+
+  --animate-flap-out: flapOut 160ms ease-in forwards;
+  --animate-flap-in: flapIn 200ms ease-out forwards;
+  @keyframes flapOut {
+    0%   { transform: rotateX(0deg);   opacity: 1; }
+    100% { transform: rotateX(-90deg); opacity: 0; }
+  }
+  @keyframes flapIn {
+    0%   { transform: rotateX(90deg);  opacity: 0; }
+    100% { transform: rotateX(0deg);   opacity: 1; }
+  }
+
   --breakpoint-phone: 501px;
   --breakpoint-narrow: 601px;
   --breakpoint-stack: 801px;
   --breakpoint-rail: 901px;
 }
+
+/* Hover applies on touch devices too, as it did before (Tailwind's default is hover-capable pointers only). */
+@custom-variant hover (&:hover);
 
 /* ─── NIMBUS SANS (self-hosted TeX Gyre Heros, GUST Font License) ─── */
 @font-face {
@@ -87,181 +108,6 @@
     flex-shrink: 0;
   }
 }
-
-/* ─── ABOUT BAND ─── */
-.about-band {
-  border-bottom: var(--rule);
-  padding: 2.5rem 1rem;
-  display: flex;
-  flex-direction: column;
-}
-.about-band p {
-  font-family: 'Nimbus Sans', 'Barlow', 'Arial Black', sans-serif;
-  font-weight: 800;
-  font-size: clamp(1.69rem, 2.6vw, 2.6rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  color: var(--black);
-  margin-top: 0.5rem;
-  margin-bottom: 1.2rem;
-  max-width: var(--col-8);
-}
-.about-band p em {
-  font-style: normal;
-  font-weight: 800;
-}
-.about-nav {
-  display: flex;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-  margin-top: 2rem;
-}
-.about-nav-item {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-}
-.about-nav-label {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--grey);
-}
-.about-nav-desc {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 1rem;
-  color: var(--black);
-}
-
-/* ─── TICKER ─── */
-.ticker {
-  border-bottom: var(--rule);
-  height: 1.8rem;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-.ticker-flag {
-  background: var(--black);
-  color: var(--white);
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0 0.8rem;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-.ticker-track {
-  overflow: hidden;
-  flex: 1;
-}
-.ticker-scroll {
-  display: flex;
-  gap: 0;
-  animation: ticker-move 35s linear infinite;
-  white-space: nowrap;
-}
-.ticker-scroll:hover { animation-play-state: paused; }
-.ticker-item {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.04em;
-  padding-right: 3rem;
-  text-transform: uppercase;
-}
-.ticker-item::before {
-  content: "● ";
-  color: var(--red);
-  margin-right: 0.6rem;
-}
-@keyframes ticker-move {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-/* ─── INDEX ─── */
-.index {
-  border-bottom: var(--rule);
-}
-/* Desktop: three independent vertical columns */
-.index-desktop {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  align-items: start;
-}
-.index-mobile { display: none; }
-
-.index-col {
-  border-right: var(--rule);
-}
-.index-col:last-child { border-right: none; }
-
-.index-item {
-  display: block;
-  padding: 1.1rem 1rem;
-  cursor: pointer;
-  transition: background 0.15s ease;
-  box-shadow: 0 1px 0 0 rgba(0,0,0,0.08);
-}
-.index-item:hover { background: #2e2e2e; }
-.index-item:hover .index-title  { color: #fff; }
-.index-item:hover .index-author { color: rgba(255,255,255,0.6); }
-.index-item:hover .index-badge  { color: rgba(255,255,255,0.75); }
-
-/* ─── ABSTRACT ON HOVER ─── */
-.index-abstract {
-  display: none;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.78rem;
-  line-height: 1.75;
-  color: rgba(255,255,255,0.85);
-  padding: 0.2rem 0 0.4rem;
-}
-
-@media (min-width: 801px) {
-  .index-item:hover .index-title,
-  .index-item:hover .index-meta { display: none; }
-  .index-item:hover .index-abstract { display: block; }
-}
-
-.index-title {
-  font-family: 'Nimbus Sans', 'Barlow', 'Arial Black', sans-serif;
-  font-weight: 800;
-  font-size: clamp(1.36rem, 1.87vw, 1.73rem);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  transition: color 0.1s;
-  display: block;
-}
-
-.index-meta {
-  display: flex;
-  gap: 1rem;
-  margin-top: 0.35rem;
-  align-items: center;
-}
-.index-author {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.845rem;
-  letter-spacing: 0.04em;
-  color: #444;
-  flex: 1;
-}
-.index-badge {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.82rem;
-  text-transform: lowercase;
-  letter-spacing: 0.08em;
-  color: var(--red);
-  margin-left: auto;
-}
-
-
 
 /* ─── ARTICLE: PAGE GRID ─── */
 .page-grid {
@@ -595,10 +441,6 @@
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 800px) {
-  .about-band p { max-width: 88%; }
-  /* Switch to mobile flat list */
-  .index-desktop { display: none; }
-  .index-mobile  { display: block; }
   /* Article layout: stack */
   .page-main { grid-column: span 12 !important; border-right: none; }
   .page-side { display: none; }
@@ -687,84 +529,6 @@
   .fn-list          { max-width: 100% !important; }
   .body-text        { padding: 1.5rem 1rem; }
   .article-header   { padding: 1.5rem 1rem; }
-}
-
-/* ─── KEYWORD BADGE ROTATION ─── */
-.kw-char {
-  display: inline;
-  opacity: 0;
-  transition: opacity 0.04s ease;
-}
-.kw-char.kw-visible { opacity: 1; }
-
-/* ─── SPLIT-FLAP ANIMATION ─── */
-@keyframes flapOut {
-  0%   { transform: rotateX(0deg);   opacity: 1; }
-  100% { transform: rotateX(-90deg); opacity: 0; }
-}
-@keyframes flapIn {
-  0%   { transform: rotateX(90deg);  opacity: 0; }
-  100% { transform: rotateX(0deg);   opacity: 1; }
-}
-.flap-char {
-  display: inline-block;
-  width: 0.56em;
-  height: 1.2em;
-  text-align: center;
-  line-height: 1.2em;
-  overflow: visible;
-  vertical-align: top;
-  perspective: 400px;
-}
-.flap-char span {
-  display: block;
-  width: 100%;
-  height: 100%;
-  line-height: 1.2em;
-  text-align: center;
-  transform-origin: center center;
-  backface-visibility: hidden;
-}
-.flap-char span.is-out { animation: flapOut 160ms ease-in  forwards; }
-.flap-char span.is-in  { animation: flapIn  200ms ease-out forwards; }
-
-/* ─── ABSTRACT — light grey, with read-more ─── */
-/* Override previous dark-overlay abstract styles */
-.index-item:hover { background: #d8d8d5; }
-.index-item:hover .index-title  { color: var(--black); }
-.index-item:hover .index-author { color: #555; }
-.index-item:hover .index-badge  { color: var(--red); }
-
-.index-abstract {
-  display: none;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.78rem;
-  line-height: 1.75;
-  color: #555;
-  background: #d8d8d5;
-  margin: 0 -1rem -1.1rem;
-  padding: 1.1rem 1rem 0.8rem;
-  text-decoration: none;
-  position: relative;
-}
-.index-abstract-text    { display: block; }
-.index-abstract-readmore {
-  display: block;
-  text-align: right;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.72rem;
-  color: var(--red);
-  letter-spacing: 0.06em;
-  margin-top: 0.6rem;
-}
-@media (min-width: 801px) {
-  .index-item:hover .index-title,
-  .index-item:hover .index-meta  { display: none; }
-  .index-item:hover .index-abstract { display: block; }
-}
-@media (max-width: 800px) {
-  .index-abstract { display: none !important; }
-  .index-item:hover { background: transparent; }
 }
 
 /* ─── ARTICLE SIDEBAR: STACK ON MOBILE ─── */
@@ -903,7 +667,6 @@
   border-bottom: var(--rule);
 }
 @media (max-width: 800px) {
-  .about-band p { max-width: 100% !important; }
   .article-header { padding: 1.5rem 1rem; }
   .article-title {
     max-width: 100% !important;
@@ -912,21 +675,6 @@
   .article-subtitle,
   .authors { max-width: 100% !important; }
 }
-/* ─── V16: keyword animation parity on mobile ─── */
-.index-badge {
-  display: inline-block;
-  position: relative;
-  flex-shrink: 0;
-  height: 1.2em;
-  line-height: 1.2em;
-  white-space: nowrap;
-  perspective: 400px;
-  overflow: visible;
-  letter-spacing: 0;
-  color: var(--red);
-}
-.index-mobile .index-badge { color: var(--red); }
-
 /* V17: reliable red note numbers for both custom notes and Markdown footnotes.
    Tailwind's reset removes native ordered-list markers, so Markdown footnotes
    need explicit counter numbers rather than browser list markers. */
@@ -996,21 +744,3 @@
   color: var(--red) !important;
 }
 
-@media (min-width: 801px) {
-  .index {
-    flex: 1 0 auto;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .index-desktop {
-    flex: 1 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: stretch;
-  }
-
-  .index-col {
-    min-height: 100%;
-  }
-}

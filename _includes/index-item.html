@@ -1,0 +1,33 @@
+{%- comment -%}
+  One note in the home / archive index.
+  note:    the note document
+  variant: "desktop" (column item with hover abstract), "mobile" (plain link) or "archive" (adds the date)
+{%- endcomment -%}
+{%- assign href = include.note.url | relative_url -%}
+{%- capture item_class -%}group block cursor-pointer px-4 py-[1.1rem] [box-shadow:0_1px_0_0_rgba(0,0,0,0.08)] transition-[background] duration-150 ease-[ease] stack:hover:bg-stone{%- endcapture -%}
+{%- if include.variant == "desktop" -%}
+<div class="{{ item_class }}" data-index-item data-href="{{ href }}">
+{%- else -%}
+<a href="{{ href }}" class="{{ item_class }}" data-index-item>
+{%- endif %}
+  <span class="block font-wordmark text-index-title font-extrabold leading-[1.15] tracking-[-0.02em] transition-[color] duration-100 ease-[ease] stack:group-hover:hidden">{{ include.note.title }}</span>
+  <div class="mt-[0.35rem] flex items-center gap-4 stack:group-hover:hidden">
+    <span class="flex-1 font-fragment text-[0.845rem] tracking-[0.04em] text-grey-dark group-hover:text-grey">{{ include.note.authors | join: ", " }}</span>
+    {%- if include.variant == "archive" %}
+    <span class="font-fragment text-[0.72rem] text-grey">{{ include.note.date | date: "%b %Y" }}</span>
+    {%- endif %}
+    {%- if include.note.tags %}
+    <span data-badge class="relative ml-auto inline-block h-[1.2em] shrink-0 whitespace-nowrap font-fragment text-[0.82rem] lowercase leading-[1.2em] tracking-[0] text-red [perspective:400px]">{{ include.note.tags | first }}</span>
+    {%- endif %}
+  </div>
+  {%- if include.variant == "desktop" %}
+  <a class="relative -mx-4 -mb-[1.1rem] hidden bg-stone px-4 pt-[1.1rem] pb-[0.8rem] font-fragment text-[0.78rem] leading-[1.75] text-grey stack:group-hover:block" href="{{ href }}">
+    <span class="block">{% if include.note.abstract %}{{ include.note.abstract }}{% elsif include.note.summary %}{{ include.note.summary }}{% endif %}</span>
+    <span class="mt-[0.6rem] block text-right text-[0.72rem] tracking-[0.06em] text-red">read more →</span>
+  </a>
+  {%- endif %}
+{%- if include.variant == "desktop" %}
+</div>
+{%- else %}
+</a>
+{%- endif %}

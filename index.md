@@ -4,84 +4,33 @@ title: Home
 permalink: /
 ---
 
-<div class="about-band">
-  <p>
-    {% include logo.html lab="text-ink" %}
+{% capture band_text %}{% include logo.html lab="text-ink" %}
     publishes short, peer-reviewed papers on research design and method in the
     humanities and social sciences. We document procedures, workflows, and forms of coordination
     that organize research in practice, from data collection through annotation, modeling, and
     interpretation. These materials are often produced en route to publication or required to
-    sustain collaborative, lab-based work.
-  </p>
-</div>
+    sustain collaborative, lab-based work.{% endcapture %}
+{% include about-band.html content=band_text %}
 
 {% assign all_notes = site.notes | sort: "date" | reverse %}
 
-<section class="index">
+<section class="border-b border-ink stack:flex stack:flex-[1_0_auto] stack:flex-col">
 
   <!-- DESKTOP: three independent columns, newest→oldest left-to-right -->
-  <div class="index-cols index-desktop">
-
-    <div class="index-col">
-      {% for note in all_notes %}{% assign mod = forloop.index0 | modulo: 3 %}{% if mod == 0 %}
-        <div class="index-item" data-href="{{ note.url | relative_url }}">
-          <span class="index-title">{{ note.title }}</span>
-          <div class="index-meta">
-            <span class="index-author">{{ note.authors | join: ", " }}</span>
-            {% if note.tags %}<span class="index-badge">{{ note.tags | first }}</span>{% endif %}
-          </div>
-          <a class="index-abstract" href="{{ note.url | relative_url }}">
-            <span class="index-abstract-text">{% if note.abstract %}{{ note.abstract }}{% elsif note.summary %}{{ note.summary }}{% endif %}</span>
-            <span class="index-abstract-readmore">read more →</span>
-          </a>
-        </div>
+  <div class="hidden stack:grid stack:flex-[1_0_auto] stack:grid-cols-[repeat(3,1fr)] stack:items-stretch" data-index-desktop>
+    {% for col in (0..2) %}
+    <div class="stack:min-h-full border-r border-ink last:border-r-0">
+      {% for note in all_notes %}{% assign mod = forloop.index0 | modulo: 3 %}{% if mod == col %}
+        {% include index-item.html note=note variant="desktop" %}
       {% endif %}{% endfor %}
     </div>
-
-    <div class="index-col">
-      {% for note in all_notes %}{% assign mod = forloop.index0 | modulo: 3 %}{% if mod == 1 %}
-        <div class="index-item" data-href="{{ note.url | relative_url }}">
-          <span class="index-title">{{ note.title }}</span>
-          <div class="index-meta">
-            <span class="index-author">{{ note.authors | join: ", " }}</span>
-            {% if note.tags %}<span class="index-badge">{{ note.tags | first }}</span>{% endif %}
-          </div>
-          <a class="index-abstract" href="{{ note.url | relative_url }}">
-            <span class="index-abstract-text">{% if note.abstract %}{{ note.abstract }}{% elsif note.summary %}{{ note.summary }}{% endif %}</span>
-            <span class="index-abstract-readmore">read more →</span>
-          </a>
-        </div>
-      {% endif %}{% endfor %}
-    </div>
-
-    <div class="index-col">
-      {% for note in all_notes %}{% assign mod = forloop.index0 | modulo: 3 %}{% if mod == 2 %}
-        <div class="index-item" data-href="{{ note.url | relative_url }}">
-          <span class="index-title">{{ note.title }}</span>
-          <div class="index-meta">
-            <span class="index-author">{{ note.authors | join: ", " }}</span>
-            {% if note.tags %}<span class="index-badge">{{ note.tags | first }}</span>{% endif %}
-          </div>
-          <a class="index-abstract" href="{{ note.url | relative_url }}">
-            <span class="index-abstract-text">{% if note.abstract %}{{ note.abstract }}{% elsif note.summary %}{{ note.summary }}{% endif %}</span>
-            <span class="index-abstract-readmore">read more →</span>
-          </a>
-        </div>
-      {% endif %}{% endfor %}
-    </div>
-
+    {% endfor %}
   </div>
 
   <!-- MOBILE: flat list, newest→oldest, tap navigates directly -->
-  <div class="index-mobile">
+  <div class="block stack:hidden">
     {% for note in all_notes %}
-      <a href="{{ note.url | relative_url }}" class="index-item" style="display:block">
-        <span class="index-title">{{ note.title }}</span>
-        <div class="index-meta">
-          <span class="index-author">{{ note.authors | join: ", " }}</span>
-          {% if note.tags %}<span class="index-badge">{{ note.tags | first }}</span>{% endif %}
-        </div>
-      </a>
+      {% include index-item.html note=note variant="mobile" %}
     {% endfor %}
   </div>
 
@@ -89,10 +38,10 @@ permalink: /
 
 <script>
 // ─── MOBILE TAP → navigate directly ────────────────────────
-var desktopIndex = document.querySelector('.index-desktop');
+var desktopIndex = document.querySelector('[data-index-desktop]');
 if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
   if (!window.matchMedia('(max-width: 800px)').matches) return;
-  var item = e.target.closest('.index-item');
+  var item = e.target.closest('[data-index-item]');
   if (item && item.dataset.href) window.location.href = item.dataset.href;
 });
 
@@ -103,7 +52,7 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
   var IN_DUR   = 200;
 
   var allTags = [];
-  document.querySelectorAll('.index-desktop .index-badge, .index-mobile .index-badge').forEach(function(b) {
+  document.querySelectorAll('[data-badge]').forEach(function(b) {
     var t = b.textContent.trim();
     if (t && allTags.indexOf(t) === -1) allTags.push(t);
   });
@@ -126,8 +75,10 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
     badge.style.width = (COLS * 0.56) + 'em';
     for (var i = 0; i < COLS; i++) {
       var cell = document.createElement('span');
-      cell.className = 'flap-char';
+      cell.setAttribute('data-flap', '');
+      cell.className = 'inline-block h-[1.2em] w-[0.56em] text-center align-top leading-[1.2em] [perspective:400px]';
       var inner = document.createElement('span');
+      inner.className = 'block h-full w-full text-center leading-[1.2em] backface-hidden';
       inner.textContent = '\u00a0';
       cell.appendChild(inner);
       badge.appendChild(cell);
@@ -136,7 +87,7 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
   }
 
   function setCells(badge, text) {
-    var cells = badge.querySelectorAll('.flap-char span');
+    var cells = badge.querySelectorAll('[data-flap] > span');
     var padded = text;
     while (padded.length < COLS) padded = ' ' + padded;
     cells.forEach(function(s, i) {
@@ -147,19 +98,19 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
   function flipCell(cell, newChar, delay) {
     setTimeout(function() {
       var span = cell.querySelector('span');
-      span.classList.remove('is-in');
-      span.classList.add('is-out');
+      span.classList.remove('animate-flap-in');
+      span.classList.add('animate-flap-out');
       setTimeout(function() {
-        span.classList.remove('is-out');
+        span.classList.remove('animate-flap-out');
         span.textContent = newChar === ' ' ? '\u00a0' : newChar;
-        span.classList.add('is-in');
-        setTimeout(function(){ span.classList.remove('is-in'); }, IN_DUR);
+        span.classList.add('animate-flap-in');
+        setTimeout(function(){ span.classList.remove('animate-flap-in'); }, IN_DUR);
       }, OUT_DUR);
     }, delay);
   }
 
   function animateBadge(badge, newWord) {
-    var cells = Array.from(badge.querySelectorAll('.flap-char'));
+    var cells = Array.from(badge.querySelectorAll('[data-flap]'));
     var padded = newWord;
     while (padded.length < COLS) padded = ' ' + padded;
     for (var i = COLS - 1; i >= 0; i--) {
@@ -167,11 +118,11 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
     }
   }
 
-  var badges = Array.from(document.querySelectorAll('.index-desktop .index-badge, .index-mobile .index-badge'));
+  var badges = Array.from(document.querySelectorAll('[data-badge]'));
   badges.forEach(function(b) { initBadge(b); });
 
   var queues = badges.map(function(badge) {
-    var cells = badge.querySelectorAll('.flap-char span');
+    var cells = badge.querySelectorAll('[data-flap] > span');
     var own = Array.from(cells).map(function(s){
       return s.textContent.replace(/\u00a0/g, ' ');
     }).join('').trim();
