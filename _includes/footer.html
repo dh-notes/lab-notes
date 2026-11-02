@@ -1,13 +1,13 @@
-<footer class="site-footer">
-  <span class="footer-l">
-    <span class="footer-l-full">
-      <span class="logo-lab">Lab</span><span class="logo-notes">Notes</span>
+<footer class="mt-auto flex items-center justify-between border-t border-ink px-4 py-[0.55rem]">
+  <span class="font-fragment text-[0.88rem] tracking-mono text-grey">
+    <span class="hidden narrow:inline">
+      {% include logo.html %}
       &nbsp;— {% if site.issn %}ISSN {{ site.issn }} — {% endif %}CC BY 4.0 © {{ site.time | date: "%Y" }}
     </span>
-    <span class="footer-l-short">
-      <span class="logo-lab">Lab</span><span class="logo-notes">Notes</span>
+    <span class="narrow:hidden">
+      {% include logo.html %}
       &nbsp;— MetaLab · CC BY 4.0
     </span>
   </span>
-  <span class="footer-r">Support free &amp; open scholarship.</span>
+  <span class="hidden font-fragment text-[0.88rem] tracking-mono text-grey narrow:inline">Support free &amp; open scholarship.</span>
 </footer>

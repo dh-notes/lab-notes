@@ -6,7 +6,7 @@ permalink: /
 
 <div class="about-band">
   <p>
-    <span class="logo-lab">Lab</span><span class="logo-notes">Notes</span>
+    {% include logo.html lab="text-ink" %}
     publishes short, peer-reviewed papers on research design and method in the
     humanities and social sciences. We document procedures, workflows, and forms of coordination
     that organize research in practice, from data collection through annotation, modeling, and

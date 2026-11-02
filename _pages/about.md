@@ -6,7 +6,7 @@ permalink: /about/
 
 <div class="about-band">
   <p>
-    <span class="logo-lab">Lab</span><span class="logo-notes">Notes</span>
+    {% include logo.html lab="text-ink" %}
     publishes concise papers (1,200–2,500 words) that formalize research practices
     in the humanities and social sciences, making visible what is typically left implicit.
   </p>

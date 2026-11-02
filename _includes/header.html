@@ -1,9 +1,9 @@
-<header class="masthead">
-  <div class="m-logo">
-    <a href="{{ '/' | relative_url }}"><span class="logo-lab">Lab</span><span class="logo-notes">Notes</span></a><span class="m-tagline-dash">&mdash;</span><a href="{{ '/' | relative_url }}" class="m-tagline">A peer-reviewed journal on research design and method</a>
+<header class="grid grid-cols-[1fr_auto] items-center border-b border-ink bg-paper px-4 py-[0.65rem] stack:grid-cols-12 stack:items-baseline stack:py-3">
+  <div class="min-w-0 font-fragment text-[1rem] font-normal tracking-mono text-grey phone:text-[1.15rem] stack:col-span-8 stack:text-[1.6rem]">
+    <a href="{{ '/' | relative_url }}">{% include logo.html %}</a><span class="mx-[0.6rem] hidden align-middle text-[0.88rem] stack:inline-block">&mdash;</span><a href="{{ '/' | relative_url }}" class="hidden align-middle text-[0.88rem] tracking-mono stack:inline-block">A peer-reviewed journal on research design and method</a>
   </div>
-  <div class="m-nav">
-    <a href="{{ '/about/' | relative_url }}">about</a>
-    <a href="{{ '/about/#submission-guidelines' | relative_url }}">submissions</a>
+  <div class="flex items-center justify-end gap-[0.8rem] whitespace-nowrap phone:gap-[1.2rem] stack:col-span-4 stack:gap-8">
+    <a href="{{ '/about/' | relative_url }}" class="font-fragment text-[0.88rem] lowercase tracking-mono text-grey hover:text-ink">about</a>
+    <a href="{{ '/about/#submission-guidelines' | relative_url }}" class="font-fragment text-[0.88rem] lowercase tracking-mono text-grey hover:text-ink">submissions</a>
   </div>
 </header>

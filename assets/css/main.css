@@ -1,5 +1,29 @@
 @import "tailwindcss";
 
+/* ─── DESIGN TOKENS ───
+   Every variable here becomes a utility: --color-ink → text-ink / bg-ink / border-ink,
+   --font-fragment → font-fragment, --breakpoint-stack → stack: / max-stack: variants.
+   Breakpoints are named for what the layout does there. The values are 1px above the old
+   max-width cut-offs (500/600/800/900) so max-* variants match "max-width: Npx" exactly. */
+@theme {
+  --color-ink: #0a0a0a;
+  --color-paper: #f7f7f5;
+  --color-red: #ff0000;
+  --color-grey: #555;
+
+  --font-sans: 'Nimbus Sans', Arial, sans-serif;
+  --font-wordmark: 'Nimbus Sans', 'Barlow', 'Arial Black', sans-serif;
+  --font-editorial: 'DM Serif Display', Georgia, serif;
+  --font-fragment: 'Fragment Mono', monospace;
+
+  --tracking-mono: 0.03em;
+
+  --breakpoint-phone: 501px;
+  --breakpoint-narrow: 601px;
+  --breakpoint-stack: 801px;
+  --breakpoint-rail: 901px;
+}
+
 /* ─── NIMBUS SANS (self-hosted TeX Gyre Heros, GUST Font License) ─── */
 @font-face {
   font-family: 'Nimbus Sans';
@@ -42,95 +66,27 @@
   --col-8:     calc(8 * var(--col-unit));
 }
 
-/* ─── RESET ─── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 15px; background: #f7f7f5; color: var(--black); }
+/* ─── BASE ───
+   Tailwind's preflight already resets margin/padding/box-sizing and makes links inherit
+   colour, so those hand-written resets are gone. Element defaults live in @layer base so
+   utility classes can override them. */
+@layer base {
+  html { font-size: 15px; background: #f7f7f5; color: var(--black); }
 
-body {
-  font-family: 'Nimbus Sans', Arial, sans-serif;
-  font-weight: 400;
-  line-height: 1.15;
-  min-height: 100vh;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+  body {
+    font-family: 'Nimbus Sans', Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.15;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body > * {
+    flex-shrink: 0;
+  }
 }
-
-body > * {
-  flex-shrink: 0;
-}
-
-a    { color: inherit; text-decoration: none; }
-
-/* ─── LOGO WORDMARK ─── */
-.logo-lab   { font-family: 'Nimbus Sans','Barlow','Arial Black',sans-serif; font-weight: 800; color: var(--red); }
-.logo-notes { font-family: 'DM Serif Display',Georgia,serif; font-style: italic; font-weight: 400; color: var(--black); }
-
-/* ─── MASTHEAD ─── */
-.masthead {
-  border-bottom: var(--rule);
-  padding: 0.75rem 1rem;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 0;
-  align-items: baseline;
-  background: var(--white);
-}
-.m-logo {
-  grid-column: span 8;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 1.6rem;
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  color: var(--grey);
-}
-.m-vol {
-  grid-column: span 4;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.88rem;
-  color: var(--grey);
-  text-align: right;
-}
-
-
-/* Tagline split out of the wordmark link (nimbus header) */
-.m-tagline-dash {
-  display: inline-block;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.88rem;
-  font-weight: 400;
-  color: var(--grey);
-  margin: 0 0.6rem;
-  vertical-align: middle;
-}
-.m-tagline {
-  display: inline-block;
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.88rem;
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  color: var(--grey);
-  text-decoration: none;
-  vertical-align: middle;
-}
-
-.m-nav {
-  grid-column: span 4;
-  display: flex;
-  gap: 2rem;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.m-nav a {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.88rem;
-  color: var(--grey);
-  letter-spacing: 0.03em;
-  text-transform: lowercase;
-}
-
-.m-nav a:hover { color: var(--black); }
 
 /* ─── ABOUT BAND ─── */
 .about-band {
@@ -306,35 +262,6 @@ a    { color: inherit; text-decoration: none; }
 }
 
 
-
-/* ─── FOOTER ─── */
-.site-footer {
-  margin-top: auto;
-  border-top: var(--rule);
-  padding: 0.55rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.footer-l, .footer-r {
-  font-family: 'Fragment Mono', monospace;
-  font-size: 0.88rem;
-  color: var(--grey);
-  letter-spacing: 0.03em;
-}
-
-/* ─── ARTICLE: MASTHEAD (3-col) ─── */
-.article-masthead {
-  border-bottom: var(--rule);
-  padding: 0.75rem 1rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0 1rem;
-  align-items: baseline;
-  background: var(--white);
-}
-.article-masthead .m-logo { grid-column: span 2; }
-.article-masthead .m-vol  { grid-column: span 1; }
 
 /* ─── ARTICLE: PAGE GRID ─── */
 .page-grid {
@@ -668,9 +595,6 @@ a    { color: inherit; text-decoration: none; }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 800px) {
-  .masthead  { grid-template-columns: 1fr auto; padding: 0.55rem 1rem; align-items: center; }
-  .m-logo    { grid-column: auto; min-width: 0; }
-  .m-nav     { grid-column: auto; }
   .about-band p { max-width: 88%; }
   /* Switch to mobile flat list */
   .index-desktop { display: none; }
@@ -679,10 +603,6 @@ a    { color: inherit; text-decoration: none; }
   .page-main { grid-column: span 12 !important; border-right: none; }
   .page-side { display: none; }
 }
-@media (max-width: 500px) {
-  .masthead { grid-template-columns: 1fr auto; }
-}
-
 /* ─── FIGURE ─── */
 .figure {
   margin: 2.5rem 0;
@@ -755,24 +675,6 @@ a    { color: inherit; text-decoration: none; }
   line-height: 2;
 }
 .resource-link a:hover { color: var(--red); }
-
-/* ─── MOBILE: MASTHEAD ─── */
-@media (max-width: 800px) {
-  .m-tagline { display: none !important; }
-  .m-logo    { grid-column: auto !important; }
-  .m-nav {
-    grid-column: auto !important;
-    display: flex !important;
-    gap: 1.2rem;
-    justify-content: flex-end;
-    align-items: center;
-    white-space: nowrap;
-  }
-  .m-nav a { font-size: 0.88rem; }
-}
-@media (max-width: 500px) {
-  .m-nav { gap: 0.9rem; }
-}
 
 /* ─── MOBILE: ARTICLE BODY FIX ─── */
 /* Prevent max-width col vars from cramping text on narrow screens */
@@ -863,14 +765,6 @@ a    { color: inherit; text-decoration: none; }
 @media (max-width: 800px) {
   .index-abstract { display: none !important; }
   .index-item:hover { background: transparent; }
-}
-
-/* ─── FOOTER SHORT/FULL ─── */
-.footer-l-short { display: none; }
-@media (max-width: 600px) {
-  .footer-l-full  { display: none; }
-  .footer-l-short { display: inline; }
-  .footer-r       { display: none; }
 }
 
 /* ─── ARTICLE SIDEBAR: STACK ON MOBILE ─── */
@@ -1009,30 +903,6 @@ a    { color: inherit; text-decoration: none; }
   border-bottom: var(--rule);
 }
 @media (max-width: 800px) {
-  .masthead {
-    grid-template-columns: 1fr auto !important;
-    padding: 0.55rem 1rem;
-    align-items: center;
-  }
-  .m-logo {
-    grid-column: auto !important;
-    min-width: 0;
-  }
-  .m-tagline { display: none !important; }
-  .m-nav {
-    grid-column: auto !important;
-    display: flex !important;
-    gap: 1rem;
-    justify-content: flex-end;
-    align-items: center;
-    white-space: nowrap;
-  }
-  .m-nav a {
-    font-family: 'Fragment Mono', monospace;
-    font-size: 0.88rem;
-    color: var(--grey);
-    letter-spacing: 0.03em;
-  }
   .about-band p { max-width: 100% !important; }
   .article-header { padding: 1.5rem 1rem; }
   .article-title {
@@ -1042,12 +912,6 @@ a    { color: inherit; text-decoration: none; }
   .article-subtitle,
   .authors { max-width: 100% !important; }
 }
-@media (max-width: 500px) {
-  .masthead { grid-template-columns: 1fr auto !important; }
-  .m-logo { grid-column: auto !important; }
-  .m-nav { grid-column: auto !important; display: flex !important; gap: 0.9rem; }
-}
-
 /* ─── V16: keyword animation parity on mobile ─── */
 .index-badge {
   display: inline-block;
@@ -1149,19 +1013,4 @@ a    { color: inherit; text-decoration: none; }
   .index-col {
     min-height: 100%;
   }
-}
-
-
-/* ─── NIMBUS FINAL DESIGN OVERRIDES (header) ─── */
-.about-band .logo-lab { color: var(--black); }
-
-@media (max-width: 800px) {
-  .masthead, .article-masthead { padding: 0.65rem 1rem; }
-  .m-logo { font-size: 1.15rem; }
-  .m-tagline, .m-tagline-dash { display: none !important; }
-  .m-nav { gap: 1.2rem; }
-}
-@media (max-width: 500px) {
-  .m-logo { font-size: 1rem; }
-  .m-nav { gap: 0.8rem; }
 }
