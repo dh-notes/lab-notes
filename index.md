@@ -40,6 +40,14 @@ permalink: /
 
 <section class="border-b border-ink">
   {% for note in all_notes %}
+    {% include index-row.html note=note number=forloop.index numbers=true %}
+  {% endfor %}
+</section>
+
+<p class="border-b border-ink px-4 py-2 font-fragment text-[0.7rem] uppercase tracking-[0.14em] text-red">Layout C: two columns</p>
+
+<section class="border-b border-ink">
+  {% for note in all_notes %}
     {% include index-row.html note=note number=forloop.index %}
   {% endfor %}
 </section>
