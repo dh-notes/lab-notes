@@ -4,9 +4,9 @@ title: Home
 permalink: /
 ---
 
-{% capture band_text %}Peer-reviewed notes on research design and method in
-    <span class="mt-[0.1em] block font-editorial italic text-red text-[length:min(var(--text-band),calc(100cqw/(var(--flap-em,14)*1.02)))] leading-[1.2] whitespace-nowrap" data-flap-phrases="{{ site.data.topics | jsonify | escape }}">
-      <span class="sr-only" data-flap-label>{{ site.data.topics.first }}</span><span aria-hidden="true" class="select-none" data-flap-board>{{ site.data.topics.first }}</span><span aria-hidden="true">.</span>
+{% capture band_text %}Notes on
+    <span class="inline-block font-editorial italic text-red text-[length:min(var(--text-band),calc(100cqw/(var(--flap-em,14)*1.02)))] leading-[1.2] whitespace-nowrap" data-flap-phrases="{{ site.data.topics | jsonify | escape }}">
+      <span class="sr-only" data-flap-label>{{ site.data.topics.first }}</span><span aria-hidden="true" data-flap-board>{{ site.data.topics.first }}</span><span aria-hidden="true">.</span>
     </span>{% endcapture %}
 {% include about-band.html content=band_text weight="font-normal" %}
 
@@ -57,7 +57,6 @@ permalink: /
       for (var i = 0; i < COLS; i++) a.push(i < text.length ? text[i] : '');
       return a;
     }
-    function glyph(c) { return c === ' ' ? '\u00a0' : c; }
 
     var widest = Math.max.apply(null, phrases.map(function (p) {
       return chars(p).reduce(function (sum, c) { return sum + em(c); }, 0);
@@ -66,12 +65,13 @@ permalink: /
 
     board.textContent = '';
     board.className = 'inline-block';
+    host.style.width = (widest + em('.')) + 'em';      // fixed, so the line never reflows as phrases change
     var cells = chars(phrases[0]).map(function (ch) {
       var cell = document.createElement('span');
       cell.setAttribute('data-flap', '');
-      cell.className = 'inline-block h-[1.2em] text-center align-top leading-[1.2em] tracking-[0]';
+      cell.setAttribute('data-ch', ch);                 // the letter is drawn as generated content: not selectable or copyable
+      cell.className = 'inline-block h-[1.2em] text-center align-top leading-[1.2em] tracking-[0] before:content-[attr(data-ch)]';
       cell.style.width = em(ch) + 'em';
-      cell.textContent = glyph(ch);
       board.appendChild(cell);
       return cell;
     });
@@ -87,11 +87,11 @@ permalink: /
       if (ch !== '') cell.style.width = em(ch) + 'em';
       (function tick() {
         if (performance.now() - start >= lockAfter) {
-          cell.textContent = glyph(ch);
+          cell.setAttribute('data-ch', ch);
           cell.style.width = em(ch) + 'em';
           return;
         }
-        cell.textContent = pick(ch);
+        cell.setAttribute('data-ch', pick(ch));
         setTimeout(tick, TICK_MIN + Math.random() * (TICK_MAX - TICK_MIN));
       })();
     }
