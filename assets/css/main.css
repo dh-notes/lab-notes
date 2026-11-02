@@ -33,25 +33,6 @@
 
   --animate-flap-out: flapOut 160ms ease-in forwards;
   --animate-flap-in: flapIn 200ms ease-out forwards;
-  /* Headline board: the top half falls forward from the centre seam, the new bottom half drops in. */
-  --animate-board-fall: boardFall 320ms ease-in forwards;
-  --animate-board-rise: boardRise 380ms ease-out forwards;
-  @keyframes boardFall {
-    0%   { transform: rotateX(0deg);   filter: brightness(1); }
-    100% { transform: rotateX(-90deg); filter: brightness(0.45); }
-  }
-  @keyframes boardRise {
-    0%   { transform: rotateX(90deg);  filter: brightness(0.45); }
-    100% { transform: rotateX(0deg);   filter: brightness(1); }
-  }
-  @keyframes flapOut {
-    0%   { transform: rotateX(0deg);   opacity: 1; }
-    100% { transform: rotateX(-90deg); opacity: 0; }
-  }
-  @keyframes flapIn {
-    0%   { transform: rotateX(90deg);  opacity: 0; }
-    100% { transform: rotateX(0deg);   opacity: 1; }
-  }
 
   --breakpoint-phone: 501px;
   --breakpoint-narrow: 601px;

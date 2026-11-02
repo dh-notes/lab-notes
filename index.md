@@ -143,8 +143,8 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
   }, 1200);
 })();
 
-// ─── HEADLINE PHRASE: a split-flap board. Every cell is cut in half at its centre seam:
-//     the old top half falls forward, then the new bottom half drops into place.
+// ─── HEADLINE PHRASE: a departure-board scramble. Letters that change cycle through random
+//     letters of a similar width, then lock onto the right one, left to right.
 //     Each cell is as wide as its own letter (the headline font is proportional), and the font
 //     size is set from the longest phrase so it always fits.
 (function () {
@@ -158,7 +158,8 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
   var board = host.querySelector('[data-flap-board]');
   var label = host.querySelector('[data-flap-label]');
   var COLS = Math.max.apply(null, phrases.map(function (p) { return p.length; }));
-  var STAGGER = 90, FALL = 320, RISE = 380, HOLD = 6500, TRACKING = -0.02;
+  var TICK_MIN = 45, TICK_MAX = 75, LOCK_BASE = 450, LOCK_STEP = 55, HOLD = 6500, TRACKING = -0.02;
+  var POOL = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
   var fontsReady = (document.fonts && document.fonts.load)
     ? document.fonts.load('italic 400 100px "DM Serif Display"').catch(function () {})
@@ -185,57 +186,36 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
     }));
     host.style.setProperty('--flap-em', widest + em('.'));
 
-    var LAYER  = 'absolute inset-0 block text-center leading-[1.2em] whitespace-nowrap';
-    var TOP    = '[clip-path:inset(-0.5em_-0.5em_50%_-0.5em)]';
-    var BOTTOM = '[clip-path:inset(50%_-0.5em_-0.5em_-0.5em)]';
-    function layer(extra, ch) {
-      var l = document.createElement('span');
-      l.className = LAYER + ' ' + extra;
-      l.textContent = glyph(ch);
-      return l;
-    }
-
     board.textContent = '';
     board.className = 'inline-block';
-    var first = chars(phrases[0]);
-    var cells = first.map(function (ch) {
+    var cells = chars(phrases[0]).map(function (ch) {
       var cell = document.createElement('span');
       cell.setAttribute('data-flap', '');
-      cell.className = 'relative inline-block h-[1.2em] align-top leading-[1.2em] tracking-[0] [perspective:400px]';
+      cell.className = 'inline-block h-[1.2em] text-center align-top leading-[1.2em] tracking-[0]';
       cell.style.width = em(ch) + 'em';
-      var c = {
-        el: cell,
-        top:        layer(TOP, ch),                                           // static top half (shows the new letter once the flap has fallen)
-        bottom:     layer(BOTTOM, ch),                                        // static bottom half (shows the old letter until the new one lands)
-        flapTop:    layer(TOP + ' backface-hidden', ch),                      // falls forward, showing the old letter
-        flapBottom: layer(BOTTOM + ' backface-hidden [transform:rotateX(90deg)]', ch)  // swings down, showing the new letter
-      };
-      c.flapBottom.style.visibility = 'hidden';
-      [c.top, c.bottom, c.flapTop, c.flapBottom].forEach(function (l) { cell.appendChild(l); });
+      cell.textContent = glyph(ch);
       board.appendChild(cell);
-      return c;
+      return cell;
     });
 
-    function flipCell(c, ch, delay) {
-      setTimeout(function () {
-        c.top.textContent = glyph(ch);                    // new top half waits underneath the flap
-        c.flapBottom.textContent = glyph(ch);
-        c.flapTop.classList.add('animate-board-fall');    // old top half falls forward
-        setTimeout(function () {
-          c.flapTop.style.visibility = 'hidden';
-          c.el.style.width = em(ch) + 'em';
-          c.flapBottom.style.visibility = 'visible';
-          c.flapBottom.classList.add('animate-board-rise');   // new bottom half drops into place
-          setTimeout(function () {
-            c.bottom.textContent = glyph(ch);             // settle: static halves now show the new letter
-            c.flapTop.textContent = glyph(ch);
-            c.flapTop.classList.remove('animate-board-fall');
-            c.flapTop.style.visibility = 'visible';
-            c.flapBottom.classList.remove('animate-board-rise');
-            c.flapBottom.style.visibility = 'hidden';
-          }, RISE);
-        }, FALL);
-      }, delay);
+    function pick(target) {      // a random letter about as wide as the one it will become
+      var w = em(target === '' ? ' ' : target);
+      var near = POOL.filter(function (c) { return Math.abs(em(c) - w) <= 0.16; });
+      var pool = near.length ? near : POOL;
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+    function scrambleCell(cell, ch, lockAfter) {
+      var start = performance.now();
+      if (ch !== '') cell.style.width = em(ch) + 'em';
+      (function tick() {
+        if (performance.now() - start >= lockAfter) {
+          cell.textContent = glyph(ch);
+          cell.style.width = em(ch) + 'em';
+          return;
+        }
+        cell.textContent = pick(ch);
+        setTimeout(tick, TICK_MIN + Math.random() * (TICK_MAX - TICK_MIN));
+      })();
     }
 
     var current = 0, order = [], paused = false;
@@ -253,9 +233,9 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
     }
     function rotate() {
       if (paused || document.hidden) return;
-      var next = nextIndex(), from = chars(phrases[current]), to = chars(phrases[next]), n = 0;
+      var next = nextIndex(), from = chars(phrases[current]), to = chars(phrases[next]);
       for (var i = 0; i < COLS; i++) {
-        if (from[i] !== to[i]) flipCell(cells[i], to[i], n++ * STAGGER);
+        if (from[i] !== to[i]) scrambleCell(cells[i], to[i], LOCK_BASE + i * LOCK_STEP);
       }
       current = next;
       if (label) label.textContent = phrases[next];
