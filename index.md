@@ -15,7 +15,7 @@ permalink: /
 <section class="border-b border-ink stack:flex stack:flex-[1_0_auto] stack:flex-col">
 
   <!-- DESKTOP: three independent columns, newest→oldest left-to-right -->
-  <div class="hidden stack:grid stack:flex-[1_0_auto] stack:grid-cols-[repeat(3,1fr)] stack:items-stretch" data-index-desktop>
+  <div class="hidden stack:grid stack:flex-[1_0_auto] stack:grid-cols-3 stack:items-stretch" data-index-desktop>
     {% for col in (0..2) %}
     <div class="stack:min-h-full border-r border-ink last:border-r-0">
       {% for note in all_notes %}{% assign mod = forloop.index0 | modulo: 3 %}{% if mod == col %}
