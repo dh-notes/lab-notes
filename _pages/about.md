@@ -22,12 +22,6 @@ permalink: /about/
       — Analyses of failed experiments, dead ends, or unexpected outcomes<br>
       — Formalizations of informal or tacit methods</p>
 
-      <p>Submissions should be concrete and reproducible in principle. We value specificity over generality, and documentation over interpretation.</p>
-
-      <p>We do not publish traditional research articles, literature reviews, or purely theoretical essays unless they are grounded in a clearly described method or practice.</p>
-
-      <p>All contributions should present a defined procedure, workflow, or experimental context that can be examined, adapted, or replicated by others.</p>
-
       <h2 id="submission-guidelines">Submission Guidelines</h2>
 
       <p>We accept submissions in a range of formats, including Word documents, PDFs, and plain text. Citations should follow the Chicago Manual of Style (notes and bibliography).</p>
