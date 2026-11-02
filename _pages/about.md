@@ -4,11 +4,6 @@ title: About
 permalink: /about/
 ---
 
-{% capture band_text %}{% include logo.html lab="text-ink" %}
-    publishes concise papers (1,200–2,500 words) that formalize research practices
-    in the humanities and social sciences, making visible what is typically left implicit.{% endcapture %}
-{% include about-band.html content=band_text %}
-
 <div class="grid grid-cols-[repeat(12,1fr)] items-start">
   <div class="col-span-12 min-w-0 rail:col-span-8 rail:border-r rail:border-ink">
     <div class="prose-article px-4 py-6 stack:py-12">
