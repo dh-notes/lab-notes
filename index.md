@@ -6,7 +6,7 @@ permalink: /
 
 {% capture band_text %}Peer-reviewed notes on research design and method in
     <span class="mt-[0.1em] block font-editorial italic text-red text-[length:min(var(--text-band),calc(100cqw/(var(--flap-em,14)*1.02)))] leading-[1.2] whitespace-nowrap" data-flap-phrases="{{ site.data.topics | jsonify | escape }}">
-      <span class="sr-only" data-flap-label>{{ site.data.topics.first }}</span><span aria-hidden="true" class="select-none" data-flap-board>{{ site.data.topics.first }}</span><span aria-hidden="true" class="text-ink">.</span>
+      <span class="sr-only" data-flap-label>{{ site.data.topics.first }}</span><span aria-hidden="true" class="select-none" data-flap-board>{{ site.data.topics.first }}</span><span aria-hidden="true">.</span>
     </span>{% endcapture %}
 {% include about-band.html content=band_text weight="font-normal" %}
 
