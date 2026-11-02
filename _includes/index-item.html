@@ -1,27 +1,20 @@
 {%- comment -%}
-  One note in the home / archive index.
+  One note in the home / archive index. The whole card is a link.
   note:    the note document
-  variant: "desktop" (column item with hover abstract), "mobile" (plain link) or "archive" (adds the date)
-  The home variants show up to three tags as a slash-separated line above the title; the archive shows the first tag at the right.
+  variant: "home" (tags line, title, authors, abstract) or "archive" (title, authors, date, first tag)
 {%- endcomment -%}
 {%- assign href = include.note.url | relative_url -%}
-{%- assign swap = "" -%}{%- if include.variant == "desktop" -%}{%- assign swap = " stack:group-hover:hidden" -%}{%- endif -%}
-{%- capture item_class -%}group block cursor-pointer px-4 py-[1.1rem] [box-shadow:0_1px_0_0_rgba(0,0,0,0.08)] transition-[background] duration-150 ease-[ease] stack:hover:bg-stone{%- endcapture -%}
-{%- if include.variant == "desktop" -%}
-<div class="{{ item_class }}" data-index-item data-href="{{ href }}">
-{%- else -%}
-<a href="{{ href }}" class="{{ item_class }}" data-index-item>
-{%- endif %}
-  {%- if include.variant != "archive" and include.note.tags.size > 0 %}
+<a href="{{ href }}" class="group block px-4 py-[1.1rem] [box-shadow:0_1px_0_0_rgba(0,0,0,0.08)]" data-index-item>
+  {%- if include.variant == "home" and include.note.tags.size > 0 %}
   <p class="mb-[0.4rem] truncate font-fragment text-[0.7rem] lowercase leading-[1.3] tracking-[0.04em] text-ink">
     {%- for tag in include.note.tags limit: 3 -%}
       {%- unless forloop.first %}<span class="px-[0.35em] text-ink/30">/</span>{% endunless -%}{{ tag }}
     {%- endfor -%}
   </p>
   {%- endif %}
-  <span class="block font-wordmark text-index-title font-extrabold leading-[1.15] tracking-[-0.02em] transition-[color] duration-100 ease-[ease]{{ swap }}">{{ include.note.title }}</span>
-  <div class="mt-[0.35rem] flex items-center gap-4{{ swap }}">
-    <span class="flex-1 font-fragment text-[0.845rem] tracking-[0.04em] text-grey-dark group-hover:text-grey">{{ include.note.authors | join: ", " }}</span>
+  <span class="block font-wordmark text-index-title font-extrabold leading-[1.15] tracking-[-0.02em] transition-[color] duration-100 ease-[ease] group-hover:text-red">{{ include.note.title }}</span>
+  <div class="mt-[0.35rem] flex items-center gap-4">
+    <span class="flex-1 font-fragment text-[0.845rem] tracking-[0.04em] text-grey-dark">{{ include.note.authors | join: ", " }}</span>
     {%- if include.variant == "archive" %}
     <span class="font-fragment text-[0.72rem] text-grey">{{ include.note.date | date: "%b %Y" }}</span>
     {%- if include.note.tags %}
@@ -29,14 +22,10 @@
     {%- endif %}
     {%- endif %}
   </div>
-  {%- if include.variant == "desktop" %}
-  <a class="relative -mx-4 -mb-[1.1rem] hidden bg-stone px-4 pt-[1.1rem] pb-[0.8rem] font-fragment text-[0.78rem] leading-[1.75] text-grey stack:group-hover:block" href="{{ href }}">
-    <span class="block">{% if include.note.abstract %}{{ include.note.abstract }}{% elsif include.note.summary %}{{ include.note.summary }}{% endif %}</span>
-    <span class="mt-[0.6rem] block text-right text-[0.72rem] tracking-[0.06em] text-red">read more →</span>
-  </a>
+  {%- if include.variant == "home" %}
+  {%- assign blurb = include.note.abstract | default: include.note.summary %}
+  {%- if blurb != "" %}
+  <p class="mt-[0.7rem] line-clamp-6 text-[0.86rem] leading-[1.45] text-grey-dark">{{ blurb }}</p>
   {%- endif %}
-{%- if include.variant == "desktop" %}
-</div>
-{%- else %}
+  {%- endif %}
 </a>
-{%- endif %}

@@ -14,35 +14,27 @@ permalink: /
 
 <section class="border-b border-ink stack:flex stack:flex-[1_0_auto] stack:flex-col">
 
-  <!-- DESKTOP: three independent columns, newest→oldest left-to-right -->
-  <div class="hidden stack:grid stack:flex-[1_0_auto] stack:grid-cols-3 stack:items-stretch" data-index-desktop>
+  <!-- THREE COLUMNS (desktop), newest→oldest left-to-right -->
+  <div class="hidden stack:grid stack:flex-[1_0_auto] stack:grid-cols-3 stack:items-stretch">
     {% for col in (0..2) %}
     <div class="stack:min-h-full border-r border-ink last:border-r-0">
       {% for note in all_notes %}{% assign mod = forloop.index0 | modulo: 3 %}{% if mod == col %}
-        {% include index-item.html note=note variant="desktop" %}
+        {% include index-item.html note=note variant="home" %}
       {% endif %}{% endfor %}
     </div>
     {% endfor %}
   </div>
 
-  <!-- MOBILE: flat list, newest→oldest, tap navigates directly -->
+  <!-- FLAT LIST (mobile), newest→oldest -->
   <div class="block stack:hidden">
     {% for note in all_notes %}
-      {% include index-item.html note=note variant="mobile" %}
+      {% include index-item.html note=note variant="home" %}
     {% endfor %}
   </div>
 
 </section>
 
 <script>
-// ─── MOBILE TAP → navigate directly ────────────────────────
-var desktopIndex = document.querySelector('[data-index-desktop]');
-if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
-  if (!window.matchMedia('(max-width: 800px)').matches) return;
-  var item = e.target.closest('[data-index-item]');
-  if (item && item.dataset.href) window.location.href = item.dataset.href;
-});
-
 // ─── HEADLINE PHRASE: a departure-board scramble. Letters that change cycle through random
 //     letters of a similar width, then lock onto the right one, left to right.
 //     Each cell is as wide as its own letter (the headline font is proportional), and the font
