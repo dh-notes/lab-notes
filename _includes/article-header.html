@@ -1,43 +1,40 @@
-<div class="grid grid-cols-[repeat(12,1fr)] items-start">
+<div class="border-b border-ink px-4 py-6 stack:pt-12 stack:pr-0">
+  <div>
+    <h1 class="mb-6 max-w-full font-headline text-title font-black leading-[1.02] tracking-[-0.03em] stack:max-w-col-4">{{ page.title }}</h1>
 
-  <div class="col-span-12 min-w-0 rail:col-span-8 rail:border-r rail:border-ink">
-    <div class="border-b border-ink px-4 py-6 stack:pt-12 stack:pr-0">
+    {% assign article_subtitle = page.subtitle | default: page.deck %}
+    {% if article_subtitle %}
+    <p class="mb-8 max-w-full pt-[0.15rem] font-fragment text-[1rem] not-italic leading-[1.5] text-grey-dark stack:max-w-col-4">{{ article_subtitle }}</p>
+    {% endif %}
+
+    {% if page.authors %}
+    <div class="mb-6 max-w-full stack:max-w-col-4">
       <div>
-        <h1 class="mb-6 max-w-full font-headline text-title font-black leading-[1.02] tracking-[-0.03em] stack:max-w-col-4">{{ page.title }}</h1>
-
-        {% assign article_subtitle = page.subtitle | default: page.deck %}
-        {% if article_subtitle %}
-        <p class="mb-8 max-w-full pt-[0.15rem] font-fragment text-[1rem] not-italic leading-[1.5] text-grey-dark stack:max-w-col-4">{{ article_subtitle }}</p>
-        {% endif %}
-
-        {% if page.authors %}
-        <div class="mb-6 max-w-full stack:max-w-col-4">
-          <div>
-            {% for author in page.authors %}
-              <span class="font-fragment text-[0.88rem] font-normal tracking-mono">{{ author }}{% if page.affiliations %}<sup class="font-fragment text-[0.55rem] font-normal tracking-[0] text-ink align-super">{% if page.affiliations.size == 1 %}1{% else %}{{ forloop.index }}{% endif %}</sup>{% endif %}</span>{% unless forloop.last %}<span class="mx-[0.3rem] text-grey">·</span>{% endunless %}
-            {% endfor %}
-          </div>
-
-          {% if page.affiliations %}
-          <div class="mt-[0.6rem] font-fragment text-[0.82rem] leading-[1.9] text-grey">
-            {% for affiliation in page.affiliations %}
-              <div><span class="mr-1 text-ink">{{ forloop.index }}</span>{{ affiliation }}</div>
-            {% endfor %}
-          </div>
-          {% endif %}
-
-          {% if page.orcids %}
-          <div class="mt-2 font-fragment text-[0.82rem] leading-[1.8] text-grey">
-            {% for item in page.orcids %}
-              <div>{{ item.name }} &nbsp;<span class="font-normal text-ink">{{ item.id }}</span></div>
-            {% endfor %}
-          </div>
-          {% endif %}
-
-          {% if page.corresponding %}
-          <div class="mt-[0.4rem] font-fragment text-[0.72rem] text-grey">* Correspondence: <a class="border-b border-grey" href="mailto:{{ page.corresponding }}">{{ page.corresponding }}</a></div>
-          {% endif %}
-        </div>
-        {% endif %}
+        {% for author in page.authors %}
+          <span class="font-fragment text-[0.88rem] font-normal tracking-mono">{{ author }}{% if page.affiliations %}<sup class="font-fragment text-[0.55rem] font-normal tracking-[0] text-ink align-super">{% if page.affiliations.size == 1 %}1{% else %}{{ forloop.index }}{% endif %}</sup>{% endif %}</span>{% unless forloop.last %}<span class="mx-[0.3rem] text-grey">·</span>{% endunless %}
+        {% endfor %}
       </div>
+
+      {% if page.affiliations %}
+      <div class="mt-[0.6rem] font-fragment text-[0.82rem] leading-[1.9] text-grey">
+        {% for affiliation in page.affiliations %}
+          <div><span class="mr-1 text-ink">{{ forloop.index }}</span>{{ affiliation }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if page.orcids %}
+      <div class="mt-2 font-fragment text-[0.82rem] leading-[1.8] text-grey">
+        {% for item in page.orcids %}
+          <div>{{ item.name }} &nbsp;<span class="font-normal text-ink">{{ item.id }}</span></div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if page.corresponding %}
+      <div class="mt-[0.4rem] font-fragment text-[0.72rem] text-grey">* Correspondence: <a class="border-b border-grey" href="mailto:{{ page.corresponding }}">{{ page.corresponding }}</a></div>
+      {% endif %}
     </div>
+    {% endif %}
+  </div>
+</div>

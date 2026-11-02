@@ -1,6 +1,11 @@
 ---
 layout: default
 ---
-{% include article-header.html %}
-{% include article-body.html %}
+<div class="grid grid-cols-[repeat(12,1fr)] items-start">
+  <div class="col-span-12 min-w-0 rail:col-span-8 rail:border-r rail:border-ink">
+    {% include article-header.html %}
+    {% include article-body.html %}
+  </div>
+  {% include article-sidebar.html %}
+</div>
 {% include apparatus.html notes=page.notes %}
