@@ -16,11 +16,11 @@ permalink: /about/
 
       <p>We are interested in contributions that make research legible as process. Suitable submissions include:</p>
 
-      <p>— Accounts of experimental setups, workflows, or protocols<br>
+      <p>— Notes on method<br>
       — Descriptions of tools, instruments, or computational pipelines<br>
       — Reflections on collaborative or lab-based research practices<br>
       — Analyses of failed experiments, dead ends, or unexpected outcomes<br>
-      — Formalizations of informal or tacit methods</p>
+      — Community best-practices and guidelines</p>
 
       <h2 id="submission-guidelines">Submission Guidelines</h2>
 
