@@ -33,6 +33,10 @@ ask for that specific change.
 
 ## Setup
 
+- **Run Ruby with rbenv's shims and `GEM_HOME` set explicitly.** The sandboxed shell has only the
+  system Ruby (3.4.12), which the Gemfile rejects. Use:
+  `PATH=$HOME/.rbenv/shims:$PATH GEM_HOME=$HOME/gems bundle exec jekyll build`
+  (tested in a sandbox-like environment with this folder's read list; nothing needs widening).
 - Ruby 3.3.6 through rbenv, gems in `~/gems`, Node for PostCSS. Installing or updating a gem or an
   npm package changes what the live site is built with: ask me first, and I will do it or widen
   the sandbox.
