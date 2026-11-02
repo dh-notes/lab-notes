@@ -156,7 +156,7 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
   var board = host.querySelector('[data-flap-board]');
   var label = host.querySelector('[data-flap-label]');
   var COLS = Math.max.apply(null, phrases.map(function (p) { return p.length; }));
-  var STAGGER = 45, OUT_DUR = 160, IN_DUR = 200, HOLD = 4200, TRACKING = -0.02;
+  var STAGGER = 90, OUT_DUR = 320, IN_DUR = 380, HOLD = 6500, TRACKING = -0.02;
 
   var fontsReady = (document.fonts && document.fonts.load)
     ? document.fonts.load('italic 400 100px "DM Serif Display"').catch(function () {})
@@ -201,14 +201,14 @@ if (desktopIndex) desktopIndex.addEventListener('click', function(e) {
 
     function flipCell(span, ch, delay) {
       setTimeout(function () {
-        span.classList.remove('animate-flap-in');
-        span.classList.add('animate-flap-out');
+        span.classList.remove('animate-board-in');
+        span.classList.add('animate-board-out');
         setTimeout(function () {
-          span.classList.remove('animate-flap-out');
+          span.classList.remove('animate-board-out');
           span.textContent = glyph(ch);
           span.parentElement.style.width = em(ch) + 'em';
-          span.classList.add('animate-flap-in');
-          setTimeout(function () { span.classList.remove('animate-flap-in'); }, IN_DUR);
+          span.classList.add('animate-board-in');
+          setTimeout(function () { span.classList.remove('animate-board-in'); }, IN_DUR);
         }, OUT_DUR);
       }, delay);
     }
