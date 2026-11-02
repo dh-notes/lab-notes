@@ -4,7 +4,7 @@ title: Home
 permalink: /
 ---
 
-{% capture band_text %}Notes on
+{% capture band_text %}Somewhere between the laboratory and the studio we find space for process-based scholarship, publishing notes on
     <span class="inline-block font-editorial italic text-red text-[length:min(var(--text-band),calc(100cqw/(var(--flap-em,14)*1.02)))] leading-[1.2] whitespace-nowrap" data-flap-phrases="{{ site.data.topics | jsonify | escape }}">
       <span class="sr-only" data-flap-label>{{ site.data.topics.first }}</span><span aria-hidden="true" data-flap-board>{{ site.data.topics.first }}</span><span aria-hidden="true">.</span>
     </span>{% endcapture %}
