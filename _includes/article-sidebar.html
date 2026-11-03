@@ -21,7 +21,14 @@
   </div>
   {% endif %}
 
-  {% if page.received or page.revised or page.accepted or page.date %}
+  {% if page.history %}
+  <div>
+    {% include sidebar-label.html text="Publication history" %}
+    <ol class="m-0 list-none p-0 font-fragment text-[0.8rem] leading-[1.7]">
+      {% for h in page.history %}<li class="flex gap-3"><time class="shrink-0 whitespace-nowrap text-grey">{{ h.at }}</time><span class="text-ink">{{ h.event }}</span></li>{% endfor %}
+    </ol>
+  </div>
+  {% elsif page.received or page.revised or page.accepted or page.date %}
   <div>
     {% include sidebar-label.html text="Publication history" %}
     <div class="grid grid-cols-[1fr_1fr] gap-2">
@@ -37,7 +44,7 @@
   <div>
     {% include sidebar-label.html text="Keywords" %}
     <ul class="font-fragment text-[0.9rem] leading-[1.7]">
-      {% for tag in page.tags %}<li class="text-red">{{ tag }}</li>{% endfor %}
+      {% for tag in page.tags %}<li class="text-ink">{{ tag }}</li>{% endfor %}
     </ul>
   </div>
   {% endif %}

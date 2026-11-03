@@ -13,6 +13,13 @@ summary: >
     amet purus egestas, faucibus lacus nec, pretium dolor.
 
 tags: [methods, text]
+# PLACEHOLDER history, invented to try the layout. Replace with the real record.
+history:
+  - { at: "2025-11-04", event: submitted }
+  - { at: "2025-11-06", event: under peer review }
+  - { at: "2025-12-19", event: revisions requested }
+  - { at: "2026-01-21", event: revised }
+  - { at: "2026-02-03", event: accepted }
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ornare enim odio, sit amet ornare
