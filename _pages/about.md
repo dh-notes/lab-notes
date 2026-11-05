@@ -90,6 +90,10 @@ permalink: /about/
           <div class="text-grey">Princeton University</div>
         </div>
         <div class="mb-4">
+          <div>Moira Weigel</div>
+          <div class="text-grey">Harvard University</div>
+        </div>
+        <div class="mb-4">
           <div>Stephen Wittek</div>
           <div class="text-grey">Carnegie Mellon University</div>
         </div>
