@@ -100,11 +100,6 @@ permalink: /about/
     </div>
 
     <div>
-      {% include sidebar-label.html text="Access" %}
-      <div class="font-fragment text-[0.9rem] leading-[1.7] text-ink">Open · peer-reviewed</div>
-    </div>
-
-    <div>
       {% include sidebar-label.html text="License" %}
       <div class="font-fragment text-[0.9rem] leading-[1.7] text-ink">CC BY 4.0</div>
     </div>
