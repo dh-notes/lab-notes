@@ -105,11 +105,6 @@ permalink: /about/
     </div>
 
     <div>
-      {% include sidebar-label.html text="Submissions" %}
-      <div class="font-fragment text-[0.82rem] leading-[2]"><a class="hover:text-red" href="#">See guidelines →</a></div>
-    </div>
-
-    <div>
       {% include sidebar-label.html text="Design &amp; Development" %}
       <div class="font-fragment text-[0.9rem] leading-[1.7] text-ink">
         <div>Dennis Yi Tenen</div>
