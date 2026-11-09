@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-<div class="grid grid-cols-[repeat(12,1fr)] items-start">
+<div class="grid grid-cols-[repeat(12,1fr)]">
   <div class="col-span-12 min-w-0 rail:col-span-8 rail:border-r rail:border-ink">
     <div class="prose-article px-4 py-6 stack:py-12">
 
@@ -49,7 +49,7 @@ permalink: /about/
     </div>
   </div>
 
-  <div class="col-span-12 flex flex-col gap-8 border-t border-ink px-4 py-6 rail:sticky rail:top-0 rail:col-span-4 rail:max-h-[100vh] rail:overflow-y-auto rail:border-t-0 rail:px-6 rail:py-10 [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-thumb]:bg-[rgba(0,0,0,0.15)]">
+  <div class="col-span-12 flex flex-col gap-8 border-t border-ink px-4 py-6 rail:col-span-4 rail:border-t-0 rail:px-6 rail:py-10">
 
     <div>
       {% include sidebar-label.html text="Masthead" %}
