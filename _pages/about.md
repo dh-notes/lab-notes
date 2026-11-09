@@ -65,15 +65,10 @@ permalink: /about/
           <div class="text-grey italic">Editor</div>
           <div class="text-grey">Narrative Intelligence Lab, Columbia University</div>
         </div>
-        <div class="mb-4">
+        <div>
           <div>Johan Malmstedt</div>
           <div class="text-grey italic">Associate Editor</div>
           <div class="text-grey">University of Gothenburg</div>
-        </div>
-        <div>
-          <div>Serena Cangiano</div>
-          <div class="text-grey italic">Associate Editor</div>
-          <div class="text-grey">Institute of Design SUPSI</div>
         </div>
       </div>
     </div>
@@ -117,6 +112,15 @@ permalink: /about/
     <div>
       {% include sidebar-label.html text="Submissions" %}
       <div class="font-fragment text-[0.82rem] leading-[2]"><a class="hover:text-red" href="#">See guidelines →</a></div>
+    </div>
+
+    <div>
+      {% include sidebar-label.html text="Design &amp; Development" %}
+      <div class="font-fragment text-[0.9rem] leading-[1.7] text-ink">
+        <div>Dennis Yi Tenen</div>
+        <div>Johan Malmstedt</div>
+        <div>Serena Cangiano</div>
+      </div>
     </div>
 
   </div>
