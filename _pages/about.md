@@ -37,7 +37,7 @@ permalink: /about/
 
       <h2 id="ai-usage-policy">AI Usage Policy</h2>
 
-      <p>Authors using agentic workflows are advised to follow their disciplinary standards while remaining responsible for all aspects of submitted work including conceptualization, research, and authorship. Manuscripts are expected to prioritize human readability and remain free of AI-generated prose.</p>
+      <p>Authors using agentic workflows are advised to follow their disciplinary standards while remaining responsible for all aspects of submitted work including conceptualization, research, and authorship. Manuscripts are expected to remain free of AI-generated prose.</p>
 
       <h2>Contact</h2>
 
