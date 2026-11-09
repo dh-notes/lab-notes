@@ -73,7 +73,7 @@ permalink: /about/
       </div>
     </div>
 
-    <div class="mt-2 border-t border-rule pt-6">
+    <div>
       {% include sidebar-label.html text="Editorial Board" %}
       <div class="font-fragment text-[0.84rem] leading-[1.75] text-ink">
         <div class="mb-4">
