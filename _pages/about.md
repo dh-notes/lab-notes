@@ -35,6 +35,10 @@ permalink: /about/
         <a href="mailto:submit@labnotesjournal.com">submit@labnotesjournal.com</a>.
       </p>
 
+      <h2 id="ai-usage-policy">AI Usage Policy</h2>
+
+      <p>Authors using agentic workflows are advised to follow their disciplinary standards while remaining responsible for all aspects of submitted work including conceptualization, research, and authorship. Manuscripts are expected to prioritize human readability and remain free of AI-generated prose.</p>
+
       <h2>Contact</h2>
 
       <p> 
